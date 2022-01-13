@@ -1,0 +1,18 @@
+[
+  {
+    "userID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
+    "firstName": "Amy",
+    "lastName": "Li",
+    "email": "amyli@gmail.com",
+    "unitNumber": "1203",
+    "status": "Owner"
+  },
+  {
+    "userID": "2922c286-16cd-4d43-ab98-c79f123aed5m",
+    "firstName": "Philip",
+    "lastName": "Watson",
+    "email": "pwatson@gmail.com",
+    "unitNumber": "1310",
+    "status": "Resident"
+  }
+]
