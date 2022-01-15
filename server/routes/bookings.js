@@ -11,7 +11,6 @@ const readFile = () => {
 bookingRouter.get("/", (req, res) => {
   let bookingData = readFile();
   return res.status(200).json(bookingData);
-  // bookingList = bookingData.map((booking) =
 });
 
 module.exports = bookingRouter;

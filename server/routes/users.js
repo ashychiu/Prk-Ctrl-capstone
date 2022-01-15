@@ -29,25 +29,100 @@ const getUser = (id) => {
 
 //API Get single user
 userRouter.get("/:id", (req, res) => {
-  let { id } = req.params;
-  const userFound = getUser(id);
-  if (!userFound) {
+  const { id } = req.params;
+  const foundUser = getUser(id);
+  if (!foundUser) {
     return res.status(404).send("User not found!");
   }
-  return res.status(200).json(userFound);
+  return res.status(200).json(foundUser);
+});
+
+//Add new user
+userRouter.post("/add", (req, res) => {
+  const { firstName, lastName, email, unitNumber, status, phone } = req.body;
+
+  if (!email || !firstName || !lastName || !unitNumber) {
+    return res.status(400).send("Starred fields are required");
+  }
+  if (phone.length < 10) {
+    return res
+      .status(400)
+      .send("Please input a valid North American phone number");
+  }
+  if (!email.includes("@") || !email.includes(".")) {
+    return res.status(400).send("Please input a valid email");
+  }
+  const newUser = {
+    id: uuid(),
+    firstName,
+    lastName,
+    unitNumber,
+    phone,
+    email,
+    status,
+  };
+
+  userList.push(newUser);
+  writeFile(userList);
+  return res.status(201).json(userList);
+});
+
+//Update single user by id
+userRouter.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, email, unitNumber, status, phone } = req.body;
+  const foundUser = userList.find((user) => user.id === id);
+
+  if (!foundUser) {
+    return res.status(404).send("User not found!");
+  }
+
+  if (!email || !firstName || !lastName || !unitNumber) {
+    return res.status(400).send("Starred fields are required");
+  }
+
+  const updatedUser = {
+    id: foundUser.id,
+    firstName,
+    lastName,
+    unitNumber,
+    phone,
+    email,
+    status,
+  };
+
+  userList = userList.map((user) => {
+    if (user.id === foundUser.id) {
+      return updatedUser;
+    } else {
+      return user;
+    }
+  });
+
+  writeFile(userList);
+
+  return res.status(200).send(updatedUser);
 });
 
 //Delete single user by id
-userRouter.delete("/:id", (req, res) => {
+userRouter.delete("/:userId", (req, res) => {
   let { id } = req.params;
   const userFound = getUser(id);
 
   if (!userFound) {
     return res.status(404).send("User not found!");
   }
+
+  // userIndex = userList.indexOf(userFound);
+  // console.log(userIndex);
+  // console.log(userList);
+  // updatedList = userList.splice(userIndex, 1);
+  // console.log(updatedList);
+  // writeFile(updatedList);
+  // res.status(204).send("User deleted succesfully!");
+
   updatedList = userList.filter((user) => user.id !== userFound.id);
   writeFile(updatedList);
-  console.log(updatedList);
   return res.status(204).send();
 });
 
