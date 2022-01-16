@@ -393,7 +393,8 @@
     "unitNumber": 1570,
     "phone": "(560) 473-0154",
     "email": "treeves@att.net",
-    "status": "Resident"
+    "status": "Resident",
+    "password": "$2b$10$zZHy3T/oC5u6Ocj1.Ip3HuIhQhLs0mQt5hKE2CQJ634fCQosi18QG"
   },
   {
     "id": "383a3000-8ecb-44ca-8123-59362806ece0",
@@ -457,5 +458,24 @@
     "phone": "(256) 538-8612",
     "email": "minoann@icloud.com",
     "status": "Resident"
+  },
+  {
+    "id": "2aa57339-438f-4ac9-befb-7758f2762a06",
+    "firstName": "ANGELAND",
+    "lastName": "CHIU",
+    "unitNumber": 1520,
+    "phone": "(123) 473-0154",
+    "email": "treeves@att.net",
+    "status": "Resident"
+  },
+  {
+    "id": "44836761-72cb-4b36-9eb4-dd5a111ab078",
+    "firstName": "ANGELAND",
+    "lastName": "CHIU",
+    "unitNumber": 1520,
+    "phone": "(123) 473-0154",
+    "email": "ashley@gmail.com",
+    "status": "Resident",
+    "password": "$2b$10$zZHy3T/oC5u6Ocj1.Ip3HuIhQhLs0mQt5hKE2CQJ634fCQosi18QG"
   }
 ]
