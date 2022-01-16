@@ -393,7 +393,8 @@
     "unitNumber": 1570,
     "phone": "(560) 473-0154",
     "email": "treeves@att.net",
-    "status": "Resident"
+    "status": "Resident",
+    "password": "$2b$10$zZHy3T/oC5u6Ocj1.Ip3HuIhQhLs0mQt5hKE2CQJ634fCQosi18QG"
   },
   {
     "id": "383a3000-8ecb-44ca-8123-59362806ece0",

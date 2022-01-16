@@ -4,7 +4,6 @@ const { v4: uuid } = require("uuid");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
-// const jwt = require("jsonwebtoken");
 const { createTokens, validateToken } = require("../JWT");
 
 userRouter.use(cookieParser());
@@ -43,7 +42,7 @@ userRouter.get("/profile/:id", (req, res) => {
   return res.status(200).json(foundUser);
 });
 
-//Add new user
+//Sign up new user
 userRouter.post("/signup", (req, res) => {
   const { firstName, lastName, email, unitNumber, status, phone, password } =
     req.body;
@@ -91,9 +90,9 @@ userRouter.post("/login", async (req, res) => {
       const accessToken = createTokens(foundUser); //Call the function created on JWT.js
       res.cookie("accessToken", accessToken, {
         maxAge: 2629800000, //one month in milliseconds
-        httpOnly: true,
+        httpOnly: true, //only accessible by http
       });
-      res.send("Login successfully!");
+      res.status(200).json(foundUser);
     }
   });
 });
@@ -148,14 +147,6 @@ userRouter.delete("/:userId", (req, res) => {
   if (!userFound) {
     return res.status(404).send("User not found!");
   }
-
-  // userIndex = userList.indexOf(userFound);
-  // console.log(userIndex);
-  // console.log(userList);
-  // updatedList = userList.splice(userIndex, 1);
-  // console.log(updatedList);
-  // writeFile(updatedList);
-  // res.status(204).send("User deleted succesfully!");
 
   updatedList = userList.filter((user) => user.id !== userFound.id);
   writeFile(updatedList);
