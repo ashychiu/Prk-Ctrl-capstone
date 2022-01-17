@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import DashBoard from "./pages/DashBoard/DashBoard";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
+import PrivateRoute from "./utils/private";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -23,12 +24,7 @@ function App() {
     <BrowserRouter>
       <h1>Prk Ctrl</h1>
       <Switch>
-        <Route
-          path="/dashboard"
-          render={(Props) => {
-            return <DashBoard {...Props} />;
-          }}
-        />
+        <PrivateRoute exact path="/dashboard" component={DashBoard} />; }} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />;
       </Switch>

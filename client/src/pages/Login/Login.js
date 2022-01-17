@@ -23,7 +23,7 @@ function Login() {
 
         setUser({ name: response.data.firstName, email: response.data.email });
         console.log(user);
-        sessionStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.token);
         console.log(history);
         history.push("/dashboard");
         // setStatus(true);
