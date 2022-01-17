@@ -477,5 +477,25 @@
     "email": "ashley@gmail.com",
     "status": "Resident",
     "password": "$2b$10$zZHy3T/oC5u6Ocj1.Ip3HuIhQhLs0mQt5hKE2CQJ634fCQosi18QG"
+  },
+  {
+    "id": "43a841cd-e2ae-4e20-b8f0-d99321a67994",
+    "firstName": "Natalie",
+    "lastName": "Portman",
+    "unitNumber": "125",
+    "phone": "6047781234",
+    "email": "happynatalie@gmail.com",
+    "status": "Owner",
+    "password": "$2b$10$3sX22V0oKi93k7RoX9Qc3uIDWqY5Icg9vWGjoaomoRq8c77LBRw.."
+  },
+  {
+    "id": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
+    "firstName": "David",
+    "lastName": "Lam",
+    "unitNumber": "809",
+    "phone": "6084561234",
+    "email": "dlam@gmail.com",
+    "status": "Resident",
+    "password": "$2b$10$tI6l/TFXHbrewIe09DNX2eLpxS7PyLoO4JUjv.ueLe3S9CIoWTQa6"
   }
 ]
