@@ -1,0 +1,97 @@
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+@use "./partials/typography";
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $primary-dark;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 2.4375rem;
+  color: $primary-light;
+}
+
+.wrapper {
+  padding: 4.9375rem 9.6875rem;
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+//Buttons
+.btn {
+  height: 2.25rem; //36px
+  padding: 0 1rem;
+  border-radius: 30px;
+  @include tablet {
+    height: 2.375rem; //38px
+    // width: auto;
+  }
+}
+.btn-primary {
+  // @include mb-label;
+  text-align: center;
+  font-size: 2rem;
+  color: $primary-dark;
+  background-color: $primary-cta;
+  border: none;
+  &:hover {
+    color: $primary-dark;
+    background-color: $secondary-light;
+  }
+  @include tablet {
+    @include tb-label;
+  }
+}
+.btn-secondary {
+  // @include mb-label;
+  background-color: $primary-light;
+  color: $primary-dark;
+  border: 1px solid $primary-dark;
+  text-align: center;
+  &:hover {
+    border-color: $primary-cta;
+    color: $primary-light;
+  }
+  @include tablet {
+    @include tb-label;
+  }
+}
+
+#submitButton {
+  background-color: $primary-cta;
+  width: 100%;
+  height: 3rem;
+  border: none;
+  color: $primary-dark;
+  margin-top: 1rem;
+  border-radius: 25px;
+  padding: 2px 16px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  @include tablet {
+    width: 33%;
+    margin: 0.625rem 0 0.625rem 1.5rem;
+  }
+  @include desktop {
+    // width: 13%;
+  }
+  //hover effect on button
+  &:hover {
+    background-color: $secondary-light;
+    cursor: pointer;
+  }
+}
