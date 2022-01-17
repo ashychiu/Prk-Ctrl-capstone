@@ -12,6 +12,7 @@ app.use(
 
 const userRouter = require("./routes/users");
 const bookingRouter = require("./routes/bookings");
+const adminRouter = require("./routes/admin");
 
 app.use(express.json());
 
@@ -21,6 +22,7 @@ app.use(express.json());
 //express router
 app.use("/users", userRouter);
 app.use("/bookings", bookingRouter);
+app.use("/admin", adminRouter);
 
 //server port
 app.listen(PORT, () => {
