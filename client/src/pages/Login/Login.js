@@ -5,12 +5,12 @@ import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
+
 function Login() {
-  const [userList, setUserList] = useState([]);
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
   //   const [status, setStatus] = useState(false);
-
+  const history = useHistory();
   const login = (e) => {
     e.preventDefault();
     axios
@@ -24,7 +24,6 @@ function Login() {
         setUser({ name: response.data.firstName, email: response.data.email });
         console.log(user);
         sessionStorage.setItem("token", response.data.token);
-        const history = useHistory;
         console.log(history);
         history.push("/dashboard");
         // setStatus(true);

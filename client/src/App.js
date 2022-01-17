@@ -5,6 +5,7 @@ import "./styles/global.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DashBoard from "./pages/DashBoard/DashBoard";
 import Login from "./pages/Login/Login";
+import SignUp from "./pages/SignUp/SignUp";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <h1>Prk Ctrl</h1>
       <Switch>
         <Route
           path="/dashboard"
@@ -27,7 +29,8 @@ function App() {
             return <DashBoard {...Props} />;
           }}
         />
-        <Route path="/login" component={Login} />;
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />;
       </Switch>
     </BrowserRouter>
   );
