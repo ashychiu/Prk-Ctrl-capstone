@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -65,7 +64,7 @@ function Login() {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button id="submitButton" type="submit">
           Submit
         </Button>
       </Form>

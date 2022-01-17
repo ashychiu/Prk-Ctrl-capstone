@@ -1,0 +1,14 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.homepage {
+  width: 100%;
+  @include flex-column-center;
+  background-color: $primary-dark;
+  &__container {
+    @include tablet {
+      width: 100%;
+      @include flex-row-center;
+    }
+  }
+}
