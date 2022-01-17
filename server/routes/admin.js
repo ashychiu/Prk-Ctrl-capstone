@@ -38,7 +38,7 @@ adminRouter.post("/", async (req, res) => {
         maxAge: 2629800000, //one month in milliseconds
         httpOnly: true, //only accessible by http
       });
-      res.status(200).send("Login sucess");
+      res.status(200).send("Login success");
     }
   });
 });

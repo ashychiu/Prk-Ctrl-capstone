@@ -9,7 +9,7 @@ function SignUp() {
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
   //   const [status, setStatus] = useState(false);
-
+  const history = useHistory;
   const signup = (e) => {
     e.preventDefault();
     axios
@@ -28,7 +28,7 @@ function SignUp() {
         // setUser({ name: response.data.firstName, email: response.data.email });
         console.log(user);
         // sessionStorage.setItem("token", response.data.token);
-        const history = useHistory;
+
         console.log(history);
         history.push("/login");
         // setStatus(true);
@@ -101,7 +101,9 @@ function SignUp() {
           placeholder="password"
           className="signup-form__input"
         />
-        <button type="submit">Submit</button>
+        <button id="submitButton" type="submit">
+          Submit
+        </button>
       </form>
       {error != "" ? <div>{error}</div> : ""}
     </section>

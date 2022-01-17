@@ -46,6 +46,12 @@ userRouter.get("/profile/:id", (req, res) => {
 userRouter.post("/signup", (req, res) => {
   const { firstName, lastName, email, unitNumber, status, phone, password } =
     req.body;
+  const duplicateEmail = userList.find((user) => user.email === email);
+  if (duplicateEmail) {
+    return res
+      .status(400)
+      .send("Email is already registered, please login instead.");
+  }
 
   if (!email || !firstName || !lastName || !unitNumber || !password) {
     return res.status(400).send("Starred fields are required");
