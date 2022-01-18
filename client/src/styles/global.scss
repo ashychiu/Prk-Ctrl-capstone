@@ -70,7 +70,7 @@ body {
   }
 }
 
-#submitButton {
+.submitButton {
   background-color: $primary-cta;
   width: 100%;
   height: 3rem;
@@ -80,18 +80,19 @@ body {
   border-radius: 25px;
   padding: 2px 16px;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
   @include tablet {
     width: 33%;
     margin: 0.625rem 0 0.625rem 1.5rem;
   }
   @include desktop {
-    // width: 13%;
+    width: 13%;
   }
   //hover effect on button
   &:hover {
-    background-color: $secondary-light;
+    background-color: $secondary-cta;
+    color: $secondary-dark;
     cursor: pointer;
   }
 }

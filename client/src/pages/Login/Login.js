@@ -21,9 +21,8 @@ function Login() {
         console.log(response.data.firstName);
 
         setUser({ name: response.data.firstName, email: response.data.email });
-        console.log(user);
-        localStorage.setItem("token", response.data.token);
-        console.log(history);
+        localStorage.setItem("token", response.data.accessToken);
+        console.log(response.data.accessToken);
         history.push("/dashboard");
         // setStatus(true);
       })

@@ -16,8 +16,7 @@ const HomePage = () => {
             setShowLogin(true);
             setShowSignup(false);
           }}
-          className="homepage__button"
-          id="submitButton"
+          className="homepage__button submitButton"
         >
           Login
         </div>
@@ -26,8 +25,7 @@ const HomePage = () => {
             setShowLogin(false);
             setShowSignup(true);
           }}
-          className="homepage__button"
-          id="submitButton"
+          className="homepage__button submitButton"
         >
           Register
         </div>

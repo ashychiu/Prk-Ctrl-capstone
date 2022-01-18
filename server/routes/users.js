@@ -54,7 +54,7 @@ userRouter.post("/signup", (req, res) => {
   }
 
   if (!email || !firstName || !lastName || !unitNumber || !password) {
-    return res.status(400).send("Starred fields are required");
+    return res.status(400).send("Please fill out all the required fields.");
   }
   if (phone.length < 10) {
     return res
@@ -91,14 +91,14 @@ userRouter.post("/login", async (req, res) => {
   const passwordOnFile = foundUser.password;
   bcrypt.compare(password, passwordOnFile).then((match) => {
     if (!match) {
-      res.status(400).send("Incorrect password!");
+      res.status(401).send("Incorrect password!");
     } else {
       const accessToken = createTokens(foundUser); //Call the function created on JWT.js
-      res.cookie("accessToken", accessToken, {
-        maxAge: 2629800000, //one month in milliseconds
-        httpOnly: true, //only accessible by http
-      });
-      res.status(200).json(foundUser);
+      // res.cookie("accessToken", accessToken, {
+      //   maxAge: 2629800000, //one month in milliseconds
+      //   httpOnly: true, //only accessible by http
+      // });
+      res.status(200).json({ accessToken });
     }
   });
 });
