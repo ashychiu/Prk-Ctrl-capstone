@@ -5,6 +5,13 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 // import "react-pro-sidebar/dist/css/styles.css";
 import "./DashBoard.scss";
 import { FaAdn } from "react-icons/fa";
+import DatePicker from "../../components/DatePicker/DatePicker";
+import Footer from "../../components/Footer/Footer";
+import {
+  SidebarHeader,
+  SidebarFooter,
+  SidebarContent,
+} from "react-pro-sidebar";
 
 const DashBoard = (props) => {
   console.log(props);
@@ -12,7 +19,7 @@ const DashBoard = (props) => {
   const history = useHistory();
   const logout = () => {
     localStorage.clear();
-    history.push("/seeyou");
+    history.push("/logout");
   };
 
   return (
@@ -32,6 +39,20 @@ const DashBoard = (props) => {
           </SubMenu>
         </Menu>
       </ProSidebar>
+      <ProSidebar>
+        <SidebarHeader>
+          <h1>TEST</h1>
+        </SidebarHeader>
+        <SidebarContent>
+          <span>test1</span>
+        </SidebarContent>
+        <SidebarFooter>
+          <span>test2</span>
+        </SidebarFooter>
+      </ProSidebar>
+      ;
+      <DatePicker />
+      <Footer />
     </div>
   );
 };

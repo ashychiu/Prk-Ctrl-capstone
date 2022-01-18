@@ -31,12 +31,10 @@ const HomePage = () => {
         </div>
       </div>
       <div className={showSignup ? "show" : "hide"}>
-        Sigup form
         <SignUp />
       </div>
 
       <div className={showLogin ? "show" : "hide"}>
-        Login form
         <Login />
       </div>
     </section>

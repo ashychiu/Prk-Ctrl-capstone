@@ -9,7 +9,16 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100vh;
+}
+#root {
+  @include flex-col;
+}
 body {
+  width: 100%;
   background-color: $primary-dark;
   margin: 0;
   padding: 0;
@@ -94,5 +103,26 @@ body {
     background-color: $secondary-cta;
     color: $secondary-dark;
     cursor: pointer;
+  }
+}
+
+footer {
+  margin-top: auto;
+}
+
+.main-container {
+  width: 100%;
+  @include flex-row;
+}
+
+.content-container {
+  flex: 2;
+}
+
+.errorMessage {
+  font-size: 0.875rem;
+
+  @include tablet {
+    font-size: 1.125rem;
   }
 }

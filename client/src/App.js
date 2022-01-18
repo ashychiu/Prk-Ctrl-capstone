@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import AdminLogin from "./admin/AdminLogin/AdminLogin";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import SeeYou from "./pages/SeeYou/SeeYou";
+import Footer from "./components/Footer/Footer";
+import SideBar from "./components/SideBar/SideBar";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -26,6 +28,7 @@ function App() {
     <BrowserRouter>
       {/* <h1>Prk Ctrl</h1> */}
       <Switch>
+        <Route path="/sidebar" component={SideBar} />
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />;
@@ -33,6 +36,7 @@ function App() {
         <Route path="/admin" component={AdminLogin} />;
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

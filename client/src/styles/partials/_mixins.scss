@@ -8,10 +8,10 @@
   display: flex;
   flex-direction: column;
 }
-@mixin flex-column-center {
+@mixin flex-col-center {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
 @mixin flex-row {
