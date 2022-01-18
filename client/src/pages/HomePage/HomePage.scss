@@ -3,12 +3,22 @@
 
 .homepage {
   width: 100%;
-  @include flex-column-center;
+  padding: 1rem;
+  @include flex-all-center;
   background-color: $primary-dark;
   &__container {
     @include tablet {
-      width: 100%;
+      width: 50%;
       @include flex-row-center;
+    }
+  }
+  &__logo {
+    width: 100%;
+    @include tablet {
+      width: 70%;
+    }
+    @include desktop {
+      width: 40%;
     }
   }
 }

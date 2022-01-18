@@ -8,10 +8,10 @@
   display: flex;
   flex-direction: column;
 }
-@mixin flex-column-center {
+@mixin flex-col-center {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
 @mixin flex-row {
@@ -34,6 +34,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+@mixin flex-all-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 // Mobile - Font size, line height & font weight
 @mixin page-header {

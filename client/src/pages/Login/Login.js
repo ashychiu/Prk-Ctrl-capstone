@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
-
+import "./Login.scss";
 const API_URL = process.env.REACT_APP_API_URL;
 
 function Login() {
@@ -12,6 +12,7 @@ function Login() {
   const history = useHistory();
   const login = (e) => {
     e.preventDefault();
+    console.log(e.target.email.value);
     axios
       .post(`${API_URL}/users/login`, {
         email: e.target.email.value,
@@ -36,38 +37,26 @@ function Login() {
 
   return (
     <section className="login">
-      <h1 className="hero">Prk Ctrl</h1>
-      <Form onSubmit={login}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            placeholder="Enter email"
-            onChange={() => setError("")}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={() => setError("")}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button id="submitButton" type="submit">
-          Submit
+      <form onSubmit={login} className="login__form">
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          className="login__input"
+          onChange={() => setError("")}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          className="login__input"
+          onChange={() => setError("")}
+        />
+        {error != "" ? <div className="errorMessage">{error}</div> : null}
+        <Button className="submitButton login-btn" type="submit">
+          Go
         </Button>
-      </Form>
-      {error != "" ? <div>{error}</div> : ""}
+      </form>
     </section>
   );
 }

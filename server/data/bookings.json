@@ -22,5 +22,69 @@
     "userID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "sumbitDate": 1642243728171,
     "remarks": "Disabled parking needed"
+  },
+  {
+    "id": "bd08afae-ce92-4ba3-ab8d-98c24fc54d1f",
+    "carPlate": "ABS123",
+    "userID": 1234,
+    "sumbitDate": 1642534714980
+  },
+  {
+    "id": "23c320a7-6936-4007-b513-3b5086ac954c",
+    "carPlate": "JD345W",
+    "requestDate": "2021-5-12",
+    "userID": 1234,
+    "sumbitDate": 1642536431683
+  },
+  {
+    "id": "9a101663-dc1e-479f-8989-d7263a885877",
+    "carPlate": "VR529P",
+    "requestDate": "2020-10-30",
+    "userID": "4e24737b-14ef-4159-b053-bd30818dcdf9",
+    "sumbitDate": 1642540834884
+  },
+  {
+    "id": "7fd0d03a-3d83-47ca-8f68-dfc688d11daf",
+    "carPlate": "VR529P",
+    "requestDate": "2020-10-30",
+    "userID": "4e24737b-14ef-4159-b053-bd30818dcdf9",
+    "sumbitDate": 1642541284642
+  },
+  {
+    "id": "d2e8588c-79cc-4515-9abb-c0ac7062a200",
+    "carPlate": "DDW123",
+    "requestDate": "2022-01-18",
+    "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
+    "sumbitDate": 1642542726308
+  },
+  {
+    "id": "4e4a580e-05f8-443c-8343-e1ebdf254bf4",
+    "carPlate": "DDW123",
+    "requestDate": "2022-01-18",
+    "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
+    "sumbitDate": 1642542779636
+  },
+  {
+    "id": "1e674e18-2988-466a-b704-0ce4f22bf9c1",
+    "carPlate": "DDW123",
+    "requestDate": "2022-01-18",
+    "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
+    "sumbitDate": 1642542786050
+  },
+  {
+    "id": "d1386d4b-6eff-43af-9732-e09a86da0cd5",
+    "carPlate": "DDW123",
+    "requestDate": "2022-01-18",
+    "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
+    "sumbitDate": 1642542800615,
+    "remarks": "something"
+  },
+  {
+    "id": "f16976c8-8572-4fcd-9398-d00942c979a4",
+    "carPlate": "DDW123",
+    "requestDate": "2022-01-18",
+    "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
+    "sumbitDate": 1642542827575,
+    "remarks": "something"
   }
 ]

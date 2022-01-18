@@ -9,7 +9,16 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100vh;
+}
+#root {
+  @include flex-col;
+}
 body {
+  width: 100%;
   background-color: $primary-dark;
   margin: 0;
   padding: 0;
@@ -25,6 +34,7 @@ body {
 }
 
 .show {
+  width: 100%;
   display: block;
 }
 .hide {
@@ -94,5 +104,40 @@ body {
     background-color: $secondary-cta;
     color: $secondary-dark;
     cursor: pointer;
+  }
+}
+
+footer {
+  margin-top: auto;
+}
+
+.main-container {
+  width: 100%;
+  @include flex-row;
+}
+
+.content-container {
+  flex: 2;
+}
+
+.errorMessage {
+  font-size: 0.875rem;
+
+  @include tablet {
+    font-size: 1.125rem;
+  }
+}
+
+input {
+  width: 100%;
+  font-size: 1rem;
+  border: 0px;
+  background-color: $primary-light;
+  height: 2.375rem; //38px
+  border-radius: 5px;
+  padding: 0 1rem; //16px
+  margin: 0.2rem 0;
+  @include tablet {
+    width: 50%;
   }
 }

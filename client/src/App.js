@@ -8,7 +8,10 @@ import SignUp from "./pages/SignUp/SignUp";
 import HomePage from "./pages/HomePage/HomePage";
 import AdminLogin from "./admin/AdminLogin/AdminLogin";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import SeeYou from "./pages/SeeYou/SeeYou";
+import Logout from "./pages/Logout/Logout";
+import Footer from "./components/Footer/Footer";
+import SideBar from "./components/SideBar/SideBar";
+import BookingForm from "./components/BookingForm/BookingForm";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -26,13 +29,16 @@ function App() {
     <BrowserRouter>
       {/* <h1>Prk Ctrl</h1> */}
       <Switch>
+        <Route path="/sidebar" component={SideBar} />
         <Route path="/" exact component={HomePage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />;
-        <Route path="/logout" component={SeeYou} />;
+        <Route path="/booking" component={BookingForm} />;
+        <Route path="/logout" component={Logout} />;
         <Route path="/admin" component={AdminLogin} />;
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,0 +1,34 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.login {
+  width: 100%;
+  padding: 1rem;
+  @include flex-all-center;
+  &__form {
+    width: 100%;
+    @include flex-col-center;
+    margin-top: 2.25rem;
+  }
+  &__input {
+    width: 100%;
+    font-size: 1rem;
+    border: 0px;
+    background-color: $primary-light;
+    height: 2.375rem; //38px
+    border-radius: 5px;
+    padding: 0 1rem; //16px
+    margin: 0.2rem 0;
+    @include tablet {
+      width: 50%;
+    }
+  }
+}
+
+.login-btn {
+  width: 30%;
+  align-self: flex-end;
+  @include tablet {
+    width: 10%;
+  }
+}
