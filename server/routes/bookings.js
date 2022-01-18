@@ -45,10 +45,12 @@ bookingRouter.post("/add", (req, res) => {
   const { requestDate, sumbitDate, userID, carPlate, remarks } = req.body;
 
   if (!carPlate || !requestDate) {
-    return res.status(400).send("All fields are required");
+    return res.status(400).send("Please fill out the required fields");
   }
-  if (carPlate.length < 6 || carPlate.length > 8) {
-    return res.status(400).send("Please input a valid BC license plate");
+  if (carPlate.length < 2 || carPlate.length > 8) {
+    return res
+      .status(400)
+      .send("Please provide a valid North American license plate");
   }
 
   const newBooking = {

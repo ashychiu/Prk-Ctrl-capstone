@@ -6,9 +6,9 @@ import DashBoard from "./pages/DashBoard/DashBoard";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import HomePage from "./pages/HomePage/HomePage";
-import AdminLogin from "./admin/Login/Login";
-
-import PrivateRoute from "./utils/private";
+import AdminLogin from "./admin/AdminLogin/AdminLogin";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import SeeYou from "./pages/SeeYou/SeeYou";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -27,10 +27,11 @@ function App() {
       {/* <h1>Prk Ctrl</h1> */}
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <PrivateRoute exact path="/dashboard" component={DashBoard} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />;
+        <Route path="/logout" component={SeeYou} />;
         <Route path="/admin" component={AdminLogin} />;
+        <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
     </BrowserRouter>
   );
