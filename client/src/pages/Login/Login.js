@@ -12,6 +12,7 @@ function Login() {
   const history = useHistory();
   const login = (e) => {
     e.preventDefault();
+    console.log(e.target.email.value);
     axios
       .post(`${API_URL}/users/login`, {
         email: e.target.email.value,
@@ -42,14 +43,16 @@ function Login() {
           name="email"
           placeholder="email"
           className="login__input"
+          onChange={() => setError("")}
         />
         <input
           type="password"
           name="password"
           placeholder="password"
           className="login__input"
+          onChange={() => setError("")}
         />
-        {error != "" ? <div className="errorMessage">{error}</div> : ""}
+        {error != "" ? <div className="errorMessage">{error}</div> : null}
         <Button className="submitButton login-btn" type="submit">
           Go
         </Button>

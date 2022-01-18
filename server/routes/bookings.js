@@ -17,6 +17,21 @@ const writeFile = (bookingData) => {
 
 let bookingList = readFile();
 
+const readUserFile = () => {
+  const userData = fs.readFileSync("./data/users.json");
+  return JSON.parse(userData);
+};
+
+let userList = readUserFile();
+
+const getUser = (unitNumber) => {
+  const foundUser = userList.find((user) => {
+    return unitNumber === user.unitNumber.toString();
+  });
+  console.log(foundUser);
+  return foundUser;
+};
+
 // get all bookings
 bookingRouter.get("/", (req, res) => {
   return res.status(200).json(bookingList);
@@ -42,8 +57,10 @@ bookingRouter.get("/:id", (req, res) => {
 
 //Add new booking
 bookingRouter.post("/add", (req, res) => {
-  const { requestDate, sumbitDate, userID, carPlate, remarks } = req.body;
-
+  const { requestDate, unitNumber, carPlate, remarks } = req.body;
+  console.log(remarks);
+  const foundUser = getUser(unitNumber);
+  console.log(foundUser);
   if (!carPlate || !requestDate) {
     return res.status(400).send("Please fill out the required fields");
   }
@@ -57,14 +74,14 @@ bookingRouter.post("/add", (req, res) => {
     id: uuid(),
     carPlate,
     requestDate,
-    userID,
+    userID: foundUser.id,
     sumbitDate: Date.now(),
     remarks,
   };
 
   bookingList.push(newBooking);
   writeFile(bookingList);
-  return res.status(201).json(bookingList);
+  return res.status(201).json(newBooking);
 });
 
 //Update single Booking by id

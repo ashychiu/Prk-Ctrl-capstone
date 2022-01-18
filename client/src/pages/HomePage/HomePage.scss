@@ -4,7 +4,7 @@
 .homepage {
   width: 100%;
   padding: 1rem;
-  @include flex-col;
+  @include flex-all-center;
   background-color: $primary-dark;
   &__container {
     @include tablet {
@@ -18,7 +18,7 @@
       width: 70%;
     }
     @include desktop {
-      width: 60%;
+      width: 40%;
     }
   }
 }

@@ -4,6 +4,7 @@
 .login {
   width: 100%;
   padding: 1rem;
+  @include flex-all-center;
   &__form {
     width: 100%;
     @include flex-col-center;

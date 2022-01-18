@@ -34,6 +34,7 @@ body {
 }
 
 .show {
+  width: 100%;
   display: block;
 }
 .hide {
@@ -124,5 +125,19 @@ footer {
 
   @include tablet {
     font-size: 1.125rem;
+  }
+}
+
+input {
+  width: 100%;
+  font-size: 1rem;
+  border: 0px;
+  background-color: $primary-light;
+  height: 2.375rem; //38px
+  border-radius: 5px;
+  padding: 0 1rem; //16px
+  margin: 0.2rem 0;
+  @include tablet {
+    width: 50%;
   }
 }

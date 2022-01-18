@@ -84,6 +84,9 @@ userRouter.post("/signup", (req, res) => {
 //User login
 userRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).send("Both email & password are required!");
+  }
   const foundUser = await userList.find((user) => user.email === email);
   if (!foundUser) {
     return res.status(404).send("User does not exist, please sign up first.");

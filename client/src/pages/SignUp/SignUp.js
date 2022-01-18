@@ -51,6 +51,7 @@ function SignUp() {
           name="pronoucn"
           placeholder="pronouns"
           className="signup-form__input"
+          onChange={() => setError("")}
         />
         <label htmlFor="firstName">First Name</label>
         <input
@@ -58,6 +59,7 @@ function SignUp() {
           name="firstName"
           placeholder="firstname"
           className="signup-form__input"
+          onChange={() => setError("")}
         />
         <label htmlFor="firstName">Last Name</label>
         <input
@@ -65,6 +67,7 @@ function SignUp() {
           name="lastName"
           placeholder="lastname"
           className="signup-form__input"
+          onChange={() => setError("")}
         />
         <label htmlFor="firstName">Unit Number</label>
         <input
@@ -72,6 +75,7 @@ function SignUp() {
           name="unitNumber"
           placeholder="unit"
           className="signup-form__input"
+          onChange={() => setError("")}
         />
         <label htmlFor="firstName">phone</label>
         <input
@@ -79,6 +83,7 @@ function SignUp() {
           name="phone"
           placeholder="phone"
           className="signup-form__input"
+          onChange={() => setError("")}
         />
         <label htmlFor="firstName">email</label>
         <input
@@ -86,6 +91,7 @@ function SignUp() {
           name="email"
           placeholder="email"
           className="signup-form__input"
+          onChange={() => setError("")}
         />
         <label htmlFor="status">status</label>
         <input
@@ -93,6 +99,7 @@ function SignUp() {
           name="status"
           placeholder="status"
           className="signup-form__input"
+          onChange={() => setError("")}
         />
         <label htmlFor="password">Password</label>
         <input
@@ -100,8 +107,9 @@ function SignUp() {
           name="password"
           placeholder="password"
           className="signup-form__input"
+          onChange={() => setError("")}
         />
-        <button id="submitButton" type="submit">
+        <button className="submitButton" type="submit">
           Submit
         </button>
       </form>

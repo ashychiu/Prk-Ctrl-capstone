@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import HomePage from "../../pages/HomePage/HomePage";
+import BookingForm from "../BookingForm/BookingForm";
 
 const SideBar = () => {
   const routes = [
@@ -13,7 +14,7 @@ const SideBar = () => {
     {
       path: "/booking",
       sidebar: () => <div></div>,
-      main: () => <h2>booking</h2>,
+      main: () => <BookingForm />,
     },
     {
       path: "/login",

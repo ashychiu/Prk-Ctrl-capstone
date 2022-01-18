@@ -12,6 +12,7 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
+import SideBar from "../../components/SideBar/SideBar";
 
 const DashBoard = (props) => {
   console.log(props);
@@ -27,7 +28,8 @@ const DashBoard = (props) => {
       <h1>Welcome, </h1>
       <button onClick={logout}>Logout</button>
       <div>some text</div>
-      <ProSidebar>
+      <SideBar />
+      {/* <ProSidebar>
         <Menu iconShape="square">
           <MenuItem icon={<FaAdn />}>
             Dashboard
@@ -38,19 +40,7 @@ const DashBoard = (props) => {
             <MenuItem>Component 2</MenuItem>
           </SubMenu>
         </Menu>
-      </ProSidebar>
-      <ProSidebar>
-        <SidebarHeader>
-          <h1>TEST</h1>
-        </SidebarHeader>
-        <SidebarContent>
-          <span>test1</span>
-        </SidebarContent>
-        <SidebarFooter>
-          <span>test2</span>
-        </SidebarFooter>
-      </ProSidebar>
-      ;
+      </ProSidebar> */}
       <DatePicker />
       <Footer />
     </div>

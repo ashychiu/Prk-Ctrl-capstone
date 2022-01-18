@@ -35,6 +35,12 @@
   flex-direction: row;
   align-items: center;
 }
+@mixin flex-all-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 // Mobile - Font size, line height & font weight
 @mixin page-header {
   font-size: 1.5rem;
