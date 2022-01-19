@@ -3,10 +3,10 @@ const userRouter = express.Router();
 const { v4: uuid } = require("uuid");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const { createTokens, validateToken } = require("../JWT");
 
-userRouter.use(cookieParser());
+// userRouter.use(cookieParser());
 
 const readFile = () => {
   const userData = fs.readFileSync("./data/users.json");
@@ -52,6 +52,16 @@ userRouter.post("/signup", (req, res) => {
       .status(400)
       .send("Email is already registered, please login instead.");
   }
+  const duplicateUnit = userList.find(
+    (user) => user.unitNumber.toString() === unitNumber
+  );
+  if (duplicateUnit) {
+    return res
+      .status(400)
+      .send(
+        "Each unit can only have one account, please contact Building Manager if you're a new resident."
+      );
+  }
 
   if (!email || !firstName || !lastName || !unitNumber || !password) {
     return res.status(400).send("Please fill out all the required fields.");
@@ -59,10 +69,10 @@ userRouter.post("/signup", (req, res) => {
   if (phone.length < 10) {
     return res
       .status(400)
-      .send("Please input a valid North American phone number");
+      .send("Please provide a valid North American phone number");
   }
   if (!email.includes("@") || !email.includes(".")) {
-    return res.status(400).send("Please input a valid email");
+    return res.status(400).send("Please provide a valid email");
   }
   bcrypt.hash(password, 10).then((hash) => {
     const newUser = {
@@ -108,7 +118,7 @@ userRouter.post("/login", async (req, res) => {
 
 //Get user profile
 userRouter.get("/profile", validateToken, (req, res) => {
-  res.json("profile");
+  res.json(req.decoded);
 });
 
 //Update single user by id

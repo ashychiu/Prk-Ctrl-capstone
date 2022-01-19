@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
-
+// import { Button, Form, Container, Row, Col } from "react-bootstrap";
+import "./AdminLogin.scss";
 const API_URL = process.env.REACT_APP_API_URL;
 
 function Login() {
-  const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
   //   const [status, setStatus] = useState(false);
   const history = useHistory();
@@ -18,12 +17,8 @@ function Login() {
         password: e.target.password.value,
       })
       .then((response) => {
-        console.log(response.data.firstName);
-
-        setUser({ name: response.data.firstName, email: response.data.email });
-        console.log(user);
-        localStorage.setItem("token", response.data.token);
-        console.log(history);
+        localStorage.setItem("token", response.data.accessToken);
+        console.log(response.data.accessToken);
         history.push("/admin/dashboard");
         // setStatus(true);
       })
@@ -37,38 +32,26 @@ function Login() {
 
   return (
     <section className="login">
-      <h1 className="hero">Prk Ctrl</h1>
-      <Form onSubmit={login}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="text"
-            name="username"
-            placeholder="Enter email"
-            onChange={() => setError("")}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={() => setError("")}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button id="submitButton" type="submit">
-          Submit
-        </Button>
-      </Form>
-      {error != "" ? <div>{error}</div> : ""}
+      <form onSubmit={login} className="login__form">
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          className="login__input"
+          onChange={() => setError("")}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          className="login__input"
+          onChange={() => setError("")}
+        />
+        {error != "" ? <div className="errorMessage">{error}</div> : null}
+        <button className="submitButton login-btn" type="submit">
+          Go
+        </button>
+      </form>
     </section>
   );
 }

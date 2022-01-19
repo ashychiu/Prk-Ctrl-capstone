@@ -1,0 +1,113 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colours" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.modal-del {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  &-header {
+    @include tablet {
+      position: relative;
+      top: 3rem;
+    }
+  }
+
+  &-content {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    @include tablet {
+      height: 262px;
+      width: auto;
+      width: 672px;
+      position: relative;
+    }
+  }
+  &__close {
+    position: absolute;
+    right: 21px;
+    top: 21px;
+  }
+
+  &__title {
+    @include mbHeader-font;
+    margin-top: 60px;
+    margin-left: 16px;
+    font-size: 28px;
+    @include tablet {
+      position: relative;
+      bottom: 3.5rem;
+      margin-top: 40px;
+      margin-left: 64px;
+    }
+  }
+
+  &__content {
+    margin-left: 16px;
+    font-size: 15px;
+    margin-top: 1rem;
+
+    @include tablet {
+      margin-top: 0px;
+      width: 75%;
+      margin-left: 64px;
+      position: relative;
+      bottom: 1.5rem;
+    }
+  }
+
+  &-footer {
+    position: absolute;
+    bottom: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include tablet {
+      position: relative;
+      width: 25%;
+      justify-content: flex-end;
+      top: 0.5rem;
+      left: 29rem;
+    }
+    &__delete {
+      @include mbCopy-font;
+      color: $white;
+      background: #c94515;
+      border-radius: 20px;
+      width: 163px;
+      height: 36px;
+      border: none;
+      margin-right: 1rem;
+      margin-left: 0.5rem;
+
+      &:hover {
+        background: $graphite;
+      }
+    }
+
+    &__cancel {
+      @include mbCopy-font;
+      background: $white;
+      border: 1px solid $grey;
+      border-radius: 20px;
+      width: 163px;
+      height: 36px;
+      margin-left: 1rem;
+      margin-right: 0.5rem;
+      &:hover {
+        border: 1px solid $blue;
+        color: $blue;
+      }
+    }
+  }
+}
