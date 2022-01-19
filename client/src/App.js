@@ -12,6 +12,8 @@ import Logout from "./pages/Logout/Logout";
 import Footer from "./components/Footer/Footer";
 import SideBar from "./components/SideBar/SideBar";
 import BookingForm from "./components/BookingForm/BookingForm";
+import AdminDashboard from "./admin/AdminDashboard/AdminDashboard";
+import AllUsers from "./admin/AllUsers/AllUsers";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -35,6 +37,12 @@ function App() {
         <Route path="/signup" component={SignUp} />;
         <Route path="/booking" component={BookingForm} />;
         <Route path="/logout" component={Logout} />;
+        <PrivateRoute
+          path="/admin/dashboard"
+          exact
+          component={AdminDashboard}
+        />
+        <Route path="/admin/users" component={AllUsers} />;
         <Route path="/admin" component={AdminLogin} />;
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>

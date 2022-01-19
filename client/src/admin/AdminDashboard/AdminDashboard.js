@@ -1,22 +1,18 @@
 import { React, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-// import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-// import "react-pro-sidebar/dist/css/styles.css";
-import "./DashBoard.scss";
+// import "./AdminDashBoard.scss";
 // import { FaAdn } from "react-icons/fa";
 import DatePicker from "../../components/DatePicker/DatePicker";
 import Footer from "../../components/Footer/Footer";
-import {
-  SidebarHeader,
-  SidebarFooter,
-  SidebarContent,
-} from "react-pro-sidebar";
 import SideBar from "../../components/SideBar/SideBar";
 import axios from "axios";
+import { logout } from "../../utils/loginStatus";
+import AllUsers from "../AllUsers/AllUsers";
+
 const API_URL = process.env.REACT_APP_API_URL;
 
-const DashBoard = (props) => {
+const AdminDashboard = () => {
   const [user, setUser] = useState("");
   const token = localStorage.getItem("token");
   useEffect(() => {
@@ -30,10 +26,8 @@ const DashBoard = (props) => {
       });
   }, []);
 
-  console.log(props);
-
   const history = useHistory();
-  const logout = () => {
+  const adminLogout = () => {
     localStorage.clear();
     history.push("/logout");
   };
@@ -44,22 +38,10 @@ const DashBoard = (props) => {
       <button onClick={logout}>Logout</button>
       <div>some text</div>
       <SideBar />
-      {/* <ProSidebar>
-        <Menu iconShape="square">
-          <MenuItem icon={<FaAdn />}>
-            Dashboard
-            <Link to="/" />
-          </MenuItem>
-          <SubMenu title="Components">
-            <MenuItem>Component 1</MenuItem>
-            <MenuItem>Component 2</MenuItem>
-          </SubMenu>
-        </Menu>
-      </ProSidebar> */}
-      <DatePicker />
+      <AllUsers />
       <Footer />
     </div>
   );
 };
 
-export default DashBoard;
+export default AdminDashboard;

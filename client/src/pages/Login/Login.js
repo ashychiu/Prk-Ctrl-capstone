@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
+// import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import "./Login.scss";
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -19,8 +19,6 @@ function Login() {
         password: e.target.password.value,
       })
       .then((response) => {
-        console.log(response.data.firstName);
-
         setUser({ name: response.data.firstName, email: response.data.email });
         localStorage.setItem("token", response.data.accessToken);
         console.log(response.data.accessToken);
@@ -53,9 +51,9 @@ function Login() {
           onChange={() => setError("")}
         />
         {error != "" ? <div className="errorMessage">{error}</div> : null}
-        <Button className="submitButton login-btn" type="submit">
+        <button className="submitButton login-btn" type="submit">
           Go
-        </Button>
+        </button>
       </form>
     </section>
   );

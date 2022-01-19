@@ -3,10 +3,10 @@ const adminRouter = express.Router();
 const { v4: uuid } = require("uuid");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const { createTokens, validateToken } = require("../JWT");
 
-adminRouter.use(cookieParser());
+// adminRouter.use(cookieParser());
 
 const readFile = () => {
   const adminData = fs.readFileSync("./data/admin.json");
@@ -34,18 +34,18 @@ adminRouter.post("/", async (req, res) => {
       res.status(400).send("Incorrect password!");
     } else {
       const accessToken = createTokens(foundUser); //Call the function created on JWT.js
-      res.cookie("accessToken", accessToken, {
-        maxAge: 2629800000, //one month in milliseconds
-        httpOnly: true, //only accessible by http
-      });
-      res.status(200).send("Login success");
+      // res.cookie("accessToken", accessToken, {
+      //   maxAge: 2629800000, //one month in milliseconds
+      //   httpOnly: true, //only accessible by http
+      // });
+      res.status(200).json({ accessToken });
     }
   });
 });
 
 //Get admin profile
 adminRouter.get("/profile", validateToken, (req, res) => {
-  res.json("profile");
+  res.json(req.decoded);
 });
 
 module.exports = adminRouter;

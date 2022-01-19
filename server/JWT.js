@@ -2,7 +2,7 @@ const { sign, verify } = require("jsonwebtoken");
 
 const createTokens = (foundUser) => {
   const accessToken = sign(
-    { email: foundUser.email, id: foundUser.id },
+    { email: foundUser.email, firstName: foundUser.firstName },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_EXPIRES_IN,
@@ -19,7 +19,7 @@ const validateToken = (req, res, next) => {
   console.log("authorization token:", authToken);
 
   // decode the contents of the token
-  jwt.verify(authToken, JWT_SECRET, (err, decoded) => {
+  verify(authToken, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({ message: "User not authorized" });
     }
