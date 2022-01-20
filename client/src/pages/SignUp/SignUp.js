@@ -1,46 +1,49 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const API_URL = process.env.REACT_APP_API_URL;
+
 function SignUp() {
-  const [userList, setUserList] = useState([]);
-  const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
+  const [recaptcha, setRecaptcha] = useState(false);
   //   const [status, setStatus] = useState(false);
-  const history = useHistory;
+  const history = useHistory();
+
+  function onRecaptchaChange(value) {
+    setRecaptcha(true);
+    console.log("Captcha value:", value);
+  }
   const signup = (e) => {
     e.preventDefault();
-    axios
-      .post(`${API_URL}/users/signup`, {
-        firstName: e.target.firstName.value,
-        lastName: e.target.lastName.value,
-        unitNumber: e.target.unitNumber.value,
-        phone: e.target.phone.value,
-        email: e.target.email.value,
-        status: e.target.status.value,
-        password: e.target.password.value,
-      })
-      .then((response) => {
-        console.log(response);
-
-        // setUser({ name: response.data.firstName, email: response.data.email });
-        console.log(user);
-        // sessionStorage.setItem("token", response.data.token);
-
-        console.log(history);
-        history.push("/login");
-        // setStatus(true);
-      })
-      .catch((err) => {
-        if (err.response) {
-          const errMessage = err.response.data;
-          setError(errMessage);
-        }
-      });
+    if (!recaptcha) setError("Please prove you're not a robot!");
+    else {
+      axios
+        .post(`${API_URL}/users/signup`, {
+          firstName: e.target.firstName.value,
+          lastName: e.target.lastName.value,
+          unitNumber: e.target.unitNumber.value,
+          phone: e.target.phone.value,
+          email: e.target.email.value,
+          status: e.target.status.value,
+          password: e.target.password.value,
+        })
+        .then((response) => {
+          // console.log(response);
+          // console.log(user);
+          // console.log(history);
+          window.location.href = "/";
+          // setStatus(true);
+        })
+        .catch((err) => {
+          if (err.response) {
+            const errMessage = err.response.data;
+            setError(errMessage);
+          }
+        });
+    }
   };
-
   return (
     <section className="signup">
       <h1 className="hero">Prk Ctrl</h1>
@@ -109,11 +112,16 @@ function SignUp() {
           className="signup-form__input"
           onChange={() => setError("")}
         />
+        <ReCAPTCHA
+          sitekey="6LfE8SMeAAAAALZ3eYN1fLVcX_YE0gBRDS31Dv9H"
+          onChange={onRecaptchaChange}
+          theme="dark"
+        />
+        {error !== "" ? <div>{error}</div> : ""}
         <button className="submitButton" type="submit">
           Submit
         </button>
       </form>
-      {error != "" ? <div>{error}</div> : ""}
     </section>
   );
 }

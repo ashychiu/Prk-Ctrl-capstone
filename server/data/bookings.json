@@ -1,11 +1,7 @@
 [
   {
     "id": "9b4f79ea-0e6c-4e59-8e05-afd933d0b3d3",
-    "userID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
-    "carPlate": "JF229P",
-    "requestDate": "2022-01-20",
-    "submitDate": 1642071625,
-    "remarks": "Disabled parking needed"
+    "checkin": "2022-01-20T03:54:58.686Z"
   },
   {
     "id": "83433026-ca32-4c6d-bd86-a39ee8b7303e",
@@ -90,9 +86,29 @@
   {
     "id": "755e0e58-1555-4d10-823f-1ad337f363a2",
     "carPlate": "BC123E",
-    "requestDate": "2022-01-18",
+    "requestDate": "2022-01-19",
     "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
     "sumbitDate": 1642558669274,
     "remarks": "Nothing"
+  },
+  {
+    "id": "cf3dc07c-b425-42c8-a079-029c0757f598",
+    "carPlate": "BC123P",
+    "requestDate": "02/03/2022",
+    "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
+    "sumbitDate": 1642638818502,
+    "remarks": "No"
+  },
+  {
+    "id": "a6f96ff3-0712-4251-9282-859452b8dbef",
+    "carPlate": "BC009E",
+    "requestDate": "01/20/2022",
+    "userID": "e47a93bd-7d17-4712-8244-60358971589c",
+    "sumbitDate": 1642648730690,
+    "remarks": ""
+  },
+  {
+    "id": "f430e660-a14a-4ac9-8a93-5c49df484f4f",
+    "checkin": "2022-01-20T03:40:50.737Z"
   }
 ]

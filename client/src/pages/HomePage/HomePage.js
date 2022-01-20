@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import logo from "../../assets/logo/white-logo-transparent.svg";
 import "./HomePage.scss";
 import Login from "../Login/Login";
@@ -28,7 +28,7 @@ const HomePage = () => {
         }}
         className="homepage__admin-button submitButton"
       >
-        <GrUserAdmin />
+        <GrUserAdmin value={{ className: "icon" }} />
       </div>
       <img className="homepage__logo" src={logo} alt="Prk Ctrl logo" />
 
