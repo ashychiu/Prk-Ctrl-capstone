@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 import "./BookingForm.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 function BookingForm() {
-  const [userList, setUserList] = useState([]);
-  const [user, setUser] = useState({ name: "", email: "" });
+  const [requestDate, setRequestDate] = useState(new Date());
   const [error, setError] = useState("");
+
   //   const [status, setStatus] = useState(false);
   const history = useHistory;
   const addBooking = (e) => {
@@ -57,18 +59,21 @@ function BookingForm() {
       <h1 className="hero">Prk Ctrl</h1>
       <form onSubmit={addBooking} className="booking-form">
         <label htmlFor="requestDate">Request Date</label>
-        <input
-          type="text"
+        {/* minDate= today, can't request a date in the past
+        maxDate=  one month from now (in milliseconds) */}
+        <DatePicker
           name="requestDate"
-          placeholder="When is your visitor coming?"
-          className="booking-form__input"
-          onChange={() => setError("")}
+          selected={requestDate}
+          minDate={new Date()}
+          maxDate={Date.now() + 2629800000}
+          // dateFormat="yyyy-mm-dd"
+          onChange={(date) => setRequestDate(date)}
         />
         <label htmlFor="carPlate">License Plate</label>
         <input
           type="text"
           name="carPlate"
-          placeholder="Licese Plate"
+          placeholder="License Plate"
           className="booking-form__input"
           onChange={() => setError("")}
         />
