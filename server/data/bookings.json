@@ -101,14 +101,18 @@
   },
   {
     "id": "a6f96ff3-0712-4251-9282-859452b8dbef",
-    "carPlate": "BC009E",
-    "requestDate": "01/20/2022",
-    "userID": "e47a93bd-7d17-4712-8244-60358971589c",
-    "sumbitDate": 1642648730690,
-    "remarks": ""
+    "checkout": "2022-01-20T06:21:59.053Z"
   },
   {
     "id": "f430e660-a14a-4ac9-8a93-5c49df484f4f",
     "checkin": "2022-01-20T03:40:50.737Z"
+  },
+  {
+    "id": "35787543-5c67-4005-9ab5-b87a791f6bcb",
+    "carPlate": "BC009E",
+    "requestDate": "01/19/2022",
+    "userID": "44836761-72cb-4b36-9eb4-dd5a111ab078",
+    "sumbitDate": 1642659829628,
+    "remarks": ""
   }
 ]

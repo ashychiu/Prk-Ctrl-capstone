@@ -11,66 +11,69 @@ const HomePage = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
-  const loginRef = useRef(null);
-  const signupRef = useRef(null);
-  const adminRef = useRef(null);
+  const inputRef = useRef(null);
+  // const signupRef = useRef(null);
+  // const adminRef = useRef(null);
 
   return (
-    <section className="homepage">
-      <div
-        onClick={() => {
-          setShowAdmin(true);
-          setShowSignup(false);
-          setShowLogin(false);
-          adminRef.current.scrollIntoView({
-            behavior: "smooth",
-          });
-        }}
-        className="homepage__admin-button submitButton"
-      >
-        <GrUserAdmin value={{ className: "icon" }} />
-      </div>
-      <img className="homepage__logo" src={logo} alt="Prk Ctrl logo" />
-
-      <div className="homepage__container">
+    <>
+      <section className="homepage">
         <div
           onClick={() => {
-            setShowLogin(true);
+            setShowAdmin(true);
             setShowSignup(false);
-            setShowAdmin(false);
-            loginRef.current.scrollIntoView({
-              behavior: "smooth",
-            });
-          }}
-          className="homepage__button submitButton"
-        >
-          Login
-        </div>
-        <div
-          onClick={() => {
-            setShowSignup(true);
             setShowLogin(false);
-            setShowAdmin(false);
-            signupRef.current.scrollIntoView({
+            inputRef.current.scrollIntoView({
               behavior: "smooth",
             });
           }}
-          className="homepage__button submitButton"
+          className="homepage__admin-button submitButton"
         >
-          Register
+          <GrUserAdmin value={{ className: "icon" }} />
         </div>
-      </div>
-      <div ref={signupRef} className={showSignup ? "show" : "hide"}>
-        <SignUp />
-      </div>
+        <img className="homepage__logo" src={logo} alt="Prk Ctrl logo" />
 
-      <div ref={loginRef} className={showLogin ? "show" : "hide"}>
-        <Login />
-      </div>
-      <div ref={adminRef} className={showAdmin ? "show" : "hide"}>
-        <AdminLogin />
-      </div>
-    </section>
+        <div className="homepage__container">
+          <div
+            onClick={() => {
+              setShowLogin(true);
+              setShowSignup(false);
+              setShowAdmin(false);
+              inputRef.current.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+            className="homepage__button submitButton"
+          >
+            Login
+          </div>
+          <div
+            onClick={() => {
+              setShowSignup(true);
+              setShowLogin(false);
+              setShowAdmin(false);
+              inputRef.current.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+            className="homepage__button submitButton"
+          >
+            Register
+          </div>
+        </div>
+        <div className={showSignup ? "show" : "hide"}>
+          <SignUp />
+        </div>
+
+        <div className={showLogin ? "show" : "hide"}>
+          <Login />
+        </div>
+        <div className={showAdmin ? "show" : "hide"}>
+          <AdminLogin />
+        </div>
+      </section>
+      <div ref={inputRef}></div>
+    </>
   );
 };
 

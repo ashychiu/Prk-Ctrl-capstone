@@ -10,6 +10,7 @@
     @include tablet {
       width: 50%;
       @include flex-row-center;
+      margin-bottom: 6.25rem;
     }
   }
   &__logo {
