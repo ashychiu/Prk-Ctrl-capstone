@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuid } from "uuid";
 import "./Visitor.scss";
+import logo from "../../assets/logo/white-logo-transparent.svg";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -41,7 +42,7 @@ function Visitor() {
         localStorage.setItem("checkin-token", response.data);
         localStorage.setItem("licence", e.target.carPlate.value);
         setMessage(
-          "Awesome! You are now checked in. Please remember to scan QR code again when check out."
+          "Awesome! Please remember to scan QR code again when check out."
         );
         setCarPlate(e.target.carPlate.value);
       })
@@ -64,7 +65,7 @@ function Visitor() {
       .then((response) => {
         localStorage.removeItem("checkin-token");
         setMessage(
-          "Goodbye! Please remember to wait for the gate to close when you leave."
+          "Goodbye! Remember to wait for parkade gate to close when you leave."
         );
         const timeout = setTimeout(redirect, 10000);
         function redirect() {
@@ -81,6 +82,8 @@ function Visitor() {
 
   return (
     <section className="login">
+      <img className="login__logo" src={logo} alt="Prk Ctrl logo" />
+
       <div className={checkedIn ? "hide" : "show"}>
         <h2>{greeting}</h2>
         <form onSubmit={checkin} className="login__form">
@@ -90,7 +93,7 @@ function Visitor() {
             placeholder="Licence Plate"
             defaultValue={carPlate}
             className="login__input"
-            onChange={() => setError("")}
+            onClick={() => setError("")}
           />
           {error != "" ? <div className="errorMessage">{error}</div> : null}
           <button className="submitButton login-btn" type="submit">
