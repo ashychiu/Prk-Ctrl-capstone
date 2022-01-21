@@ -507,5 +507,15 @@
     "email": "ash@gmail.com",
     "status": "resident",
     "password": "$2b$10$eGPraApyuWgFbrB3r49wS.3lcnqlhGAEUy6O4e3I/Uj9sgGNeK67W"
+  },
+  {
+    "id": "4e86be7e-951b-4a51-a657-52a8813d8534",
+    "firstName": "Ashley",
+    "lastName": "Chiu",
+    "unitNumber": "612",
+    "phone": "6047771234",
+    "email": "bnb.ashley@gmail.com",
+    "status": "Resident",
+    "password": "$2b$10$k1mFNa5aRlVMUYSaies03Ol5pcEBldWtvBeM2ddBFwURHYxt8RoBK"
   }
 ]
