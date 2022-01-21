@@ -21,6 +21,7 @@
     margin: 0.2rem 0;
     @include tablet {
       width: 50%;
+      align-self: center;
     }
   }
 }
@@ -29,6 +30,7 @@
   width: 30%;
   align-self: flex-end;
   @include tablet {
-    width: 10%;
+    width: 20%;
+    align-self: center;
   }
 }

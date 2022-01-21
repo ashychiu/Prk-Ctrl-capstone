@@ -5,6 +5,23 @@ const fs = require("fs");
 const bcrypt = require("bcrypt");
 // const cookieParser = require("cookie-parser");
 const { createTokens, validateToken } = require("../JWT");
+const { sendMail } = require("../email");
+
+const { google } = require("googleapis");
+const nodemailer = require("nodemailer");
+require("dotenv").config();
+
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const CLIENT_ID = process.env.OAUTH_CLIENTID;
+const CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET;
+const REFRESH_TOKEN = process.env.OAUTH_REFRESH_TOKEN;
+
+const oAuth2Client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URI
+);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 // userRouter.use(cookieParser());
 
@@ -87,6 +104,7 @@ userRouter.post("/signup", (req, res) => {
     };
     userList.push(newUser);
     writeFile(userList);
+
     return res.status(201).json(userList);
   });
 });
@@ -107,10 +125,6 @@ userRouter.post("/login", async (req, res) => {
       res.status(401).send("Incorrect password!");
     } else {
       const accessToken = createTokens(foundUser); //Call the function created on JWT.js
-      // res.cookie("accessToken", accessToken, {
-      //   maxAge: 2629800000, //one month in milliseconds
-      //   httpOnly: true, //only accessible by http
-      // });
       res.status(200).json({ accessToken });
     }
   });
