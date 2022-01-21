@@ -1,5 +1,5 @@
-import IoCloseCircleSharp from "react-icons/io5";
-import "./DeleteModal.scss";
+// import IoCloseCircleSharp from "react-icons/io5";
+// import "./DeleteModal.scss";
 
 const deleteModal = (props) => {
   if (!props.show) {
@@ -9,12 +9,12 @@ const deleteModal = (props) => {
   return (
     <div className="modal-del">
       <div className="modal-del-content">
-        <img
+        {/* <img
           className="modal-del__close"
           src={IoCloseCircleSharp}
           alt="x mark to close"
           onClick={props.onCloseHandler}
-        />
+        /> */}
 
         <div className="modal-del-header">
           <h4 className="modal-del__title">

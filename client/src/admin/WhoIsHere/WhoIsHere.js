@@ -1,17 +1,19 @@
 import { React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 // import { MdDeleteForever, MdModeEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./WhoIsHere.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const AllUsers = () => {
-  const [whoishere, setWhoIsHere] = useState([]);
+  const [whoIsHere, setWhoIsHere] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [showBookings, setShowBookings] = useState(10);
+  const [showBookings, setShowBookings] = useState(5);
+  const history = useHistory();
 
   //Get all the vistors who have checked in but not checked out
   useEffect(() => {
@@ -20,9 +22,8 @@ const AllUsers = () => {
       const currentVisitors = data.filter(
         (booking) => booking.checkin !== "" && booking.checkout === ""
       );
-      console.log("currvisitor ", currentVisitors);
       setWhoIsHere(currentVisitors);
-      console.log("whoishere ", whoishere);
+      console.log(whoIsHere);
     })();
   }, []);
 
@@ -30,18 +31,33 @@ const AllUsers = () => {
     setShowBookings((prevShowBookings) => prevShowBookings + 10);
   };
 
-  const onTrashHandler = (e) => {
+  const onCheckoutHandler = (e) => {
     setShowModal(true);
-    console.log(showModal);
+    axios
+      .patch(`${API_URL}/bookings/checkout`, {
+        id: e.target.id,
+        carPlate: e.target.name,
+      })
+      .then((response) => {
+        history.push("/admin/whoishere");
+        console.log("manual check out completed!");
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+        }
+      });
   };
 
   return (
     <section className="users">
       <h1>Who is here</h1>
+      <div className={whoIsHere.length > 0 ? "hide" : "show"}>
+        No one is here
+      </div>
       {/* blogs.slice(0, visibleBlogs).map((blog, i) */}
-      {whoishere.map((booking) => {
+      {whoIsHere.map((booking) => {
         return (
-          //   <div className={checkin && !checkout ? "show" : "hide"}>
           <div key={booking.id} className="users__information">
             <div className="users__information-data">
               <div className="users__information-top">
@@ -73,24 +89,36 @@ const AllUsers = () => {
               {/* </div> */}
             </div>
             <div className="users__actions">
-              <button onClick={onTrashHandler}>Manual Check-out</button>
-              {/* <img
-                name={userList[i].firstName}
-                id={user.id}
-                // onClick={onTrashHandler}
-                className="users__actions-trash"
-                src={}
-                alt="trashcan"
-              /> */}
+              <button
+                name={booking.carPlate}
+                id={booking.id}
+                onClick={onCheckoutHandler}
+              >
+                Manual Check-out
+              </button>
               <Link to={`bookins/edit/${booking.id}`}>
                 <FaUserEdit color="white" />
               </Link>
             </div>
           </div>
-          //   </div>
         );
       })}
-      <button onClick={handleClick}>Load More</button>;
+      <button
+        onClick={handleClick}
+        className={whoIsHere.length > showBookings ? "show" : "hide"}
+      >
+        Load More
+      </button>
+
+      <DeleteModal
+        show={showModal}
+        // onCloseHandler={onCloseHandler}
+        // onTrashHandler={onTrashHandler}
+        // onDeleteHandler={onDeleteHandler}
+        //   itemId={this.state.warehouseId}
+        //   name="Warehouse"
+        //   itemName={this.state.warehouseName}
+      />
     </section>
   );
 };

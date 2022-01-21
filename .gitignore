@@ -22,6 +22,9 @@ client/.env
 **/.env.test.local
 **/.env.production.local
 
+**/users.json
+**/bookings.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

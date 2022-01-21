@@ -178,8 +178,8 @@ bookingRouter.patch("/checkout", (req, res) => {
   const { checkout, ...rest } = foundBooking;
   const updatedBooking = {
     id: id,
-    checkout: new Date(),
     ...rest,
+    checkout: new Date(),
   };
 
   console.log(updatedBooking);
