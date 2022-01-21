@@ -3,10 +3,10 @@ const userRouter = express.Router();
 const { v4: uuid } = require("uuid");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
-// const cookieParser = require("cookie-parser");
 const { createTokens, validateToken } = require("../JWT");
 const { sendMail } = require("../email");
 
+// Nodemailer & google api config
 const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
@@ -23,8 +23,21 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-// userRouter.use(cookieParser());
+const accessToken = oAuth2Client.getAccessToken();
+let transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    type: "OAuth2",
+    user: process.env.MAIL_USERNAME,
+    pass: process.env.MAIL_PASSWORD,
+    clientId: process.env.OAUTH_CLIENTID,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+    refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+    accessToken: accessToken,
+  },
+});
 
+//
 const readFile = () => {
   const userData = fs.readFileSync("./data/users.json");
   return JSON.parse(userData);
@@ -105,6 +118,26 @@ userRouter.post("/signup", (req, res) => {
     userList.push(newUser);
     writeFile(userList);
 
+    //Send welcome email with nodemailer after successful registration
+    let mailOptions = {
+      from: process.env.MAIL_USERNAME,
+      to: email,
+      subject: "Welcome to PRK CTRL Visitor Parking Management",
+      text: `Hi ${firstName}, greetings from your node express server`,
+      html: `<h2>
+      Hi ${firstName}, greetings from your node express server
+      </h2>
+      <a href="http://prkctrl.com" target="_blank"><span>Login to create your first booking</span></a>
+      >`,
+    };
+
+    transporter.sendMail(mailOptions, function (err, data) {
+      if (err) {
+        console.log("Error " + err);
+      } else {
+        console.log("Email sent successfully");
+      }
+    });
     return res.status(201).json(userList);
   });
 });
@@ -126,6 +159,26 @@ userRouter.post("/login", async (req, res) => {
     } else {
       const accessToken = createTokens(foundUser); //Call the function created on JWT.js
       res.status(200).json({ accessToken });
+
+      let mailOptions = {
+        from: process.env.MAIL_USERNAME,
+        to: email,
+        subject: "Welcome to PRK CTRL Visitor Parking Management",
+        text: `Hi ${foundUser.firstName}, greetings from your node express server`,
+        html: `<h2>
+        Hi ${foundUser.firstName}, greetings from your node express server
+        </h2>
+        <a href="http://prkctrl.com" target="_blank"><span>Login to create your first booking</span></a>
+        >`,
+      };
+
+      transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+          console.log("Error " + err);
+        } else {
+          console.log("Email sent successfully");
+        }
+      });
     }
   });
 });

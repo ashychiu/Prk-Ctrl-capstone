@@ -126,19 +126,21 @@
     "sumbitDate": 1642638818502,
     "remarks": "No",
     "checkin": "2022-01-20T03:40:50.737Z",
-    "checkout": "2022-01-20T06:21:59.053Z"
-  },
-  {
-    "id": "a6f96ff3-0712-4251-9282-859452b8dbef",
-    "checkout": "2022-01-20T06:21:59.053Z"
+    "checkout": ""
   },
   {
     "id": "f430e660-a14a-4ac9-8a93-5c49df484f4f",
-    "checkin": "2022-01-20T03:40:50.737Z"
+    "carPlate": "BC123P",
+    "requestDate": "02/03/2022",
+    "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
+    "sumbitDate": 1642638818502,
+    "remarks": "No",
+    "checkin": "2022-01-20T03:40:50.737Z",
+    "checkout": ""
   },
   {
     "id": "35787543-5c67-4005-9ab5-b87a791f6bcb",
-    "checkout": "2022-01-20T21:41:50.426Z",
+    "checkout": "",
     "checkin": "2022-01-20T21:28:01.411Z",
     "carPlate": "BC009E",
     "requestDate": "01/19/2022",
