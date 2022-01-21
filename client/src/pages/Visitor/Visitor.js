@@ -11,19 +11,20 @@ function Visitor() {
   const [error, setError] = useState("");
   const [checkedIn, setCheckedIn] = useState(false);
   const [carPlate, setCarPlate] = useState("");
-  const [greeting, setGreeting] = useState("");
+  const [greeting, setGreeting] = useState("Vehicle Check-in");
   const [message, setMessage] = useState("");
   const token = localStorage.getItem("checkin-token");
   const licence = localStorage.getItem("licence");
   const history = useHistory();
 
-  //If user have a "checkin-token", checkout form will be shown"
   useEffect(() => {
+    //If user have a "checkin-token", checkout form will be shown"
     if (token) {
       setCheckedIn(true);
       setGreeting("Ready to check out?");
       setCarPlate(localStorage.getItem("licence"));
     }
+    //If user don't have a "checkin-token" but a "licence", welcome back greeting will be shown"
     if (!token && licence) {
       setCarPlate(localStorage.getItem("licence"));
       setGreeting("Welcome Back!");

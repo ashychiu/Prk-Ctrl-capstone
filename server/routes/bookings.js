@@ -77,8 +77,8 @@ bookingRouter.post("/add", (req, res) => {
     userID: foundUser.id,
     sumbitDate: Date.now(),
     remarks,
-    // checkin: "no",
-    // checkout: "no",
+    checkin: "",
+    checkout: "",
   };
 
   bookingList.push(newBooking);
@@ -105,7 +105,7 @@ bookingRouter.put("/:id", (req, res) => {
     carPlate,
     requestDate,
     userID,
-    sumbitDate: Date.now(),
+    sumbitDate: new Date(),
     remarks,
   };
 
@@ -141,9 +141,11 @@ bookingRouter.patch("/checkin", (req, res) => {
       .send("This license plate does not have a booking today!");
   }
 
+  let { id, checkin, ...rest } = foundBooking;
   const updatedBooking = {
-    id: foundBooking.id,
+    id: id,
     checkin: new Date(),
+    ...rest,
   };
 
   console.log(updatedBooking);
@@ -173,9 +175,11 @@ bookingRouter.patch("/checkout", (req, res) => {
       .send("This license plate does not have a booking today!");
   }
 
+  const { checkout, ...rest } = foundBooking;
   const updatedBooking = {
-    id: foundBooking.id,
+    id: id,
     checkout: new Date(),
+    ...rest,
   };
 
   console.log(updatedBooking);

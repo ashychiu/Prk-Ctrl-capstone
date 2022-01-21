@@ -474,7 +474,7 @@
     "lastName": "Chiu",
     "unitNumber": 1029,
     "phone": "(604) 778-1234",
-    "email": "ashley@gmail.com",
+    "email": "prkctrl.app@gmail.com",
     "status": "Resident",
     "password": "$2b$10$zZHy3T/oC5u6Ocj1.Ip3HuIhQhLs0mQt5hKE2CQJ634fCQosi18QG"
   },
@@ -497,5 +497,15 @@
     "email": "dlam@gmail.com",
     "status": "Resident",
     "password": "$2b$10$tI6l/TFXHbrewIe09DNX2eLpxS7PyLoO4JUjv.ueLe3S9CIoWTQa6"
+  },
+  {
+    "id": "349565f9-8733-4285-8c69-546da5527681",
+    "firstName": "Ashley",
+    "lastName": "Chiu",
+    "unitNumber": "111",
+    "phone": "6047780098",
+    "email": "ash@gmail.com",
+    "status": "resident",
+    "password": "$2b$10$eGPraApyuWgFbrB3r49wS.3lcnqlhGAEUy6O4e3I/Uj9sgGNeK67W"
   }
 ]
