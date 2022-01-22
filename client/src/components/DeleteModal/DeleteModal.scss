@@ -1,5 +1,4 @@
 @use "../../styles/partials/mixins" as *;
-@use "../../styles/partials/colours" as *;
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 
@@ -23,7 +22,8 @@
   }
 
   &-content {
-    background-color: white;
+    color: $secondary-dark;
+    background-color: $primary-light;
     height: 100%;
     width: 100%;
     @include tablet {
@@ -40,7 +40,7 @@
   }
 
   &__title {
-    @include mbHeader-font;
+    // @include mbHeader-font;
     margin-top: 60px;
     margin-left: 16px;
     font-size: 28px;
@@ -80,8 +80,8 @@
       left: 29rem;
     }
     &__delete {
-      @include mbCopy-font;
-      color: $white;
+      // @include mbCopy-font;
+      color: $secondary-light;
       background: #c94515;
       border-radius: 20px;
       width: 163px;
@@ -91,22 +91,22 @@
       margin-left: 0.5rem;
 
       &:hover {
-        background: $graphite;
+        background: $secondary-dark;
       }
     }
 
     &__cancel {
-      @include mbCopy-font;
-      background: $white;
-      border: 1px solid $grey;
+      // @include mbCopy-font;
+      color: $secondary-dark;
+      border: 1px solid $primary-dark;
       border-radius: 20px;
       width: 163px;
       height: 36px;
       margin-left: 1rem;
       margin-right: 0.5rem;
       &:hover {
-        border: 1px solid $blue;
-        color: $blue;
+        border: 1px solid $primary-dark;
+        color: $primary-dark;
       }
     }
   }

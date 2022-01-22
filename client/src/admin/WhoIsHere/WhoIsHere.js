@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 // import { MdDeleteForever, MdModeEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
@@ -13,18 +13,21 @@ const AllUsers = () => {
   const [whoIsHere, setWhoIsHere] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showBookings, setShowBookings] = useState(5);
-  const history = useHistory();
 
-  //Get all the vistors who have checked in but not checked out
+  //Get all the vistors who have checked in but not yet checked out
+  const fetchCurrVisitors = () => {
+    axios
+      .get(`${API_URL}/bookings`)
+      .then((response) => {
+        const currentVisitors = response.data.filter(
+          (booking) => booking.checkin !== "" && booking.checkout === ""
+        );
+        setWhoIsHere(currentVisitors);
+      })
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(`${API_URL}/bookings`);
-      const currentVisitors = data.filter(
-        (booking) => booking.checkin !== "" && booking.checkout === ""
-      );
-      setWhoIsHere(currentVisitors);
-      console.log(whoIsHere);
-    })();
+    fetchCurrVisitors();
   }, []);
 
   const handleClick = () => {
@@ -32,15 +35,15 @@ const AllUsers = () => {
   };
 
   const onCheckoutHandler = (e) => {
-    setShowModal(true);
+    // setShowModal(true);
     axios
       .patch(`${API_URL}/bookings/checkout`, {
         id: e.target.id,
         carPlate: e.target.name,
       })
       .then((response) => {
-        history.push("/admin/whoishere");
         console.log("manual check out completed!");
+        fetchCurrVisitors();
       })
       .catch((err) => {
         if (err.response) {
@@ -55,7 +58,6 @@ const AllUsers = () => {
       <div className={whoIsHere.length > 0 ? "hide" : "show"}>
         No one is here
       </div>
-      {/* blogs.slice(0, visibleBlogs).map((blog, i) */}
       {whoIsHere.map((booking) => {
         return (
           <div key={booking.id} className="users__information">

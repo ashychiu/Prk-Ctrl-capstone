@@ -14,51 +14,15 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-// async function sendMail() {
-//   try {
-//     const accessToken = await oAuth2Client.getAccessToken();
-//     const transporter = nodemailer.createTransport({
-//       service: "gmail",
-//       auth: {
-//         type: "OAuth2",
-//         user: process.env.MAIL_USERNAME,
-//         // pass: process.env.MAIL_PASSWORD,
-//         clientId: CLIENT_ID,
-//         clientSecret: CLIENT_SECRET,
-//         refreshToken: REFRESH_TOKEN,
-//         accessToken: accessToken,
-//       },
-//     });
-//     let mailOptions = {
-//       from: "prkctrl.app@gmail.com",
-//       to: "prkctrl.app@gmail.com",
-//       subject: "Testing on infinity loop (no await)",
-//       text: "Hi from your node express server",
-//       html: "<h1>Hi from your node express server</h1>",
-//     };
-
-//     const result = await transporter.sendMail(mailOptions);
-//     return result;
-//   } catch (error) {
-//     return error;
-//   }
-// }
-
-// sendMail()
-//   .then((result) => console.log("email is sent!", result))
-//   .catch((error) => console.log(error.message));
-
-/////////
-
 const accessToken = oAuth2Client.getAccessToken();
 
-const sendMail = () => {
+const sendWelcomeMail = (foundUser) => {
+  console.log(foundUser);
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       type: "OAuth2",
       user: process.env.MAIL_USERNAME,
-      pass: process.env.MAIL_PASSWORD,
       clientId: process.env.OAUTH_CLIENTID,
       clientSecret: process.env.OAUTH_CLIENT_SECRET,
       refreshToken: process.env.OAUTH_REFRESH_TOKEN,
@@ -67,10 +31,15 @@ const sendMail = () => {
   });
 
   let mailOptions = {
-    from: "prkctrl.app@gmail.com",
-    to: user.email,
-    subject: "Infinity loop? round 2",
-    text: "Hi from your node express server",
+    from: process.env.MAIL_USERNAME,
+    to: foundUser.email,
+    subject: "Welcome to PRK CTRL Visitor Parking Management",
+    text: `Hi ${foundUser.firstName}, greetings from your node express server`,
+    html: `<h2>
+    Hi ${foundUser.firstName}, greetings from your node express server
+    </h2>
+    <a href="http://prkctrl.com" target="_blank"><span>Login to create your first booking</span></a>
+    >`,
   };
 
   transporter.sendMail(mailOptions, function (err, data) {
@@ -82,4 +51,4 @@ const sendMail = () => {
   });
 };
 
-module.exports = { sendMail };
+module.exports = { sendWelcomeMail };
