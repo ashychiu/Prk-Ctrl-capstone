@@ -48,7 +48,7 @@
     width: 100%;
     @include tablet {
       width: 100%;
-      // animation: slide-up 8s ease 1s 3 normal forwards;
+      animation: slide-up 8s ease 3s 3 normal forwards;
     }
     @include desktop {
       width: 90%;

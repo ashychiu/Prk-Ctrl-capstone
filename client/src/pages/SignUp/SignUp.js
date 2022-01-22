@@ -8,7 +8,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 function SignUp() {
   const [error, setError] = useState("");
   const [recaptcha, setRecaptcha] = useState(false);
-  //   const [status, setStatus] = useState(false);
   const history = useHistory();
 
   function onRecaptchaChange(value) {
@@ -30,11 +29,7 @@ function SignUp() {
           password: e.target.password.value,
         })
         .then((response) => {
-          // console.log(response);
-          // console.log(user);
-          // console.log(history);
           window.location.href = "/";
-          // setStatus(true);
         })
         .catch((err) => {
           if (err.response) {
@@ -46,7 +41,6 @@ function SignUp() {
   };
   return (
     <section className="signup">
-      <h1 className="hero">Prk Ctrl</h1>
       <form onSubmit={signup}>
         <label htmlFor="pronouns">Pronouns</label>
         <input
