@@ -41,5 +41,9 @@
   &__signup {
     font-size: 0.9em;
     align-self: flex-end;
+    &-link {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 }

@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-// import { Button, Form, Container, Row, Col } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "../../styles/customBootstrap.scss";
 import "./Login.scss";
 import logo from "../../assets/logo/logo-horizontal-transparent.png";
+import SignupModal from "../SignupModal/SignupModal";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 function Login() {
+  const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
+
+  // const onClickHandler = () => {
+  //   setShowModal(true);
+  // };
+
   const login = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -65,10 +69,19 @@ function Login() {
                 {error}
               </div>
             </form>
-            <p className="login__signup">New user? Sign up here.</p>
+            <p className="login__signup">
+              New user?{" "}
+              <span
+                onClick={() => setShowModal(true)}
+                className="login__signup-link"
+              >
+                Sign up here.
+              </span>
+            </p>
           </div>
         </div>
       </div>
+      <SignupModal show={showModal} />
     </section>
   );
 }
