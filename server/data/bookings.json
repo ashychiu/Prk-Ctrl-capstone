@@ -1,32 +1,32 @@
 [
   {
     "id": "83433026-ca32-4c6d-bd86-a39ee8b7303e",
-    "checkout": "2022-01-21T09:32:53.730Z",
     "userID": "5b54d480-1e7a-4363-a7cb-1aeaf32a5851",
     "carPlate": "JME 009",
     "requestDate": "2022-01-29",
     "submitDate": 1642093625,
     "remarks": "will stay over night",
-    "checkin": "2022-01-20T03:40:50.737Z"
+    "checkin": "2022-01-20T03:40:50.737Z",
+    "checkout": "2022-01-21T22:56:00.764Z"
   },
   {
     "id": "42518d5b-15e0-4349-811b-c6cfdf044f9d",
-    "checkout": "2022-01-21T09:33:05.772Z",
     "carPlate": "833MFE",
     "requestDate": "2022-03-20",
     "userID": "2922c286-16cd-4d43-ab98-c79f698aeab0",
     "sumbitDate": 1642243728171,
     "remarks": "Disabled parking needed",
-    "checkin": "2022-01-20T03:40:50.737Z"
+    "checkin": "2022-01-20T03:40:50.737Z",
+    "checkout": "2022-01-21T22:56:21.135Z"
   },
   {
     "id": "bd08afae-ce92-4ba3-ab8d-98c24fc54d1f",
-    "checkout": "2022-01-21T09:35:20.886Z",
     "carPlate": "ABS123",
     "userID": 1234,
     "sumbitDate": 1642534714980,
     "remarks": "",
-    "checkin": "2022-01-20T03:40:50.737Z"
+    "checkin": "2022-01-20T03:40:50.737Z",
+    "checkout": "2022-01-21T22:28:56.664Z"
   },
   {
     "id": "23c320a7-6936-4007-b513-3b5086ac954c",
@@ -36,7 +36,7 @@
     "sumbitDate": 1642536431683,
     "remarks": "",
     "checkin": "2022-01-20T03:40:50.737Z",
-    "checkout": "2022-01-21T09:36:21.648Z"
+    "checkout": ""
   },
   {
     "id": "9a101663-dc1e-479f-8989-d7263a885877",
@@ -46,7 +46,7 @@
     "sumbitDate": 1642540834884,
     "remarks": "",
     "checkin": "2022-01-20T03:40:50.737Z",
-    "checkout": "2022-01-21T09:36:20.385Z"
+    "checkout": ""
   },
   {
     "id": "7fd0d03a-3d83-47ca-8f68-dfc688d11daf",
@@ -66,7 +66,7 @@
     "sumbitDate": 1642542726308,
     "remarks": "",
     "checkin": "2022-01-20T03:40:50.737Z",
-    "checkout": "2022-01-20T06:21:59.053Z"
+    "checkout": ""
   },
   {
     "id": "4e4a580e-05f8-443c-8343-e1ebdf254bf4",
@@ -76,7 +76,7 @@
     "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
     "sumbitDate": 1642542779636,
     "remarks": "",
-    "checkin": "2022-01-20T03:40:50.737Z"
+    "checkin": ""
   },
   {
     "id": "1e674e18-2988-466a-b704-0ce4f22bf9c1",
@@ -110,13 +110,13 @@
   },
   {
     "id": "755e0e58-1555-4d10-823f-1ad337f363a2",
-    "checkout": "2022-01-21T09:33:00.700Z",
     "carPlate": "BC123E",
     "requestDate": "2022-01-19",
     "userID": "f7fff12e-3ca2-40a2-8c54-dbe55ec8439e",
     "sumbitDate": 1642558669274,
     "remarks": "Nothing",
-    "checkin": "2022-01-20T03:40:50.737Z"
+    "checkin": "2022-01-20T03:40:50.737Z",
+    "checkout": "2022-01-21T17:44:56.851Z"
   },
   {
     "id": "cf3dc07c-b425-42c8-a079-029c0757f598",
@@ -140,12 +140,12 @@
   },
   {
     "id": "35787543-5c67-4005-9ab5-b87a791f6bcb",
-    "checkout": "2022-01-21T09:32:58.820Z",
     "checkin": "2022-01-20T21:28:01.411Z",
     "carPlate": "BC009E",
     "requestDate": "01/19/2022",
     "userID": "44836761-72cb-4b36-9eb4-dd5a111ab078",
     "sumbitDate": 1642659829628,
-    "remarks": ""
+    "remarks": "",
+    "checkout": "2022-01-21T22:32:06.379Z"
   }
 ]

@@ -1,5 +1,5 @@
 // import IoCloseCircleSharp from "react-icons/io5";
-// import "./DeleteModal.scss";
+import "./DeleteModal.scss";
 
 const deleteModal = (props) => {
   if (!props.show) {

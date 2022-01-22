@@ -461,8 +461,8 @@
   },
   {
     "id": "2aa57339-438f-4ac9-befb-7758f2762a06",
-    "firstName": "ANGELAND",
-    "lastName": "CHIU",
+    "firstName": "Angela",
+    "lastName": "Chu",
     "unitNumber": 1520,
     "phone": "(123) 473-0154",
     "email": "treeves@att.net",
@@ -474,7 +474,7 @@
     "lastName": "Chiu",
     "unitNumber": 1029,
     "phone": "(604) 778-1234",
-    "email": "prkctrl.app@gmail.com",
+    "email": "ashley@gmail.com",
     "status": "Resident",
     "password": "$2b$10$zZHy3T/oC5u6Ocj1.Ip3HuIhQhLs0mQt5hKE2CQJ634fCQosi18QG"
   },
@@ -517,5 +517,25 @@
     "email": "bnb.ashley@gmail.com",
     "status": "Resident",
     "password": "$2b$10$k1mFNa5aRlVMUYSaies03Ol5pcEBldWtvBeM2ddBFwURHYxt8RoBK"
+  },
+  {
+    "id": "90bbb866-672c-48f3-a5bf-adb6e486c628",
+    "firstName": "Tom",
+    "lastName": "Li",
+    "unitNumber": "208",
+    "phone": "7786040987",
+    "email": "prkctrl.app@gmail.com",
+    "status": "Owner",
+    "password": "$2b$10$QoMJC8nyrppP5Nw2EjG/TO95bgeJA0as/VvcOJGsnYf7i9G6OCpU2"
+  },
+  {
+    "id": "49c73011-b423-464e-8d02-695e6f50b1ad",
+    "firstName": "Ashley",
+    "lastName": "Chiu",
+    "unitNumber": "608",
+    "phone": "7781234567",
+    "email": "beautiphobia@gmail.com",
+    "status": "Owner",
+    "password": "$2b$10$1XuoCw.yS5tnRJLIx1ybKehVI6ujTzntDBldXM2t7.yd4FULWqNVO"
   }
 ]
