@@ -3,25 +3,58 @@
 
 .homepage {
   width: 100%;
-  padding: 1rem;
-  @include flex-all-center;
+  height: 100vh;
+  // padding: 1rem;
+  @include flex-col;
   background-color: $primary-dark;
-  &__container {
+  @include tablet {
+    @include flex-row;
+  }
+  &__heading {
+    display: none;
     @include tablet {
-      width: 50%;
-      @include flex-row-center;
-      margin-bottom: 6.25rem;
+      display: block;
+      color: $primary-light;
+      @include tablet-page-header;
+      margin-top: 5rem;
     }
   }
   &__logo {
-    width: 100%;
+    width: 90%;
+    margin-top: 2rem;
+    margin-left: 0.125rem;
     @include tablet {
-      width: 70%;
-    }
-    @include desktop {
-      width: 40%;
+      display: none;
     }
   }
+  &__container {
+    @include flex-all-center;
+    @include tablet {
+      width: 100%;
+      @include flex-row-center;
+    }
+    @include desktop {
+      width: 50%;
+    }
+  }
+  &__login {
+    @extend .homepage__container;
+    background-color: $primary-dark;
+    @include tablet {
+      background-color: $primary-light;
+    }
+  }
+  &__image {
+    width: 100%;
+    @include tablet {
+      width: 100%;
+      // animation: slide-up 8s ease 1s 3 normal forwards;
+    }
+    @include desktop {
+      width: 90%;
+    }
+  }
+
   &__admin-button {
     align-self: flex-end;
     width: 25%;
@@ -33,5 +66,16 @@
       background-color: black;
       color: $primary-cta;
     }
+  }
+}
+
+@keyframes slide-up {
+  from {
+    margin-top: 100%;
+    height: 300%;
+  }
+  to {
+    margin-top: 0%;
+    height: 100%;
   }
 }

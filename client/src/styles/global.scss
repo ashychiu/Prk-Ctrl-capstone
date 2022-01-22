@@ -19,13 +19,13 @@ body,
 }
 body {
   width: 100%;
-  background-color: $primary-dark;
+  // background-color: $primary-dark;
   margin: 0;
   padding: 0;
   font-family: "Inter", Helvetica, sans-serif;
   font-size: 1rem;
   font-weight: 400;
-  color: $primary-light;
+  // color: $primary-light;
 }
 
 .wrapper {
@@ -41,29 +41,14 @@ body {
 }
 //Buttons
 .btn {
-  height: 2.25rem; //36px
+  height: 2.25rem;
   padding: 0 1rem;
   border-radius: 30px;
   @include tablet {
-    height: 2.375rem; //38px
-    // width: auto;
+    height: 2.375rem;
   }
 }
-.btn-primary {
-  // @include mb-label;
-  text-align: center;
-  font-size: 2rem;
-  color: $primary-dark;
-  background-color: $primary-cta;
-  border: none;
-  &:hover {
-    color: $primary-dark;
-    background-color: $secondary-light;
-  }
-  @include tablet {
-    @include tb-label;
-  }
-}
+
 .btn-secondary {
   // @include mb-label;
   background-color: $primary-light;
@@ -74,37 +59,34 @@ body {
     border-color: $primary-cta;
     color: $primary-light;
   }
-  @include tablet {
-    @include tb-label;
-  }
 }
 
-.submitButton {
-  background-color: $primary-cta;
-  width: 100%;
-  height: 3rem;
-  border: none;
-  color: $primary-dark;
-  margin-top: 1rem;
-  border-radius: 25px;
-  padding: 2px 16px;
-  text-align: center;
-  font-size: 1.125rem;
-  font-weight: 500;
-  @include tablet {
-    width: 33%;
-    margin: 0.625rem 0 0.625rem 1.5rem;
-  }
-  @include desktop {
-    width: 13%;
-  }
-  //hover effect on button
-  &:hover {
-    background-color: $secondary-cta;
-    color: $secondary-dark;
-    cursor: pointer;
-  }
-}
+// .submitButton {
+//   background-color: $primary-cta;
+//   width: 100%;
+//   height: 3rem;
+//   border: none;
+//   color: $primary-dark;
+//   margin-top: 1rem;
+//   border-radius: 5px;
+//   padding: 2px 16px;
+//   text-align: center;
+//   font-size: 1.125rem;
+//   font-weight: 500;
+//   @include tablet {
+//     width: 33%;
+//     margin: 0.625rem 0 0.625rem 1.5rem;
+//   }
+//   @include desktop {
+//     width: 100%;
+//   }
+//   //hover effect on button
+//   &:hover {
+//     background-color: $secondary-cta;
+//     color: $secondary-dark;
+//     cursor: pointer;
+//   }
+// }
 
 footer {
   margin-top: auto;
@@ -120,13 +102,25 @@ footer {
 }
 
 .errorMessage {
+  margin-top: 0.3125rem;
   font-size: 0.875rem;
 
   @include tablet {
-    font-size: 1.125rem;
+    font-size: 1rem;
+    @include tablet-subheader;
   }
 }
 
+a.light-theme {
+  color: $primary-cta;
+}
+.light-theme {
+  color: $primary-light;
+}
+
+.dark-theme {
+  color: $primary-dark;
+}
 input {
   width: 100%;
   font-size: 1rem;
@@ -143,4 +137,23 @@ input {
 
 .icon {
   color: $primary-cta;
+}
+
+.primary-btn {
+  color: $primary-dark;
+  background-color: $primary-cta;
+  &:hover {
+    background-color: $secondary-cta;
+    color: $secondary-dark;
+    cursor: pointer;
+  }
+}
+
+.btn {
+  width: 100%;
+  height: 2.375rem;
+  border: 0;
+  margin-top: 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
 }

@@ -6,38 +6,6 @@ const bcrypt = require("bcrypt");
 const { createTokens, validateToken } = require("../JWT");
 const { sendWelcomeMail } = require("../email");
 
-// // Nodemailer & google api config
-// const { google } = require("googleapis");
-// const nodemailer = require("nodemailer");
-// require("dotenv").config();
-
-// const REDIRECT_URI = process.env.REDIRECT_URI;
-// const CLIENT_ID = process.env.OAUTH_CLIENTID;
-// const CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET;
-// const REFRESH_TOKEN = process.env.OAUTH_REFRESH_TOKEN;
-
-// const oAuth2Client = new google.auth.OAuth2(
-//   CLIENT_ID,
-//   CLIENT_SECRET,
-//   REDIRECT_URI
-// );
-// oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
-
-// const accessToken = oAuth2Client.getAccessToken();
-// let transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   auth: {
-//     type: "OAuth2",
-//     user: process.env.MAIL_USERNAME,
-//     pass: process.env.MAIL_PASSWORD,
-//     clientId: process.env.OAUTH_CLIENTID,
-//     clientSecret: process.env.OAUTH_CLIENT_SECRET,
-//     refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-//     accessToken: accessToken,
-//   },
-// });
-
-//
 const readFile = () => {
   const userData = fs.readFileSync("./data/users.json");
   return JSON.parse(userData);

@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import "./styles/global.scss";
 import DashBoard from "./pages/DashBoard/DashBoard";
-import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import HomePage from "./pages/HomePage/HomePage";
 import AdminLogin from "./admin/AdminLogin/AdminLogin";
@@ -35,7 +34,6 @@ function App() {
       <Switch>
         <Route path="/sidebar" component={SideBar} />
         <Route path="/" exact component={HomePage} />
-        <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />;
         <Route path="/visitor" component={Visitor} />
         <Route path="/booking" component={BookingForm} />;
@@ -50,7 +48,7 @@ function App() {
         <Route path="/admin" component={AdminLogin} />;
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
