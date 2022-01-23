@@ -36,7 +36,7 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/signup" component={SignUp} />;
         <Route path="/visitor" component={Visitor} />
-        <Route path="/booking" component={BookingForm} />;
+        <PrivateRoute path="/booking" component={BookingForm} />;
         <Route path="/logout" component={Logout} />;
         <PrivateRoute
           path="/admin/dashboard"

@@ -12,15 +12,15 @@ function Login() {
   const [error, setError] = useState("");
   const history = useHistory();
 
-  // const onClickHandler = () => {
-  //   setShowModal(true);
-  // };
+  const onCloseHandler = () => {
+    setShowModal(false);
+  };
 
   const login = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    if (!email || !password) setError("ERROR");
+    if (!email || !password) setError("Both email & password are required");
     else {
       axios
         .post(`${API_URL}/users/login`, {
@@ -81,7 +81,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <SignupModal show={showModal} />
+      <SignupModal show={showModal} onCloseHandler={onCloseHandler} />
     </section>
   );
 }
