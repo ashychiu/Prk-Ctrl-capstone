@@ -15,7 +15,7 @@ function BookingForm(props) {
   const [error, setError] = useState("");
 
   //   const [status, setStatus] = useState(false);
-  const history = useHistory;
+  const history = useHistory();
   const addBooking = (e) => {
     e.preventDefault();
     const requestDate = e.target.requestDate.value;
@@ -49,7 +49,7 @@ function BookingForm(props) {
         });
     }
     e.target.reset();
-    history.push("/mybookings");
+    history.push("/dashboard/mybookings");
   };
 
   return (

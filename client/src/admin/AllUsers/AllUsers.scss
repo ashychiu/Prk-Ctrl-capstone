@@ -109,9 +109,9 @@
     margin: 0;
     color: #5c667e;
 
-    @include tablet {
-      display: none;
-    }
+    // @include tablet {
+    //   display: none;
+    // }
   }
 
   &__location {

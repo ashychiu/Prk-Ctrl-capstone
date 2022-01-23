@@ -15,6 +15,7 @@ import AdminDashboard from "./admin/AdminDashboard/AdminDashboard";
 import AllUsers from "./admin/AllUsers/AllUsers";
 import Visitor from "./pages/Visitor/Visitor";
 import WhoIsHere from "./admin/WhoIsHere/WhoIsHere";
+import MyBookings from "./pages/MyBookings/MyBookings";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -46,6 +47,11 @@ function App() {
         <Route path="/admin/users" component={AllUsers} />;
         <Route path="/admin/whoishere" component={WhoIsHere} />;
         <Route path="/admin" component={AdminLogin} />;
+        <PrivateRoute
+          path="/dashboard/mybookings"
+          exact
+          component={MyBookings}
+        />
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
       {/* <Footer /> */}

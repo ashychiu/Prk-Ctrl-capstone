@@ -28,7 +28,7 @@ const getUser = (unitNumber) => {
   const foundUser = userList.find((user) => {
     return unitNumber === user.unitNumber.toString();
   });
-  console.log(foundUser);
+
   return foundUser;
 };
 
@@ -110,7 +110,6 @@ bookingRouter.put("/:id", (req, res) => {
     remarks,
   };
 
-  console.log(updatedBooking);
   bookingList = bookingList.map((Booking) => {
     if (Booking.id === foundBooking.id) {
       return updatedBooking;
@@ -121,7 +120,7 @@ bookingRouter.put("/:id", (req, res) => {
 
   writeFile(bookingList);
 
-  return res.status(200).send(updatedBooking);
+  return res.status(200).json(updatedBooking);
 });
 
 //Checkin a vehicle by patching single Booking by id
@@ -132,7 +131,7 @@ bookingRouter.patch("/checkin", (req, res) => {
       // Date.parse(booking.requestDate) + 86400000 >= Date.now() &&
       booking.carPlate === carPlate
   );
-  console.log(foundBooking);
+
   if (!carPlate) {
     return res.status(400).send("Please provide a valid license plate");
   }
@@ -149,7 +148,6 @@ bookingRouter.patch("/checkin", (req, res) => {
     ...rest,
   };
 
-  console.log(updatedBooking);
   bookingList = bookingList.map((Booking) => {
     if (Booking.id === foundBooking.id) {
       return updatedBooking;
@@ -166,7 +164,7 @@ bookingRouter.patch("/checkin", (req, res) => {
 bookingRouter.patch("/checkout", (req, res) => {
   const { id, carPlate } = req.body;
   const foundBooking = bookingList.find((booking) => id === booking.id);
-  console.log(foundBooking);
+
   if (!carPlate) {
     return res.status(400).send("Please provide a valid license plate");
   }
@@ -183,7 +181,6 @@ bookingRouter.patch("/checkout", (req, res) => {
     checkout: new Date(),
   };
 
-  console.log(updatedBooking);
   bookingList = bookingList.map((Booking) => {
     if (Booking.id === foundBooking.id) {
       return updatedBooking;
@@ -194,7 +191,7 @@ bookingRouter.patch("/checkout", (req, res) => {
 
   writeFile(bookingList);
 
-  return res.status(200).send(updatedBooking);
+  return res.status(200).json(updatedBooking);
 });
 
 //Delete single Booking by id
@@ -208,7 +205,7 @@ bookingRouter.delete("/:id", (req, res) => {
 
   updatedList = bookingList.filter((booking) => booking.id !== foundBooking.id);
   writeFile(updatedList);
-  return res.status(204).send();
+  return res.status(200).send("Booking deleted successfully");
 });
 
 module.exports = bookingRouter;

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import HomePage from "../../pages/HomePage/HomePage";
 import BookingForm from "../BookingForm/BookingForm";
+import MyBookings from "../../pages/MyBookings/MyBookings";
 
 const SideBar = (props) => {
   console.log(props);
@@ -16,6 +17,11 @@ const SideBar = (props) => {
       path: "/booking",
       sidebar: () => <div></div>,
       main: () => <BookingForm unitNumber={props.unitNumber} />,
+    },
+    {
+      path: "/",
+      sidebar: () => <div></div>,
+      main: () => <MyBookings userId={props.userId} />,
     },
     {
       path: "/login",
@@ -33,6 +39,9 @@ const SideBar = (props) => {
             </li>
             <li>
               <Link to="/booking">booking</Link>
+            </li>
+            <li>
+              <Link to="/dashboard/mybookings">My bookings</Link>
             </li>
             <li>
               <Link to="/login">profile</Link>

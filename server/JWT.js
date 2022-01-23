@@ -3,7 +3,7 @@ const { sign, verify } = require("jsonwebtoken");
 const createTokens = (foundUser) => {
   const accessToken = sign(
     {
-      email: foundUser.email,
+      id: foundUser.id,
       firstName: foundUser.firstName,
       unitNumber: foundUser.unitNumber,
     },
@@ -20,15 +20,10 @@ const validateToken = (req, res, next) => {
     return res.status(401).json({ message: "User not authorized" });
 
   const authToken = req.headers.authorization.split(" ")[1];
-  console.log("authorization token:", authToken);
-
-  // decode the contents of the token
   verify(authToken, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({ message: "User not authorized" });
     }
-
-    // Compare if the time right now is greater than the expiry date
     if (Date.now() > new Date(decoded.exp * 1000)) {
       return res.status(401).json({ message: "Token expired" });
     }

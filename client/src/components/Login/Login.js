@@ -7,7 +7,7 @@ import SignupModal from "../SignupModal/SignupModal";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function Login() {
+const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
@@ -84,6 +84,6 @@ function Login() {
       <SignupModal show={showModal} onCloseHandler={onCloseHandler} />
     </section>
   );
-}
+};
 
 export default Login;

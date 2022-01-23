@@ -7,16 +7,12 @@ import "./DashBoard.scss";
 // import { FaAdn } from "react-icons/fa";
 import DatePicker from "../../components/DatePicker/DatePicker";
 import Footer from "../../components/Footer/Footer";
-import {
-  SidebarHeader,
-  SidebarFooter,
-  SidebarContent,
-} from "react-pro-sidebar";
 import SideBar from "../../components/SideBar/SideBar";
 import axios from "axios";
 const API_URL = process.env.REACT_APP_API_URL;
 
 const DashBoard = (props) => {
+  const [userId, setUserId] = useState("");
   const [user, setUser] = useState("");
   const [unitNumber, setUnitNumber] = useState("");
   const token = localStorage.getItem("token");
@@ -29,15 +25,16 @@ const DashBoard = (props) => {
         console.log(response.data);
         setUser(response.data.firstName);
         setUnitNumber(response.data.unitNumber);
+        setUserId(response.data.id);
       });
   }, []);
 
-  console.log(props);
+  console.log("dashboard ", props);
 
   const history = useHistory();
   const logout = () => {
     localStorage.clear();
-    history.push("/logout");
+    history.push("/");
   };
 
   return (
@@ -45,20 +42,7 @@ const DashBoard = (props) => {
       <h1>Welcome! {user}</h1>
       <button onClick={logout}>Logout</button>
       <div>some text</div>
-      <SideBar user={user} unitNumber={unitNumber} />
-      {/* <ProSidebar>
-        <Menu iconShape="square">
-          <MenuItem icon={<FaAdn />}>
-            Dashboard
-            <Link to="/" />
-          </MenuItem>
-          <SubMenu title="Components">
-            <MenuItem>Component 1</MenuItem>
-            <MenuItem>Component 2</MenuItem>
-          </SubMenu>
-        </Menu>
-      </ProSidebar> */}
-      <DatePicker />
+      <SideBar user={user} unitNumber={unitNumber} userId={userId} />
       <Footer />
     </div>
   );

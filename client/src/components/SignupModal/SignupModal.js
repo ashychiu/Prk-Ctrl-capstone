@@ -12,16 +12,10 @@ const SignupModal = (props) => {
   const [recaptcha, setRecaptcha] = useState(false);
   const history = useHistory();
 
-  // const onCloseHandler = () => {
-  //   setShowModal2(false);
-  // };
-
   //tablet & desktop are using modal props, mobile is direct link
   if (!props.show && window.innerWidth >= 768) {
     return null;
   }
-
-  console.log(props.onCloseHandler);
 
   function onRecaptchaChange(value) {
     setRecaptcha(true);

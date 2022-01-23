@@ -15,11 +15,16 @@ const AllUsers = () => {
   const [showModal, setShowModal] = useState(false);
   const [showUsers, setShowUsers] = useState(10);
 
+  const fetchAllUsers = () => {
+    axios
+      .get(`${API_URL}/users`)
+      .then((response) => {
+        setUserList(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(`${API_URL}/users`);
-      setUserList(data);
-    })();
+    fetchAllUsers();
   }, []);
 
   const handleClick = () => {
