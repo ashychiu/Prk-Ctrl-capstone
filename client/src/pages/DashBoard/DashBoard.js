@@ -18,6 +18,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const DashBoard = (props) => {
   const [user, setUser] = useState("");
+  const [unitNumber, setUnitNumber] = useState("");
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
@@ -27,6 +28,7 @@ const DashBoard = (props) => {
       .then((response) => {
         console.log(response.data);
         setUser(response.data.firstName);
+        setUnitNumber(response.data.unitNumber);
       });
   }, []);
 
@@ -43,7 +45,7 @@ const DashBoard = (props) => {
       <h1>Welcome! {user}</h1>
       <button onClick={logout}>Logout</button>
       <div>some text</div>
-      <SideBar />
+      <SideBar user={user} unitNumber={unitNumber} />
       {/* <ProSidebar>
         <Menu iconShape="square">
           <MenuItem icon={<FaAdn />}>

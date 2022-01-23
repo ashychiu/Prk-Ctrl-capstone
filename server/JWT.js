@@ -2,7 +2,11 @@ const { sign, verify } = require("jsonwebtoken");
 
 const createTokens = (foundUser) => {
   const accessToken = sign(
-    { email: foundUser.email, firstName: foundUser.firstName },
+    {
+      email: foundUser.email,
+      firstName: foundUser.firstName,
+      unitNumber: foundUser.unitNumber,
+    },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_EXPIRES_IN,
@@ -24,10 +28,7 @@ const validateToken = (req, res, next) => {
       return res.status(401).json({ message: "User not authorized" });
     }
 
-    // iat stands for "issued at".
-    console.log(new Date(decoded.iat * 1000)); // iat is time in seconds.  You can convert to milliseconds by multiplying the number by 1000.  Milliseconds can be converted to a Date.
-
-    // Compare if the time right now is greater than the expiry date.  If so, the token is expired, and we should respond back to the client
+    // Compare if the time right now is greater than the expiry date
     if (Date.now() > new Date(decoded.exp * 1000)) {
       return res.status(401).json({ message: "Token expired" });
     }

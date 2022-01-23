@@ -57,10 +57,9 @@ bookingRouter.get("/:id", (req, res) => {
 
 //Add new booking
 bookingRouter.post("/add", (req, res) => {
-  const { requestDate, unitNumber, carPlate, remarks } = req.body;
-  console.log(remarks);
+  const { requestDate, unitNumber, carPlate, accessibility, remarks } =
+    req.body;
   const foundUser = getUser(unitNumber);
-  console.log(foundUser);
   if (!carPlate || !requestDate) {
     return res.status(400).send("Please fill out the required fields");
   }
@@ -72,11 +71,13 @@ bookingRouter.post("/add", (req, res) => {
 
   const newBooking = {
     id: uuid(),
-    carPlate,
-    requestDate,
     userID: foundUser.id,
-    sumbitDate: Date.now(),
+    requestDate,
+    carPlate,
+    unitNumber,
+    accessibility,
     remarks,
+    sumbitDate: new Date(),
     checkin: "",
     checkout: "",
   };

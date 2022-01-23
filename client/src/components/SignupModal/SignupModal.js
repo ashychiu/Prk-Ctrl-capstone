@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
+import closeButton from "../../assets/icons/closeButton.svg";
 import "./SignupModal.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -11,26 +12,51 @@ const SignupModal = (props) => {
   const [recaptcha, setRecaptcha] = useState(false);
   const history = useHistory();
 
-  if (!props.show) {
+  // const onCloseHandler = () => {
+  //   setShowModal2(false);
+  // };
+
+  //tablet & desktop are using modal props, mobile is direct link
+  if (!props.show && window.innerWidth >= 768) {
     return null;
   }
+
+  console.log(props.onCloseHandler);
 
   function onRecaptchaChange(value) {
     setRecaptcha(true);
   }
   const signup = (e) => {
     e.preventDefault();
-    if (!recaptcha) setError("Please prove you're not a robot!");
+    const firstName = e.target.firstName.value;
+    const lastName = e.target.lastName.value;
+    const unitNumber = e.target.unitNumber.value;
+    const phone = e.target.phone.value;
+    const email = e.target.email.value;
+    const status = e.target.status.value;
+    const password = e.target.password.value;
+
+    if (
+      !firstName ||
+      !lastName ||
+      !unitNumber ||
+      !phone ||
+      !email ||
+      !status ||
+      !password
+    ) {
+      setError("All fields are required");
+    } else if (!recaptcha) setError("Please prove you're not a robot!");
     else {
       axios
         .post(`${API_URL}/users/signup`, {
-          firstName: e.target.firstName.value,
-          lastName: e.target.lastName.value,
-          unitNumber: e.target.unitNumber.value,
-          phone: e.target.phone.value,
-          email: e.target.email.value,
-          status: e.target.status.value,
-          password: e.target.password.value,
+          firstName,
+          lastName,
+          unitNumber,
+          phone,
+          email,
+          status,
+          password,
         })
         .then((response) => {
           window.location.href = "/";
@@ -47,12 +73,7 @@ const SignupModal = (props) => {
   return (
     <div className="signup-modal">
       <div className="signup-modal-content">
-        {/* <img
-          className="signup-modal__close"
-          src={IoCloseCircleSharp}
-          alt="x mark to close"
-          onClick={props.onCloseHandler}
-        /> */}
+        <button className="closeButton" onClick={props.onCloseHandler}></button>
 
         <div className="signup-modal-header">
           <h4 className="signup-modal__title">Sign Up</h4>
@@ -135,7 +156,6 @@ const SignupModal = (props) => {
                       <input
                         type="radio"
                         name="status"
-                        id="instock"
                         value="Owner"
                         onChange={() => setError("")}
                       />
@@ -145,7 +165,6 @@ const SignupModal = (props) => {
                       <input
                         type="radio"
                         name="status"
-                        id="outofstock"
                         value="Resident"
                         onChange={() => setError("")}
                       />
@@ -167,7 +186,7 @@ const SignupModal = (props) => {
                   onChange={() => setError("")}
                 />
               </div>
-              <div className="flex-2-col">
+              <div className="flex-2-col recaptcha">
                 <ReCAPTCHA
                   sitekey="6LfE8SMeAAAAALZ3eYN1fLVcX_YE0gBRDS31Dv9H"
                   onChange={onRecaptchaChange}
@@ -176,7 +195,7 @@ const SignupModal = (props) => {
                 />
 
                 <p className="signup-modal__terms">
-                  By clicking submit, you're agreeing to our{" "}
+                  By clicking submit below, you argee to our{" "}
                   <span className="signup-modal__terms-link">
                     terms of service.
                   </span>
@@ -190,20 +209,6 @@ const SignupModal = (props) => {
               </button>
             </form>
           </div>
-          {/* <div className="signup-modal-footer"> */}
-          {/* <button
-              className="signup-modal-footer__cancel"
-              onClick={props.onCloseHandler}
-            >
-              Cancel
-            </button>
-            <button
-              className="signup-modal-footer__delete"
-              onClick={() => props.onDeleteHandler(props.itemId)}
-            >
-              Delete
-            </button> */}
-          {/* </div> */}
         </div>
       </div>
     </div>

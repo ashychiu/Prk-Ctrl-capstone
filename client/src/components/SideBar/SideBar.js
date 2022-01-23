@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import HomePage from "../../pages/HomePage/HomePage";
 import BookingForm from "../BookingForm/BookingForm";
 
-const SideBar = () => {
+const SideBar = (props) => {
+  console.log(props);
   const routes = [
     {
       path: "/",
@@ -14,7 +15,7 @@ const SideBar = () => {
     {
       path: "/booking",
       sidebar: () => <div></div>,
-      main: () => <BookingForm />,
+      main: () => <BookingForm unitNumber={props.unitNumber} />,
     },
     {
       path: "/login",
