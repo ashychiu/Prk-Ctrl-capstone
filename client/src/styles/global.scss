@@ -168,7 +168,7 @@ input {
   right: 21px;
   top: 21px;
   color: $primary-dark;
-  background: url("../assets/icons/closeButton.svg") no-repeat;
+  background: url("../assets/icons/close.png") no-repeat;
   background-size: cover;
   width: 2rem;
   height: 2rem;
@@ -177,6 +177,7 @@ input {
 }
 
 .repeatButton {
+  margin: 0.3125rem;
   color: $primary-dark;
   background: url("../assets/icons/repeat.png") no-repeat;
   background-size: cover;
@@ -187,8 +188,31 @@ input {
 }
 
 .deleteButton {
+  margin: 0.3125rem;
   color: $primary-dark;
   background: url("../assets/icons/delete.png") no-repeat;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  border: none;
+}
+
+.editButton {
+  margin: 0.3125rem;
+  color: $primary-dark;
+  background: url("../assets/icons/edit.png") no-repeat;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  border: none;
+}
+
+.checkoutButton {
+  margin: 0.3125rem;
+  color: $primary-dark;
+  background: url("../assets/icons/checkout.png") no-repeat;
   background-size: cover;
   width: 2rem;
   height: 2rem;

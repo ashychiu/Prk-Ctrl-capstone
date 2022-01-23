@@ -126,15 +126,15 @@ bookingRouter.put("/:id", (req, res) => {
 //Checkin a vehicle by patching single Booking by id
 bookingRouter.patch("/checkin", (req, res) => {
   const { carPlate } = req.body;
-  const foundBooking = bookingList.find(
-    (booking) =>
-      // Date.parse(booking.requestDate) + 86400000 >= Date.now() &&
-      booking.carPlate === carPlate
-  );
-
   if (!carPlate) {
     return res.status(400).send("Please provide a valid license plate");
   }
+
+  const foundBooking = bookingList.find(
+    (booking) =>
+      Date.now() - new Date(booking.requestDate).getTime() <= 86400000 &&
+      booking.carPlate === carPlate
+  );
   if (!foundBooking) {
     return res
       .status(404)

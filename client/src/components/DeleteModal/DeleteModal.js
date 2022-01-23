@@ -2,7 +2,6 @@
 import "./DeleteModal.scss";
 
 const deleteModal = (props) => {
-  console.log("delete props ", props);
   if (!props.show) {
     return null;
   }

@@ -92,12 +92,11 @@ const AllUsers = () => {
             </div>
             <div className="users__actions">
               <button
+                className="checkoutButton"
                 name={booking.carPlate}
                 id={booking.id}
                 onClick={onCheckoutHandler}
-              >
-                Manual Check-out
-              </button>
+              ></button>
               <Link to={`bookins/edit/${booking.id}`}>
                 <FaUserEdit color="white" />
               </Link>
