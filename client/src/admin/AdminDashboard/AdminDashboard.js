@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 // import { FaAdn } from "react-icons/fa";
 import DatePicker from "../../components/DatePicker/DatePicker";
 import Footer from "../../components/Footer/Footer";
-import SideBar from "../../components/SideBar/SideBar";
+import AdminSideBar from "../AdminSideBar/AdminSideBar";
+import WhoIsHere from "../WhoIsHere/WhoIsHere";
 import axios from "axios";
 import { logout } from "../../utils/loginStatus";
 import AllUsers from "../AllUsers/AllUsers";
@@ -37,8 +38,8 @@ const AdminDashboard = () => {
       <h1>Welcome! {user}</h1>
       <button onClick={logout}>Logout</button>
       <div>some text</div>
-      <SideBar />
-      <AllUsers />
+      <AdminSideBar />
+      <WhoIsHere />
       <Footer />
     </div>
   );

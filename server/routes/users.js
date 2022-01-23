@@ -31,7 +31,7 @@ const getUser = (id) => {
 };
 
 //API Get single user
-userRouter.get("/profile/:id", (req, res) => {
+userRouter.get("/:id", (req, res) => {
   const { id } = req.params;
   const foundUser = getUser(id);
   if (!foundUser) {

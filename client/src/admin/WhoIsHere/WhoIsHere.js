@@ -1,10 +1,9 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-// import { MdDeleteForever, MdModeEdit } from "react-icons/md";
-import { MdDeleteForever } from "react-icons/md";
-import { FaUserEdit } from "react-icons/fa";
-import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import Moment from "react-moment";
+import "moment-timezone";
+import ContactModal from "../../components/ContactModal/ContactModal";
 import "./WhoIsHere.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -12,6 +11,9 @@ const API_URL = process.env.REACT_APP_API_URL;
 const AllUsers = () => {
   const [whoIsHere, setWhoIsHere] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [carPlate, setCarPlate] = useState("");
+  const [userID, setUserID] = useState("");
+  const [userList, setUserList] = useState([]);
   const [showBookings, setShowBookings] = useState(5);
 
   //Get all the vistors who have checked in but not yet checked out
@@ -26,8 +28,23 @@ const AllUsers = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const fetchUserList = () => {
+    axios
+      .get(`${API_URL}/users/`)
+      .then((response) => {
+        console.log(response);
+        setUserList(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
     fetchCurrVisitors();
+    fetchUserList();
+    return () => {
+      setWhoIsHere([]); //unmount
+      setUserList([]); //unmount
+    };
   }, []);
 
   const handleClick = () => {
@@ -52,6 +69,15 @@ const AllUsers = () => {
       });
   };
 
+  const onContactHandler = (e) => {
+    setShowModal(true);
+    setCarPlate(e.target.name);
+    setUserID(e.target.id);
+  };
+
+  const onCloseHandler = () => {
+    setShowModal(false);
+  };
   return (
     <section className="users">
       <h1>Who is here</h1>
@@ -64,7 +90,7 @@ const AllUsers = () => {
             <div className="users__information-data">
               <div className="users__information-top">
                 <div className="users__information-location">
-                  <h4 className="users__subheader">Name</h4>
+                  <h4 className="users__subheader">Licence Plate</h4>
                   <Link
                     to={`booking/${booking.id}`}
                     className="users__location"
@@ -73,7 +99,7 @@ const AllUsers = () => {
                   </Link>
                 </div>
                 <div className="user-address">
-                  <h4 className="users__subheader">Unit Number</h4>
+                  <h4 className="users__subheader">Booking Date</h4>
                   <p className="users__address-details">
                     {booking.requestDate}
                   </p>
@@ -82,11 +108,19 @@ const AllUsers = () => {
               {/* <div className="user-bottom"> */}
               <div className="user-contact">
                 <h4 className="users__subheader">Checkin Time</h4>
-                <p className="users__contact-name">{booking.checkin}</p>
+                <p className="users__contact-name">
+                  <Moment parse="YYYY-MM-DD HH:mm" local>
+                    {booking.checkin}
+                  </Moment>
+                </p>
               </div>
               <div className="user-contact-information">
-                <h4 className="users__subheader">Checkout Time</h4>
-                <p className="users__contact-email">{booking.checkout}</p>
+                <h4 className="users__subheader">For how long?</h4>
+                <p className="users__contact-email">
+                  <Moment fromNow ago>
+                    {booking.checkin}
+                  </Moment>
+                </p>
               </div>
               {/* </div> */}
             </div>
@@ -97,9 +131,13 @@ const AllUsers = () => {
                 id={booking.id}
                 onClick={onCheckoutHandler}
               ></button>
-              <Link to={`bookins/edit/${booking.id}`}>
-                <FaUserEdit color="white" />
-              </Link>
+
+              <button
+                className="contactButton"
+                name={booking.carPlate}
+                id={booking.userID}
+                onClick={onContactHandler}
+              ></button>
             </div>
           </div>
         );
@@ -111,10 +149,12 @@ const AllUsers = () => {
         Load More
       </button>
 
-      <DeleteModal
+      <ContactModal
         show={showModal}
-        // onCloseHandler={onCloseHandler}
-        // onTrashHandler={onTrashHandler}
+        carPlate={carPlate}
+        userID={userID}
+        onCloseHandler={onCloseHandler}
+        userList={userList}
         // onDeleteHandler={onDeleteHandler}
         //   itemId={this.state.warehouseId}
         //   name="Warehouse"
