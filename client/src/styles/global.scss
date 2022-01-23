@@ -175,3 +175,23 @@ input {
   cursor: pointer;
   border: none;
 }
+
+.repeatButton {
+  color: $primary-dark;
+  background: url("../assets/icons/repeat.png") no-repeat;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  border: none;
+}
+
+.deleteButton {
+  color: $primary-dark;
+  background: url("../assets/icons/delete.png") no-repeat;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  border: none;
+}

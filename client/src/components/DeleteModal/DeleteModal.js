@@ -2,6 +2,7 @@
 import "./DeleteModal.scss";
 
 const deleteModal = (props) => {
+  console.log("delete props ", props);
   if (!props.show) {
     return null;
   }
@@ -9,13 +10,7 @@ const deleteModal = (props) => {
   return (
     <div className="modal-del">
       <div className="modal-del-content">
-        {/* <img
-          className="modal-del__close"
-          src={IoCloseCircleSharp}
-          alt="x mark to close"
-          onClick={props.onCloseHandler}
-        /> */}
-
+        <button className="closeButton" onClick={props.onCloseHandler}></button>
         <div className="modal-del-header">
           <h4 className="modal-del__title">
             Delete {props.itemName} {props.name} Item?
@@ -33,7 +28,7 @@ const deleteModal = (props) => {
             </button>
             <button
               className="modal-del-footer__delete"
-              onClick={() => props.onDeleteHandler(props.itemId)}
+              onClick={() => props.onDeleteHandler(props.bookingId)}
             >
               Delete
             </button>
