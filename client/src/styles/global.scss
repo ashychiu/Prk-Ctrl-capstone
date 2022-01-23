@@ -188,34 +188,25 @@ input {
 }
 
 .deleteButton {
-  margin: 0.3125rem;
-  color: $primary-dark;
+  @extend .repeatButton;
   background: url("../assets/icons/delete.png") no-repeat;
   background-size: cover;
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-  border: none;
 }
 
 .editButton {
-  margin: 0.3125rem;
-  color: $primary-dark;
+  @extend .repeatButton;
   background: url("../assets/icons/edit.png") no-repeat;
   background-size: cover;
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-  border: none;
 }
 
 .checkoutButton {
-  margin: 0.3125rem;
-  color: $primary-dark;
+  @extend .repeatButton;
   background: url("../assets/icons/checkout.png") no-repeat;
   background-size: cover;
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-  border: none;
+}
+
+.contactButton {
+  @extend .repeatButton;
+  background: url("../assets/icons/phonebook.png") no-repeat;
+  background-size: cover;
 }
