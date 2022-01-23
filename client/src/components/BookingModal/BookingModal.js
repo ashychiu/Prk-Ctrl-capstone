@@ -8,7 +8,7 @@ import "./BookingModal.scss";
 const API_URL = process.env.REACT_APP_API_URL;
 
 const BookingModal = (props) => {
-  console.log("modal props ", props);
+  console.log("booking props", props);
   const [error, setError] = useState("");
   const [requestDate, setRequestDate] = useState(new Date());
   const history = useHistory();
@@ -16,7 +16,6 @@ const BookingModal = (props) => {
   if (!props.show) {
     return null;
   }
-  console.log(props.onCloseHandler);
 
   const addBooking = (e) => {
     e.preventDefault();
@@ -24,7 +23,6 @@ const BookingModal = (props) => {
     const carPlate = e.target.carPlate.value;
     const unitNumber = e.target.unitNumber.value;
     const accessibility = e.target.accessibility.value;
-    console.log(e.target.accessibility.value);
     const remarks = e.target.remarks.value;
     if (!requestDate || !carPlate || !unitNumber)
       setError("Please fill out all required fields");
@@ -61,7 +59,10 @@ const BookingModal = (props) => {
         <button className="closeButton" onClick={props.onCloseHandler}></button>
 
         <div className="signup-modal-header">
-          <h4 className="signup-modal__title">Rebook for {props.carPlate}</h4>
+          <h4 className="signup-modal__title">
+            {" "}
+            {props.requestDate ? "Update" : "Rebook"}
+          </h4>
           <div className="signup-modal__content">
             <form onSubmit={addBooking} className="booking-form">
               <label htmlFor="requestDate">
@@ -135,7 +136,7 @@ const BookingModal = (props) => {
                 {error}
               </div>
               <button className="btn primary-btn signup-btn" type="submit">
-                Submit
+                {props.requestDate ? "Update" : "Submit"}
               </button>
             </form>
           </div>

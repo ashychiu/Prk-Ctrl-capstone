@@ -1,11 +1,6 @@
 import { React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { MdDeleteForever } from "react-icons/md";
-import { FaUserEdit } from "react-icons/fa";
 import BookingModal from "../../components/BookingModal/BookingModal";
-import BookingForm from "../../components/BookingForm/BookingForm";
-import SignupModal from "../../components/SignupModal/SignupModal";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./MyBookings.scss";
 
@@ -13,14 +8,15 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const MyBookings = (props) => {
   const [myBookings, setMyBookings] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showRebookModal, setShowRebookModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [showBookings, setShowBookings] = useState(5);
   const [carPlate, setCarPlate] = useState("");
   const [unitNumber, setUnitNumber] = useState("");
   const [bookingId, setBookingId] = useState("");
+  const [requestDate, setRequestDate] = useState("");
 
-  console.log(showModal);
   useEffect(() => {
     fetchMyBookings();
     return () => {
@@ -33,12 +29,19 @@ const MyBookings = (props) => {
     axios
       .get(`${API_URL}/bookings`)
       .then((response) => {
-        // console.log(response);
-        // console.log(userId);
         const bookings = response.data.filter(
           (booking) => booking.userID === userId
         );
-        // console.log("bookings ", bookings);
+        // console.log("before: ", bookings);
+
+        // const sortedBookings = bookings.sort((booking, x, y) => {
+        //   return (
+        //     y.Date.parse(booking.requestDate) -
+        //     x.Date.parse(booking.requestDate)
+        //   );
+        // });
+
+        // console.log("after: ", sortedBookings);
         setMyBookings(bookings);
       })
       .catch((err) => console.log(err));
@@ -49,13 +52,13 @@ const MyBookings = (props) => {
   };
 
   const onCloseHandler = () => {
-    setShowModal(false);
+    setShowRebookModal(false);
     setShowDeleteModal(false);
-    console.log("closed");
+    setShowEditModal(false);
   };
 
   const onRebookHandler = (e) => {
-    setShowModal(true);
+    setShowRebookModal(true);
     setCarPlate(e.target.name);
     setUnitNumber(e.target.id);
   };
@@ -63,6 +66,13 @@ const MyBookings = (props) => {
   const onCrossHandler = (e) => {
     setShowDeleteModal(true);
     setBookingId(e.target.id);
+  };
+
+  const onEditHandler = (e) => {
+    setShowEditModal(true);
+    setCarPlate(e.target.name);
+    setUnitNumber(e.target.id);
+    setRequestDate(e.target.value);
   };
 
   const onDeleteHandler = (bookingId) => {
@@ -89,12 +99,7 @@ const MyBookings = (props) => {
               <div className="users__information-top">
                 <div className="users__information-location">
                   <h4 className="users__subheader">Licence Plate</h4>
-                  <Link
-                    to={`booking/${booking.id}`}
-                    className="users__location"
-                  >
-                    <p>{booking.carPlate}</p>
-                  </Link>
+                  <p>{booking.carPlate}</p>
                 </div>
                 <div className="user-address">
                   <h4 className="users__subheader">Date of Visit</h4>
@@ -115,27 +120,36 @@ const MyBookings = (props) => {
               {/* </div> */}
             </div>
             <div className="users__actions">
+              {/* Repeat function not available for future bookings */}
               <button
-                className="repeatButton"
+                className={
+                  Date.parse(booking.requestDate) <= Date.now() ||
+                  booking.checkin
+                    ? "repeatButton"
+                    : "hide"
+                }
                 name={booking.carPlate}
                 id={booking.unitNumber}
                 onClick={onRebookHandler}
-              >
-                {/* <FiRepeat
+              ></button>
+              {/* Edit function not available for past bookings */}
+              <button
+                className={
+                  Date.parse(booking.requestDate) >= Date.now()
+                    ? "editButton"
+                    : "hide"
+                }
                 name={booking.carPlate}
-                id={booking.unitNumber}
-                onClick={onRebookHandler}
-              /> */}
-              </button>
+                id={booking.id}
+                value={booking.requestDate}
+                onClick={onEditHandler}
+              ></button>
               <button
                 className="deleteButton"
                 name={booking.carPlate}
                 id={booking.id}
                 onClick={onCrossHandler}
               ></button>
-              <Link to={`bookings/edit/${booking.id}`}>
-                <FaUserEdit color="white" />
-              </Link>
             </div>
           </div>
         );
@@ -148,10 +162,11 @@ const MyBookings = (props) => {
       </button>
 
       <BookingModal
-        show={showModal}
+        show={showRebookModal || showEditModal}
         onCloseHandler={onCloseHandler}
         carPlate={carPlate}
         unitNumber={unitNumber}
+        requestDate={requestDate}
         fetchMyBookings={fetchMyBookings}
       />
       <DeleteModal
@@ -160,16 +175,6 @@ const MyBookings = (props) => {
         onDeleteHandler={onDeleteHandler}
         bookingId={bookingId}
       />
-      {/* <SignupModal
-        show={showModal}
-        fetchMyBookings={fetchMyBookings}
-        onCloseHandler={onCloseHandler}
-        // onTrashHandler={onTrashHandler}
-        // onDeleteHandler={onDeleteHandler}
-        // itemId={this.state.warehouseId}
-        // name="Warehouse"
-        // itemName={this.state.warehouseName}
-      /> */}
     </section>
   );
 };

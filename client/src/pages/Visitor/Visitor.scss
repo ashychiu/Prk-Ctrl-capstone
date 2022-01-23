@@ -1,1 +1,13 @@
-@use "../../pages/SignUp/SignUp.scss";
+// @use "../../components/SignupModal/SignupModal.scss";
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+// .login {
+//   background-color: $primary-dark;
+//   &__input {
+//     background-color: $primary-light;
+//     &::placeholder {
+//       color: $primary-dark;
+//     }
+//   }
+// }
