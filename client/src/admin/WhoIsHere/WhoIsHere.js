@@ -78,6 +78,7 @@ const AllUsers = () => {
   const onCloseHandler = () => {
     setShowModal(false);
   };
+
   return (
     <section className="users">
       <h1>Who is here</h1>
@@ -155,10 +156,6 @@ const AllUsers = () => {
         userID={userID}
         onCloseHandler={onCloseHandler}
         userList={userList}
-        // onDeleteHandler={onDeleteHandler}
-        //   itemId={this.state.warehouseId}
-        //   name="Warehouse"
-        //   itemName={this.state.warehouseName}
       />
     </section>
   );

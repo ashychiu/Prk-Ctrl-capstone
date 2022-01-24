@@ -12,8 +12,7 @@ const SignupModal = (props) => {
   const [recaptcha, setRecaptcha] = useState(false);
   const history = useHistory();
 
-  //tablet & desktop are using modal props, mobile is direct link
-  if (!props.show && window.innerWidth >= 768) {
+  if (!props.show) {
     return null;
   }
 
@@ -140,12 +139,11 @@ const SignupModal = (props) => {
                     onChange={() => setError("")}
                   />
                 </div>
-
-                <div className="form-field">
+                <div className="form-field form-status">
                   <label htmlFor="status" className="form-field__label">
                     Status
                   </label>
-                  <div className="flex-2-col">
+                  <div className="flex-2-col form-status-button">
                     <label htmlFor="owner" className="radio-btn">
                       <input
                         type="radio"

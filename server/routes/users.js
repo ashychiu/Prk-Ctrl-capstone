@@ -71,25 +71,26 @@ userRouter.post("/signup", (req, res) => {
   }
   if (!email.includes("@") || !email.includes(".")) {
     return res.status(400).send("Please provide a valid email");
-  }
-  bcrypt.hash(password, 10).then((hash) => {
-    const newUser = {
-      id: uuid(),
-      firstName,
-      lastName,
-      unitNumber,
-      phone,
-      email,
-      status,
-      password: hash,
-    };
-    userList.push(newUser);
-    writeFile(userList);
+  } else {
+    bcrypt.hash(password, 10).then((hash) => {
+      const newUser = {
+        id: uuid(),
+        firstName,
+        lastName,
+        unitNumber,
+        phone,
+        email,
+        status,
+        password: hash,
+      };
+      userList.push(newUser);
+      writeFile(userList);
 
-    //Send welcome email after successful registration
-    // sendWelcomeMail(email, firstName);
-    return res.status(201).json(userList);
-  });
+      //Send welcome email after successful registration
+      res.status(201).json(userList);
+      sendWelcomeMail(newUser);
+    });
+  }
 });
 
 //User login
