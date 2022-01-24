@@ -16,6 +16,7 @@ import AllUsers from "./admin/AllUsers/AllUsers";
 import Visitor from "./pages/Visitor/Visitor";
 import WhoIsHere from "./admin/WhoIsHere/WhoIsHere";
 import MyBookings from "./pages/MyBookings/MyBookings";
+import AdminNavbar from "./admin/AdminNavBar/AdminNavBar";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -31,7 +32,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <h1>Prk Ctrl</h1> */}
       <Switch>
         <Route path="/sidebar" component={SideBar} />
         <Route path="/" exact component={HomePage} />
@@ -54,7 +54,6 @@ function App() {
         />
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

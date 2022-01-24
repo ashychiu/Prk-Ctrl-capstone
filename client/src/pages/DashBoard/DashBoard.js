@@ -16,7 +16,9 @@ const DashBoard = (props) => {
   const [user, setUser] = useState("");
   const [unitNumber, setUnitNumber] = useState("");
   const token = localStorage.getItem("token");
-  useEffect(() => {
+  console.log(token);
+
+  const fetchProfile = () => {
     axios
       .get(`${API_URL}/users/profile`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -26,7 +28,17 @@ const DashBoard = (props) => {
         setUser(response.data.firstName);
         setUnitNumber(response.data.unitNumber);
         setUserId(response.data.id);
-      });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchProfile();
+    return () => {
+      setUser([]); //unmount
+      setUnitNumber([]); //unmount
+      setUserId([]); //unmount
+    };
   }, []);
 
   console.log("dashboard ", props);

@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
+import SignupModal from "../SignupModal/SignupModal";
 import "./MobileLogin.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 function MobileLogin() {
-  const [buttonStatus, setButtonStatus] = useState("disabled");
+  const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
+
+  const onCloseHandler = () => {
+    setShowModal(false);
+  };
+
   const login = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -58,11 +64,12 @@ function MobileLogin() {
         </form>
         <p className="mobile-login__signup">
           New user?{" "}
-          <Link to="/signup" className="light-theme">
+          <span className="light-theme" onClick={() => setShowModal(true)}>
             Sign up here.
-          </Link>
+          </span>
         </p>
       </div>
+      <SignupModal show={showModal} onCloseHandler={onCloseHandler} />
     </section>
   );
 }

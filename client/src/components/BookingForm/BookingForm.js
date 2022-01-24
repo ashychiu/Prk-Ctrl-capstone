@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./BookingForm.scss";
 import question from "../../assets/icons/question.png";
+import BookingSuccessModal from "../BookingSuccessModal/BookingSuccessModal";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -13,6 +14,7 @@ function BookingForm(props) {
   console.log(props);
   const [requestDate, setRequestDate] = useState(new Date());
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   //   const [status, setStatus] = useState(false);
   const history = useHistory();
@@ -39,7 +41,9 @@ function BookingForm(props) {
         })
 
         .then((response) => {
-          console.log(response);
+          setShowModal(true);
+          // e.target.reset();
+          // history.push("/dashboard/mybookings");
         })
         .catch((err) => {
           if (err.response) {
@@ -48,8 +52,11 @@ function BookingForm(props) {
           }
         });
     }
-    e.target.reset();
-    history.push("/dashboard/mybookings");
+  };
+
+  const onCloseHandler = () => {
+    setShowModal(false);
+    window.location.reload();
   };
 
   return (
@@ -113,6 +120,7 @@ function BookingForm(props) {
             </label>
           </div>
         </div>
+
         <label htmlFor="unitNumber">Remarks</label>
         <input
           type="text"
@@ -126,6 +134,11 @@ function BookingForm(props) {
         </button>
       </form>
       {error != "" ? <div>{error}</div> : ""}
+      <BookingSuccessModal
+        show={showModal}
+        // checkedIn={checkedIn}
+        onCloseHandler={onCloseHandler}
+      />
     </section>
   );
 }

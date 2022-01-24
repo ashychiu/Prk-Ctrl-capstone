@@ -2,12 +2,39 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-// .login {
-//   background-color: $primary-dark;
-//   &__input {
-//     background-color: $primary-light;
-//     &::placeholder {
-//       color: $primary-dark;
-//     }
-//   }
-// }
+.visitor {
+  @include flex-all-center;
+  height: 100vh;
+  width: 100%;
+
+  color: $primary-light;
+  background-color: $primary-dark;
+
+  &__hero-image {
+    width: 80%;
+    @include tablet {
+      width: 50%;
+    }
+  }
+  &__container {
+    @include flex-all-center;
+    @include tablet {
+      width: 100%;
+      @include flex-row-center;
+    }
+    @include desktop {
+      width: 50%;
+    }
+  }
+  &__input {
+    background-color: $primary-light;
+    &::placeholder {
+      color: $primary-dark;
+    }
+  }
+}
+
+.checkin-btn {
+  width: 50%;
+  margin-bottom: 3rem;
+}

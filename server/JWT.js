@@ -31,20 +31,6 @@ const validateToken = (req, res, next) => {
     req.decoded = decoded;
     next();
   });
-  //====================
-  // const accessToken = req.cookies["accessToken"];
-  // if (!accessToken) {
-  //   res.status(400).send("User not authenicated!");
-  // }
-  // try {
-  //   const validToken = verify(accessToken, process.env.JWT_SECRET);
-  //   if (validToken) {
-  //     req.authenticated = true;
-  //     return next();
-  //   }
-  // } catch (err) {
-  //   return req.status(400).send(err);
-  // }
 };
 
 module.exports = { createTokens, validateToken };

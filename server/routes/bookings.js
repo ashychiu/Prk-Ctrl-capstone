@@ -2,6 +2,7 @@ const express = require("express");
 const bookingRouter = express.Router();
 const { v4: uuid } = require("uuid");
 const fs = require("fs");
+const { sendConfirmMail } = require("../email");
 
 const readFile = () => {
   const bookingData = fs.readFileSync("./data/bookings.json");
@@ -37,7 +38,7 @@ bookingRouter.get("/", (req, res) => {
   return res.status(200).json(bookingList);
 });
 
-// get single booking by id
+// Find single booking by id
 const getBooking = (id) => {
   const foundBooking = bookingList.find((booking) => {
     return id === booking.id;
@@ -84,7 +85,10 @@ bookingRouter.post("/add", (req, res) => {
 
   bookingList.push(newBooking);
   writeFile(bookingList);
-  return res.status(201).json(newBooking);
+  //Send welcome email after successful registration
+
+  return sendConfirmMail(newBooking);
+  res.status(201).json(newBooking);
 });
 
 //Update single Booking by id

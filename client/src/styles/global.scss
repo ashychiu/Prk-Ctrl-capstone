@@ -15,6 +15,7 @@ body,
   height: 100vh;
 }
 #root {
+  // background-color: $primary-dark;
   @include flex-col;
 }
 body {
@@ -137,6 +138,11 @@ input {
     padding: 0 1rem; //16px
     margin: 0.2rem 0;
   }
+}
+input[type="radio"] {
+  margin-top: -1px;
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
 .icon {

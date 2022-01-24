@@ -1,0 +1,49 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include flex-all-center;
+  z-index: 1;
+
+  &__container {
+    overflow-y: auto;
+    color: $secondary-light;
+    background-color: $primary-dark;
+    height: 100vh;
+    width: 100%;
+    @include tablet {
+      height: 80vh;
+      width: auto;
+      width: 50%;
+      position: relative;
+    }
+  }
+  &__image {
+    width: 90%;
+    padding: 2rem 0 2rem 3rem;
+    @include tablet {
+      width: 60%;
+    }
+  }
+  &__title {
+    padding: 0 2rem;
+  }
+  &__content {
+    padding: 0 1rem;
+    @include tablet {
+      @include flex-all-center;
+      margin-top: 3rem;
+      width: 75%;
+      margin-left: 10%;
+      position: relative;
+      bottom: 2rem;
+    }
+  }
+}
