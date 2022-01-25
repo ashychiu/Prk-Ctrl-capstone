@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-// import { MdDeleteForever, MdModeEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
 import "./AllUsers.scss";
@@ -33,72 +32,80 @@ const AllUsers = () => {
 
   const onTrashHandler = (e) => {
     setShowModal(true);
-    console.log(showModal);
-    // this.setState({
-    //   show: true,
-    //   warehouseId: e.target.id,
-    //   warehouseName: e.target.name,
-    // });
   };
 
+  const sortedList = userList.sort((a, b) => a.unitNumber - b.unitNumber);
+  // console.log(sortedList);
+
   return (
-    <section className="users">
+    <section className="all-users">
       <h1>All Users</h1>
-      {/* blogs.slice(0, visibleBlogs).map((blog, i) */}
-      {userList.slice(0, showUsers).map((user, i) => {
+      <div className="all-users__information">
+        <div className="all-users__container">
+          <h4 className="all-users__heading">Full Name</h4>
+        </div>
+        <div className="all-users__container">
+          <h4 className="all-users__heading">Unit Number</h4>
+        </div>
+        <div className="all-users__container">
+          <h4 className="all-users__heading">Contact Number</h4>
+        </div>
+        <div className="all-users__container">
+          <h4 className="all-users__heading">Email Address</h4>
+        </div>
+        <div className="all-users__container">
+          <h4 className="all-users__heading">Status</h4>
+        </div>
+        <div className="all-users__actions">
+          <h4 className="all-users__heading hidden">Action Function</h4>
+        </div>
+      </div>
+      {sortedList.slice(0, showUsers).map((user, i) => {
         return (
-          <div key={userList[i].id} className="users__information">
-            <div className="users__information-data">
-              <div className="users__information-top">
-                <div className="users__information-location">
-                  <h4 className="users__subheader">Name</h4>
-                  <Link
-                    to={`user/${userList[i].id}`}
-                    className="users__location"
-                  >
-                    <p>
-                      {userList[i].firstName} {userList[i].lastName}
-                    </p>
-                  </Link>
-                </div>
-                <div className="user-address">
-                  <h4 className="users__subheader">Unit Number</h4>
-                  <p className="users__address-details">
-                    {userList[i].unitNumber}
-                  </p>
-                </div>
-              </div>
-              {/* <div className="user-bottom"> */}
-              <div className="user-contact">
-                <h4 className="users__subheader">Contact Number</h4>
-                <p className="users__contact-name">{userList[i].phone}</p>
-              </div>
-              <div className="user-contact-information">
-                <h4 className="users__subheader">Contact Email</h4>
-                <p className="users__contact-email">{userList[i].email}</p>
-              </div>
-              {/* </div> */}
+          <div key={sortedList[i].id} className="all-users__information">
+            <div className="all-users__container">
+              <h4 className="all-users__subheader">Full Name</h4>
+              <p>
+                {sortedList[i].firstName} {sortedList[i].lastName}
+              </p>
             </div>
-            <div className="users__actions">
-              <button onClick={onTrashHandler}>
-                <MdDeleteForever />
-              </button>
-              {/* <img
-                name={userList[i].firstName}
-                id={user.id}
-                // onClick={onTrashHandler}
-                className="users__actions-trash"
-                src={}
-                alt="trashcan"
-              /> */}
-              <Link to={`users/edit/${userList[i].id}`}>
-                <FaUserEdit color="white" />
-              </Link>
+            <div className="all-users__container">
+              <h4 className="all-users__subheader">Unit Number</h4>
+              <p>{sortedList[i].unitNumber}</p>
+            </div>
+            <div className="all-users__container">
+              <h4 className="all-users__subheader">Contact Number</h4>
+              <p>{sortedList[i].phone}</p>
+            </div>
+            <div className="all-users__container">
+              <h4 className="all-users__subheader">Email</h4>
+              <p>{sortedList[i].email}</p>
+            </div>
+            <div className="all-users__container">
+              <h4 className="all-users__subheader">Status</h4>
+              <p>{sortedList[i].status}</p>
+            </div>
+            <div className="all-users__actions">
+              <button
+                className="editButton"
+                name={sortedList[i].carPlate}
+                id={sortedList[i].id}
+                value={sortedList[i].requestDate}
+                // onClick={onEditHandler}
+              ></button>
+              <button
+                className="deleteButton"
+                name={sortedList[i].carPlate}
+                id={sortedList[i].id}
+                // onClick={onCrossHandler}
+              ></button>
             </div>
           </div>
         );
       })}
-      <button onClick={handleClick}>Load More</button>;
+      <button onClick={handleClick} className="btn loadmore-btn">
+        Load More
+      </button>
     </section>
   );
 };

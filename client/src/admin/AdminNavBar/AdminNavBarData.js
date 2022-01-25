@@ -1,8 +1,7 @@
 import React from "react";
-import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
-import { logout } from "../../utils/loginStatus";
+import * as IoIcons5 from "react-icons/io5";
 
 export const AdminNavBarData = [
   {
@@ -27,6 +26,12 @@ export const AdminNavBarData = [
     title: "Support",
     path: "/",
     icon: <IoIcons.IoMdHelpCircle />,
+    cName: "nav-text",
+  },
+  {
+    title: "Logout",
+    path: "/logout",
+    icon: <IoIcons5.IoLogOutSharp />,
     cName: "nav-text",
   },
 ];

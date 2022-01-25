@@ -1,7 +1,7 @@
-// import IoCloseCircleSharp from "react-icons/io5";
 import "./DeleteModal.scss";
 
 const deleteModal = (props) => {
+  console.log(props);
   if (!props.show) {
     return null;
   }
@@ -11,12 +11,10 @@ const deleteModal = (props) => {
       <div className="modal-del-content">
         <button className="closeButton" onClick={props.onCloseHandler}></button>
         <div className="modal-del-header">
-          <h4 className="modal-del__title">
-            Delete {props.itemName} {props.name} Item?
-          </h4>
+          <h4 className="modal-del__title">Delete?</h4>
           <div className="modal-del__content">
-            Please confirm that you’d like to delete {props.itemName} from the
-            list. You won’t be able to undo this action.
+            Please confirm that you’d like to delete this booking. You won’t be
+            able to undo this action.
           </div>
           <div className="modal-del-footer">
             <button

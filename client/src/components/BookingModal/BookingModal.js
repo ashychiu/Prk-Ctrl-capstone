@@ -8,7 +8,7 @@ import "./BookingModal.scss";
 const API_URL = process.env.REACT_APP_API_URL;
 
 const BookingModal = (props) => {
-  console.log("booking props", props);
+  console.log("booking modal props", props);
   const [error, setError] = useState("");
   const [requestDate, setRequestDate] = useState(new Date());
   const history = useHistory();
@@ -50,21 +50,21 @@ const BookingModal = (props) => {
         });
     }
     e.target.reset();
-    history.push("/dashboard/mybookings");
+    // history.push("/dashboard/mybookings");
   };
 
   return (
-    <div className="signup-modal">
-      <div className="signup-modal-content">
+    <div className="booking-modal">
+      <div className="booking-modal-content">
         <button className="closeButton" onClick={props.onCloseHandler}></button>
 
-        <div className="signup-modal-header">
-          <h4 className="signup-modal__title">
+        <div className="booking-modal-header">
+          <h4 className="booking-modal__title">
             {" "}
             {props.requestDate ? "Update" : "Rebook"}
           </h4>
-          <div className="signup-modal__content">
-            <form onSubmit={addBooking} className="booking-form">
+          <div className="booking-modal__content">
+            <form onSubmit={addBooking} className="booking-modal__form">
               <label htmlFor="requestDate">
                 Date of Visit{" "}
                 <span className="tips">(Max one month in advance)</span>
@@ -90,7 +90,7 @@ const BookingModal = (props) => {
                 name="carPlate"
                 placeholder="licence plate"
                 defaultValue={props.carPlate}
-                className="booking-form__input"
+                className="booking-modal__input"
                 onChange={() => setError("")}
               />
               <label htmlFor="unitNumber">Unit Number</label>
@@ -99,7 +99,7 @@ const BookingModal = (props) => {
                 name="unitNumber"
                 placeholder="unit number"
                 defaultValue={props.unitNumber}
-                className="booking-form__input"
+                className="booking-modal__input"
                 onChange={() => setError("")}
               />
               <div className="form-field">
@@ -133,7 +133,7 @@ const BookingModal = (props) => {
                 type="text"
                 name="remarks"
                 placeholder="remarks"
-                className="booking-form__input"
+                className="booking-modal__input"
                 onChange={() => setError("")}
               />
               <div className={error ? "show errorMessage" : "hide"}>

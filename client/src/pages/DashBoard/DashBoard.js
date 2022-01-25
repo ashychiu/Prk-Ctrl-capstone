@@ -8,6 +8,7 @@ import axios from "axios";
 import MyBookings from "../MyBookings/MyBookings";
 import BookingForm from "../../components/BookingForm/BookingForm";
 import Navbar from "../../components/NavBar/NavBar";
+import LogoutButton from "../../components/LogoutButton/LogoutButton";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -53,22 +54,39 @@ const DashBoard = (props) => {
     <div className="dashboard">
       <Router>
         <Navbar />
-        <h1>Welcome! {user}</h1>
-        <div>some text</div>
+        <h1 className="dashboard__greeting">Welcome! {user}</h1>
         <Switch>
-          <Route path="/booking" exact component={BookingForm} />
+          <Route
+            path="/booking"
+            exact
+            render={(routerProps) => (
+              <BookingForm {...routerProps} unitNumber={unitNumber} />
+            )}
+          />
           <Route
             path="/mybookings"
             exact
             render={(routerProps) => (
-              <MyBookings {...routerProps} userId={userId} />
+              <MyBookings
+                {...routerProps}
+                userId={userId}
+                unitNumber={unitNumber}
+              />
             )}
           />
           {/* // <Route path="/mybookings" component={MyBookings} /> */}
           {/* /* <Route path="/profile" component={AllBookings} /> */}
+          <Route
+            path="/logout"
+            exact
+            render={(routerProps) => (
+              <LogoutButton {...routerProps} logout={true} />
+            )}
+          />
+          /* <Route path="/logout" component={LogoutButton} />
         </Switch>
-        <Footer />
       </Router>
+      {/* <Footer /> */}
     </div>
   );
 };
