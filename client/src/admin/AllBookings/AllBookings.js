@@ -36,66 +36,90 @@ const AllBookings = () => {
     console.log(showModal);
   };
 
+  const sortedList = bookingList.sort((a, b) => b.submitDate - a.submitDate);
+  console.log(sortedList);
+
   return (
-    <section className="users">
+    <section className="all-bookings">
       <h1>All Bookings</h1>
-      {/* blogs.slice(0, visibleBlogs).map((blog, i) */}
-      {bookingList.slice(0, showBookings).map((booking, i) => {
+      <div className="all-bookings__information">
+        <div className="all-bookings__container">
+          <h4 className="all-bookings__heading">Submit Date</h4>
+        </div>
+        <div className="all-bookings__container">
+          <h4 className="all-bookings__heading">Licence Plate</h4>
+        </div>
+        <div className="all-bookings__container">
+          <h4 className="all-bookings__heading">Visit Date</h4>
+        </div>
+        <div className="all-bookings__container">
+          <h4 className="all-bookings__heading">Unit Number</h4>
+        </div>
+        <div className="all-bookings__container">
+          <h4 className="all-bookings__heading">Remarks</h4>
+        </div>
+        <div className="all-bookings__container">
+          <h4 className="all-bookings__heading">Checkin</h4>
+        </div>
+        <div className="all-bookings__container">
+          <h4 className="all-bookings__heading">Checkout</h4>
+        </div>
+        <div className="all-bookings__actions">
+          <h4 className="all-bookings__heading hidden">Action Function</h4>
+        </div>
+      </div>
+      {sortedList.slice(0, showBookings).map((user, i) => {
         return (
-          <div key={bookingList[i].id} className="users__information">
-            <div className="users__information-data">
-              <div className="users__information-top">
-                <div className="users__information-location">
-                  <h4 className="users__subheader">Name</h4>
-                  <Link
-                    to={`user/${bookingList[i].id}`}
-                    className="users__location"
-                  >
-                    <p>
-                      {bookingList[i].carPlate} {bookingList[i].requestDate}
-                    </p>
-                  </Link>
-                </div>
-                <div className="user-address">
-                  <h4 className="users__subheader">Unit Number</h4>
-                  <p className="users__address-details">
-                    {bookingList[i].unitNumber}
-                  </p>
-                </div>
-              </div>
-              {/* <div className="user-bottom"> */}
-              <div className="user-contact">
-                <h4 className="users__subheader">Contact Number</h4>
-                <p className="users__contact-name">
-                  {bookingList[i].accessiblity}
-                </p>
-              </div>
-              <div className="user-contact-information">
-                <h4 className="users__subheader">Contact Email</h4>
-                <p className="users__contact-email">{bookingList[i].remarks}</p>
-              </div>
-              {/* </div> */}
+          <div key={sortedList[i].id} className="all-bookings__information">
+            <div className="all-bookings__container">
+              <h4 className="all-bookings__subheader">Submit Date</h4>
+              <p>{sortedList[i].submitDate}</p>
             </div>
-            <div className="users__actions">
-              <button onClick={onTrashHandler}>
-                <MdDeleteForever />
-              </button>
-              {/* <img
-                name={bookingList[i].firstName}
-                id={user.id}
-                // onClick={onTrashHandler}
-                className="users__actions-trash"
-                src={}
-                alt="trashcan"
-              /> */}
-              <Link to={`users/edit/${bookingList[i].id}`}>
-                <FaUserEdit color="white" />
-              </Link>
+            <div className="all-bookings__container">
+              <h4 className="all-bookings__subheader">Licence Plate</h4>
+              <p>{sortedList[i].carPlate}</p>
+            </div>
+            <div className="all-bookings__container">
+              <h4 className="all-bookings__subheader">Visit Date</h4>
+              <p>{sortedList[i].requestDate}</p>
+            </div>
+            <div className="all-bookings__container">
+              <h4 className="all-bookings__subheader">Unit Number</h4>
+              <p>{sortedList[i].unitNumber}</p>
+            </div>
+            <div className="all-bookings__container">
+              <h4 className="all-bookings__subheader">Remarks</h4>
+              <p>{sortedList[i].remarks ? sortedList[i].remarks : "N/A"}</p>
+            </div>
+            <div className="all-bookings__container">
+              <h4 className="all-bookings__subheader">Checkin Time</h4>
+              <p>{sortedList[i].checkin ? sortedList[i].remarks : "N/A"}</p>
+            </div>
+            <div className="all-bookings__container">
+              <h4 className="all-bookings__subheader">Checkout Time</h4>
+              <p>{sortedList[i].checkout ? sortedList[i].remarks : "N/A"}</p>
+            </div>
+            <div className="all-bookings__actions">
+              <button
+                className="editButton"
+                name={sortedList[i].carPlate}
+                id={sortedList[i].id}
+                value={sortedList[i].requestDate}
+                // onClick={onEditHandler}
+              ></button>
+              <button
+                className="deleteButton"
+                name={sortedList[i].carPlate}
+                id={sortedList[i].id}
+                // onClick={onCrossHandler}
+              ></button>
             </div>
           </div>
         );
       })}
-      <button onClick={handleClick}>Load More</button>;
+      <button onClick={handleClick} className="btn loadmore-btn">
+        Load More
+      </button>
     </section>
   );
 };

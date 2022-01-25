@@ -30,10 +30,10 @@
   top: 0;
   left: -100%;
   transition: 850ms;
-  @include tablet {
-    width: 500px;
-    left: 0;
-  }
+  // @include tablet {
+  //   width: 300px;
+  //   left: 0;
+  // }
 }
 
 .nav-menu.active {

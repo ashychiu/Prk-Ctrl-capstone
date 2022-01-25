@@ -1,5 +1,4 @@
 import { React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Moment from "react-moment";
 import "moment-timezone";
@@ -8,7 +7,7 @@ import "./WhoIsHere.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const AllUsers = () => {
+const WhoIsHere = () => {
   const [whoIsHere, setWhoIsHere] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [carPlate, setCarPlate] = useState("");
@@ -16,7 +15,7 @@ const AllUsers = () => {
   const [userList, setUserList] = useState([]);
   const [showBookings, setShowBookings] = useState(5);
 
-  //Get all the vistors who have checked in but not yet checked out
+  //Get vistors who have checked in but not yet checked out
   const fetchCurrVisitors = () => {
     axios
       .get(`${API_URL}/bookings`)
@@ -33,7 +32,6 @@ const AllUsers = () => {
     axios
       .get(`${API_URL}/users/`)
       .then((response) => {
-        console.log(response);
         setUserList(response.data);
       })
       .catch((err) => console.log(err));
@@ -52,7 +50,6 @@ const AllUsers = () => {
   };
 
   const onCheckoutHandler = (e) => {
-    // setShowModal(true);
     axios
       .patch(`${API_URL}/bookings/checkout`, {
         id: e.target.id,
@@ -80,63 +77,53 @@ const AllUsers = () => {
   };
 
   return (
-    <section className="users">
+    <section className="whoishere">
       <h1>Who is here</h1>
       <div className={whoIsHere.length > 0 ? "hide" : "show"}>
         No one is here
       </div>
-      {whoIsHere.map((booking) => {
+      {whoIsHere.slice(0, showBookings).map((booking, i) => {
         return (
-          <div key={booking.id} className="users__information">
-            <div className="users__information-data">
-              <div className="users__information-top">
-                <div className="users__information-location">
-                  <h4 className="users__subheader">Licence Plate</h4>
-                  <Link
-                    to={`booking/${booking.id}`}
-                    className="users__location"
-                  >
-                    <p>{booking.carPlate}</p>
-                  </Link>
-                </div>
-                <div className="user-address">
-                  <h4 className="users__subheader">Booking Date</h4>
-                  <p className="users__address-details">
-                    {booking.requestDate}
-                  </p>
-                </div>
-              </div>
-              {/* <div className="user-bottom"> */}
-              <div className="user-contact">
-                <h4 className="users__subheader">Checkin Time</h4>
-                <p className="users__contact-name">
-                  <Moment parse="YYYY-MM-DD HH:mm" local>
-                    {booking.checkin}
-                  </Moment>
-                </p>
-              </div>
-              <div className="user-contact-information">
-                <h4 className="users__subheader">For how long?</h4>
-                <p className="users__contact-email">
-                  <Moment fromNow ago>
-                    {booking.checkin}
-                  </Moment>
-                </p>
-              </div>
-              {/* </div> */}
+          <div key={whoIsHere[i].id} className="whoishere__information">
+            <div className="whoishere__container">
+              <h4 className="whoishere__subheader">Licence Plate</h4>
+              <p>{whoIsHere[i].carPlate}</p>
             </div>
-            <div className="users__actions">
+            <div className="whoishere__container">
+              <h4 className="whoishere__subheader">Visit Date</h4>
+              <p>{whoIsHere[i].requestDate}</p>
+            </div>
+
+            <div className="whoishere__container">
+              <h4 className="whoishere__subheader">Accessibility</h4>
+              <p>{whoIsHere[i].accessibility}</p>
+            </div>
+            <div className="whoishere__container">
+              <h4 className="whoishere__subheader">Checkin Time</h4>
+              <p>
+                <Moment parse="YYYY-MM-DD HH:mm">{whoIsHere[i].checkin}</Moment>
+              </p>
+            </div>
+            <div className="whoishere__container">
+              <h4 className="whoishere__subheader">For How Long?</h4>
+              <p>
+                <Moment fromNow ago>
+                  {whoIsHere[i].checkin}
+                </Moment>
+              </p>
+            </div>
+            <div className="whoishere__actions">
               <button
                 className="checkoutButton"
-                name={booking.carPlate}
-                id={booking.id}
+                name={whoIsHere[i].carPlate}
+                id={whoIsHere[i].id}
                 onClick={onCheckoutHandler}
               ></button>
 
               <button
                 className="contactButton"
-                name={booking.carPlate}
-                id={booking.userID}
+                name={whoIsHere[i].carPlate}
+                id={whoIsHere[i].userID}
                 onClick={onContactHandler}
               ></button>
             </div>
@@ -161,4 +148,4 @@ const AllUsers = () => {
   );
 };
 
-export default AllUsers;
+export default WhoIsHere;

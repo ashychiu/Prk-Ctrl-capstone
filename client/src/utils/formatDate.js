@@ -13,8 +13,12 @@ function sortTimeStamp(responseData) {
   });
 }
 
+export function sortUnitNumber(data) {
+  data.sort(function (x, y) {
+    return x.unitNumber - y.unitNumber;
+  });
+}
+
 export function isFuture(requestDate) {
   if (Date.parse(requestDate) >= Date.now()) return true;
 }
-
-export default formatDate;

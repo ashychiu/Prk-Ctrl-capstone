@@ -9,6 +9,7 @@ import WhoIsHere from "../WhoIsHere/WhoIsHere";
 import axios from "axios";
 import AllUsers from "../AllUsers/AllUsers";
 import AllBookings from "../AllBookings/AllBookings";
+import LogoutButton from "../../components/LogoutButton/LogoutButton";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -35,12 +36,18 @@ const AdminDashboard = () => {
   return (
     <BrowserRouter>
       <AdminNavbar />
-      {/* <h1>Welcome! {user}</h1>
-      <div>some text</div> */}
+      <h2 className="dashboard__greeting">Welcome! Admin</h2>
       <Switch>
         <Route path="/admin/whoishere" exact component={WhoIsHere} />
         <Route path="/admin/users" component={AllUsers} />
         <Route path="/admin/bookings" component={AllBookings} />
+        <Route
+          path="/logout"
+          exact
+          render={(routerProps) => (
+            <LogoutButton {...routerProps} logout={true} />
+          )}
+        />
       </Switch>
       <Footer />
     </BrowserRouter>

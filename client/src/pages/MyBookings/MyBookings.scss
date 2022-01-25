@@ -1,8 +1,40 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.users {
+.mybookings {
   @include tablet {
     margin-left: 350px;
+  }
+  &__subheader {
+    @include subheader;
+    @include tablet {
+      @include tablet-subheader;
+    }
+  }
+  &__information {
+    background-color: $primary-light;
+    padding: 1rem 0;
+    border-top: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      position: relative;
+    }
+
+    @include desktop {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3.5rem;
+      position: relative;
+      &:hover {
+        background-color: $primary-light;
+      }
+    }
   }
 }

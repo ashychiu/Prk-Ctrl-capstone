@@ -3,6 +3,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import * as IoIcons5 from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 
 export const NavBarData = [
   {
@@ -20,7 +21,7 @@ export const NavBarData = [
   {
     title: "Profile",
     path: "/profile",
-    icon: <IoIcons.IoMdPeople />,
+    icon: <CgProfile />,
     cName: "nav-text",
   },
   {
@@ -31,7 +32,7 @@ export const NavBarData = [
   },
   {
     title: "Logout",
-    path: "/",
+    path: "/logout",
     icon: <IoIcons5.IoLogOutSharp />,
     cName: "nav-text",
   },

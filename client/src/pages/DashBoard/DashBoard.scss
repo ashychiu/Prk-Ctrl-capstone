@@ -2,7 +2,13 @@
 @use "../../styles/partials/mixins" as *;
 
 .dashboard {
-  //   background-color: aqua;
+  &__greeting {
+    color: $primary-light;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding-right: 0.625rem;
+  }
 }
 
 $sidebar-bg-color: $primary-dark;
