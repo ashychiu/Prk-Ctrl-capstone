@@ -31,7 +31,7 @@ const getUser = (id) => {
 };
 
 //API Get single user
-userRouter.get("/:id", (req, res) => {
+userRouter.get("/profile/:id", (req, res) => {
   const { id } = req.params;
   const foundUser = getUser(id);
   if (!foundUser) {
@@ -85,10 +85,9 @@ userRouter.post("/signup", (req, res) => {
       };
       userList.push(newUser);
       writeFile(userList);
-
+      sendWelcomeMail(newUser);
       //Send welcome email after successful registration
       res.status(201).json(userList);
-      sendWelcomeMail(newUser);
     });
   }
 });

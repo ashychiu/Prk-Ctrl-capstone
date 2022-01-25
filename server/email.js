@@ -42,7 +42,7 @@ const sendWelcomeMail = (newUser) => {
     <a href="http://prkctrl.com" target="_blank"><span>Login to create your first booking</span></a>
     >`,
   };
-
+  console.log(mailOptions);
   transporter.sendMail(mailOptions, function (err, data) {
     if (err) {
       console.log("Error " + err);

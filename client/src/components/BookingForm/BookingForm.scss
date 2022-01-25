@@ -2,6 +2,15 @@
 @use "../../styles/partials/mixins" as *;
 
 .booking {
+  @include tablet {
+    margin-top: auto;
+    margin-left: 350px;
+  }
+  &__heading {
+    @include tablet {
+      margin-bottom: 2rem;
+    }
+  }
   &-form {
     @include flex-col;
     &__accessibility {
@@ -16,4 +25,8 @@
 
 .radio-btn {
   font-size: 0.9em;
+}
+
+.booking-btn {
+  width: 40%;
 }

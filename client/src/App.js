@@ -47,11 +47,7 @@ function App() {
         <Route path="/admin/users" component={AllUsers} />;
         <Route path="/admin/whoishere" component={WhoIsHere} />;
         <Route path="/admin" component={AdminLogin} />;
-        <PrivateRoute
-          path="/dashboard/mybookings"
-          exact
-          component={MyBookings}
-        />
+        <PrivateRoute path="/mybookings" exact component={MyBookings} />
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
     </BrowserRouter>

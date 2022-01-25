@@ -73,7 +73,11 @@ const BookingModal = (props) => {
         maxDate=  one month from now (in milliseconds) */}
               <DatePicker
                 name="requestDate"
-                selected={requestDate}
+                selected={
+                  props.requestDate
+                    ? Date.parse(props.requestDate)
+                    : requestDate
+                }
                 minDate={new Date()}
                 maxDate={Date.now() + 2629800000}
                 dateFormat="yyyy-MM-dd"

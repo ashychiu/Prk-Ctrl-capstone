@@ -25,7 +25,7 @@ const AllUsers = () => {
   };
   useEffect(() => {
     fetchAllUsers();
-  }, []);
+  }, [userList]);
 
   const handleClick = () => {
     setShowUsers((prevShowUsers) => prevShowUsers + 10);
@@ -43,6 +43,7 @@ const AllUsers = () => {
 
   return (
     <section className="users">
+      <h1>All Users</h1>
       {/* blogs.slice(0, visibleBlogs).map((blog, i) */}
       {userList.slice(0, showUsers).map((user, i) => {
         return (

@@ -24,7 +24,6 @@ function BookingForm(props) {
     const carPlate = e.target.carPlate.value;
     const unitNumber = e.target.unitNumber.value;
     const accessibility = e.target.accessibility.value;
-    console.log(e.target.accessibility.value);
     const remarks = e.target.remarks.value;
     if (!requestDate || !carPlate || !unitNumber)
       setError("Please fill out all required fields");
@@ -42,8 +41,8 @@ function BookingForm(props) {
 
         .then((response) => {
           setShowModal(true);
-          // e.target.reset();
-          // history.push("/dashboard/mybookings");
+          e.target.reset();
+          history.push("/dashboard/mybookings");
         })
         .catch((err) => {
           if (err.response) {
@@ -56,12 +55,12 @@ function BookingForm(props) {
 
   const onCloseHandler = () => {
     setShowModal(false);
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
     <section className="booking">
-      <h1 className="hero">Create New Booking</h1>
+      <h1 className="booking__heading">Create New Booking</h1>
       <form onSubmit={addBooking} className="booking-form">
         <label htmlFor="requestDate">
           Date of Visit <span className="tips">(Max one month in advance)</span>
@@ -129,7 +128,7 @@ function BookingForm(props) {
           className="booking-form__input"
           onChange={() => setError("")}
         />
-        <button className="btn primary-btn" type="submit">
+        <button className="btn primary-btn booking-btn" type="submit">
           Submit
         </button>
       </form>
