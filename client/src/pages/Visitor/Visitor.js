@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "./Visitor.scss";
 import checkinImage from "../../assets/images/homepage-hero-crop.png";
@@ -14,10 +13,7 @@ function Visitor() {
   const [checkedIn, setCheckedIn] = useState(false);
   const [carPlate, setCarPlate] = useState("");
   const [greeting, setGreeting] = useState("Vehicle Check-in");
-  const [message, setMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
-
-  const history = useHistory();
 
   useEffect(() => {
     const token = localStorage.getItem("checkin-token");
@@ -75,10 +71,6 @@ function Visitor() {
         localStorage.removeItem("checkin-token");
         setShowModal(true);
         setCheckedIn(false);
-        // const timeout = setTimeout(redirect, 10000);
-        // function redirect() {
-        //   history.push("/visitor");
-        // }
       })
       .catch((err) => {
         if (err.response) {
@@ -122,8 +114,6 @@ function Visitor() {
                 Check In
               </button>
             </form>
-
-            <span>{message}</span>
           </div>
         </div>
         <div className={checkedIn ? "show" : "hide"}>
@@ -142,7 +132,6 @@ function Visitor() {
               Check Out
             </button>
           </form>
-          <span>{message}</span>
         </div>
         <VisitorModal
           show={showModal}

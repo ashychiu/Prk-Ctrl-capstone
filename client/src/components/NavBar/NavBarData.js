@@ -2,31 +2,37 @@ import React from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
-import { logout } from "../../utils/loginStatus";
+import * as IoIcons5 from "react-icons/io5";
 
-export const AdminNavBarData = [
+export const NavBarData = [
   {
-    title: "Who Is Here",
-    path: "/admin/whoishere",
+    title: "Book Now",
+    path: "/booking",
     icon: <AiIcons.AiFillHome />,
     cName: "nav-text",
   },
   {
-    title: "Bookings",
-    path: "/admin/bookings",
+    title: "My Bookings",
+    path: "/mybookings",
     icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
   },
   {
-    title: "Users",
-    path: "/admin/users",
+    title: "Profile",
+    path: "/profile",
     icon: <IoIcons.IoMdPeople />,
     cName: "nav-text",
   },
   {
     title: "Support",
-    path: "/",
+    path: "/support",
     icon: <IoIcons.IoMdHelpCircle />,
+    cName: "nav-text",
+  },
+  {
+    title: "Logout",
+    path: "/",
+    icon: <IoIcons5.IoLogOutSharp />,
     cName: "nav-text",
   },
 ];

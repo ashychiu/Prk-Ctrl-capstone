@@ -1,6 +1,10 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
+.dashboard {
+  //   background-color: aqua;
+}
+
 $sidebar-bg-color: $primary-dark;
 $sidebar-color: $primary-light;
 $sidebar-width: 200px;
@@ -15,4 +19,4 @@ $breakpoint-sm: 480px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1280px;
-@import "~react-pro-sidebar/dist/scss/styles.scss";
+// @import "~react-pro-sidebar/dist/scss/styles.scss";

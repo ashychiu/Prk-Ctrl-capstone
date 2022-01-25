@@ -41,11 +41,11 @@ const AllUsers = () => {
   useEffect(() => {
     fetchCurrVisitors();
     fetchUserList();
-    return () => {
-      setWhoIsHere([]); //unmount
-      setUserList([]); //unmount
-    };
-  }, []);
+    // return () => {
+    //   setWhoIsHere([]); //unmount
+    //   setUserList([]); //unmount
+    // };
+  }, [whoIsHere]);
 
   const handleClick = () => {
     setShowBookings((prevShowBookings) => prevShowBookings + 10);

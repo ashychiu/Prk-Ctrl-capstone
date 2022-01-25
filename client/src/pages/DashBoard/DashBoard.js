@@ -1,14 +1,14 @@
 import { React, useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-// import "react-pro-sidebar/dist/css/styles.css";
 import "./DashBoard.scss";
-// import { FaAdn } from "react-icons/fa";
-import DatePicker from "../../components/DatePicker/DatePicker";
 import Footer from "../../components/Footer/Footer";
-import SideBar from "../../components/SideBar/SideBar";
 import axios from "axios";
+import MyBookings from "../MyBookings/MyBookings";
+import BookingForm from "../../components/BookingForm/BookingForm";
+import Navbar from "../../components/NavBar/NavBar";
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 const DashBoard = (props) => {
@@ -50,12 +50,25 @@ const DashBoard = (props) => {
   };
 
   return (
-    <div>
-      <h1>Welcome! {user}</h1>
-      <button onClick={logout}>Logout</button>
-      <div>some text</div>
-      <SideBar user={user} unitNumber={unitNumber} userId={userId} />
-      <Footer />
+    <div className="dashboard">
+      <Router>
+        <Navbar />
+        <h1>Welcome! {user}</h1>
+        <div>some text</div>
+        <Switch>
+          <Route path="/booking" exact component={BookingForm} />
+          <Route
+            path="/mybookings"
+            exact
+            render={(routerProps) => (
+              <MyBookings {...routerProps} userId={userId} />
+            )}
+          />
+          {/* // <Route path="/mybookings" component={MyBookings} /> */}
+          {/* /* <Route path="/profile" component={AllBookings} /> */}
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   );
 };

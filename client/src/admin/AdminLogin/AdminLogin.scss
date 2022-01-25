@@ -1,1 +1,47 @@
-@use "../../components/Login/Login.scss";
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.admin-login {
+  height: 100vh;
+  width: 100%;
+  padding: 1rem;
+  @include flex-all-center;
+  background-color: $primary-dark;
+  &__heading {
+    @include page-header;
+    color: $primary-light;
+    margin-bottom: 0;
+  }
+  &__logo {
+    @include tablet {
+      width: 100%;
+    }
+  }
+  &__card {
+    @include flex-all-center;
+  }
+  &__form {
+    width: 100%;
+    // @include flex-col;
+    margin-top: 2.25rem;
+  }
+  &__input {
+    width: 100%;
+    font-size: 1rem;
+    border: 0px;
+    background-color: $primary-light;
+    height: 2.375rem; //38px
+    border-radius: 5px;
+    margin: 0.3125rem 0;
+    @include tablet {
+      width: 50%;
+      align-self: center;
+    }
+  }
+}
+
+.admin-btn {
+  @include tablet {
+    width: 40%;
+  }
+}

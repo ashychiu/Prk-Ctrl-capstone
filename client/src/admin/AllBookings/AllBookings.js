@@ -25,7 +25,7 @@ const AllBookings = () => {
   };
   useEffect(() => {
     fetchAllBookings();
-  }, []);
+  }, [bookingList]);
 
   const handleClick = () => {
     setShowBookings((prevShowBookings) => prevShowBookings + 10);
@@ -38,6 +38,7 @@ const AllBookings = () => {
 
   return (
     <section className="users">
+      <h1>All Bookings</h1>
       {/* blogs.slice(0, visibleBlogs).map((blog, i) */}
       {bookingList.slice(0, showBookings).map((booking, i) => {
         return (

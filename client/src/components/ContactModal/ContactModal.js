@@ -35,7 +35,7 @@ const ContactModal = (props) => {
     // return () => {
     //   setContactPerson([]); //unmount
     // };
-  }, []);
+  }, [userID]);
 
   console.log("useEffect: ", contactPerson);
 

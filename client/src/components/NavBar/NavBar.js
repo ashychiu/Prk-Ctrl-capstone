@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { AdminNavBarData } from "./AdminNavBarData";
-import "./AdminNavBar.scss";
+import { NavBarData } from "./NavBarData";
+import "./NavBar.scss";
 import { IconContext } from "react-icons";
-import LogoutButton from "../../components/LogoutButton/LogoutButton";
+import LogoutButton from "../LogoutButton/LogoutButton";
 import logo from "../../assets/logo/logo-horizontal-left.svg";
 
-function AdminNavbar() {
+function Navbar() {
   const [sidebar, setSidebar] = useState(true);
-
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
@@ -24,7 +23,7 @@ function AdminNavbar() {
           </div>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showSidebar}>
+          <ul className="nav-menu-items">
             <li className="navbar-toggle">
               <Link to="#" className="menu-bars">
                 <img
@@ -34,7 +33,7 @@ function AdminNavbar() {
                 />
               </Link>
             </li>
-            {AdminNavBarData.map((item, index) => {
+            {NavBarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
@@ -52,4 +51,4 @@ function AdminNavbar() {
   );
 }
 
-export default AdminNavbar;
+export default Navbar;
