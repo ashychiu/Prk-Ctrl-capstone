@@ -1,5 +1,5 @@
 @use "../../styles/partials/mixins" as *;
-@use "../../styles/partials/typography" as *;
+
 @use "../../styles/partials/variables" as *;
 
 .booking-modal {
@@ -46,9 +46,8 @@
   }
 
   &__title {
-    // @include mbHeader-font;
     margin-top: 0;
-    margin-left: 16px;
+    margin-left: 1rem;
     font-size: 1.5rem;
     @include tablet {
       position: relative;
@@ -86,7 +85,6 @@
   @include flex-col;
   width: 100%;
   @include tablet {
-    // @include flex-row;
     gap: 1rem;
   }
   @include desktop {

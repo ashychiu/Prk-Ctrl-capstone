@@ -4,7 +4,7 @@
 .whoishere {
   margin: 1rem;
   @include tablet {
-    margin-left: 350px;
+    margin-left: 21.875rem;
   }
   &__subheader {
     @include subheader;
@@ -38,6 +38,11 @@
       }
     }
   }
+  &__text {
+    @include tablet {
+      font-size: 0.9em;
+    }
+  }
   &__actions {
     padding: 0.5rem 1rem;
     display: flex;
@@ -47,8 +52,4 @@
       padding: 0.5rem 0;
     }
   }
-}
-
-.whoishere p {
-  font-size: 0.9em;
 }

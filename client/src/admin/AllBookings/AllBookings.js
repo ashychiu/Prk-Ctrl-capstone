@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
+import Moment from "react-moment";
 import "./AllBookings.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -8,7 +9,6 @@ const AllBookings = () => {
   const [bookingList, setBookingList] = useState([]);
   const [error, setError] = useState("");
   const [status, setStatus] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
   const [showBookings, setShowBookings] = useState(10);
 
   const fetchAllBookings = () => {
@@ -21,7 +21,7 @@ const AllBookings = () => {
   };
   useEffect(() => {
     fetchAllBookings();
-  }, [JSON.stringify(bookingList)]);
+  }, []);
 
   const handleClick = () => {
     setShowBookings((prevShowBookings) => prevShowBookings + 10);
@@ -32,6 +32,7 @@ const AllBookings = () => {
     axios
       .delete(`${API_URL}/bookings/${bookingId}`)
       .then((response) => {
+        console.log("booking deleted manually");
         fetchAllBookings();
       })
       .catch((err) => console.log("error!", err));
@@ -95,11 +96,27 @@ const AllBookings = () => {
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Checkin Time</h4>
-              <p>{sortedList[i].checkin ? sortedList[i].checkin : "-"}</p>
+              <p>
+                {sortedList[i].checkin ? (
+                  <Moment parse="YYYY-MM-DD HH:mm">
+                    {sortedList[i].checkin}
+                  </Moment>
+                ) : (
+                  "-"
+                )}
+              </p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Checkout Time</h4>
-              <p>{sortedList[i].checkout ? sortedList[i].checkout : "-"}</p>
+              <p>
+                {sortedList[i].checkout ? (
+                  <Moment parse="YYYY-MM-DD HH:mm">
+                    {sortedList[i].checkout}
+                  </Moment>
+                ) : (
+                  "-"
+                )}
+              </p>
             </div>
             <div className="all-bookings__actions">
               <button

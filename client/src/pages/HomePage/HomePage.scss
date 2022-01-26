@@ -4,7 +4,6 @@
 .homepage {
   width: 100%;
   height: 100vh;
-  // padding: 1rem;
   @include flex-col;
   background-color: $primary-dark;
   @include tablet {

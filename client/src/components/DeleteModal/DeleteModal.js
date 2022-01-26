@@ -6,24 +6,24 @@ const deleteModal = (props) => {
   }
 
   return (
-    <div className="modal-del">
-      <div className="modal-del-content">
+    <div className="delete-modal">
+      <div className="delete-modal-content">
         <button className="closeButton" onClick={props.onCloseHandler}></button>
-        <div className="modal-del-header">
-          <h4 className="modal-del__title">Delete?</h4>
-          <div className="modal-del__content">
+        <div className="delete-modal-header">
+          <h4 className="delete-modal__title">Delete?</h4>
+          <div className="delete-modal__content">
             Please confirm that you’d like to delete this booking. You won’t be
             able to undo this action.
           </div>
-          <div className="modal-del-footer">
+          <div className="delete-modal-footer">
             <button
-              className="modal-del-footer__cancel"
+              className="delete-modal-footer__cancel"
               onClick={props.onCloseHandler}
             >
               Cancel
             </button>
             <button
-              className="modal-del-footer__delete"
+              className="delete-modal-footer__delete"
               onClick={() => props.onDeleteHandler(props.bookingId)}
             >
               Delete

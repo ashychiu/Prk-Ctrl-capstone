@@ -109,8 +109,6 @@ userRouter.post("/login", async (req, res) => {
     } else {
       const accessToken = createTokens(foundUser); //Call the function created on JWT.js
       res.status(200).json({ accessToken });
-
-      sendWelcomeMail(foundUser);
     }
   });
 });

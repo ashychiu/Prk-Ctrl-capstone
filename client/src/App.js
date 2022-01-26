@@ -1,6 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import axios from "axios";
 import "./styles/global.scss";
 import DashBoard from "./pages/DashBoard/DashBoard";
 import SignUp from "./pages/SignUp/SignUp";
@@ -8,7 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import AdminLogin from "./admin/AdminLogin/AdminLogin";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Footer from "./components/Footer/Footer";
-import BookingForm from "./components/BookingForm/BookingForm";
+import BookingForm from "./pages/BookingForm/BookingForm";
 import AdminDashboard from "./admin/AdminDashboard/AdminDashboard";
 import AllUsers from "./admin/AllUsers/AllUsers";
 import Visitor from "./pages/Visitor/Visitor";
@@ -32,13 +31,14 @@ function App() {
           component={AdminDashboard}
         />
         <Redirect path="/admin/bookings" to="/admin/dashboard" />
-        <Redirect path="/admin/users" to="/admin/dashboard" />
+        {/* <Redirect path="/admin/users" to="/admin/dashboard" /> */}
+        <Route path="/users" component={AllUsers} />
         <Redirect path="/admin/whoishere" to="/admin/dashboard" />
         <Route path="/admin" component={AdminLogin} />;
         <Redirect path="/booking" to="/dashboard" />
         <Redirect path="/mybookings" to="/dashboard" />
         <Redirect path="/profile" to="/dashboard" />
-        <Route path="/support" component={Support} />
+        <Redirect path="/support" to="/dashboard" />
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
     </BrowserRouter>

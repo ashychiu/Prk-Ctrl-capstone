@@ -13,9 +13,6 @@ const ContactModal = (props) => {
   };
   useEffect(() => {
     fetchUser();
-    // return () => {
-    //   setContactPerson([]); //unmount
-    // };
   }, [JSON.stringify(userID)]);
 
   if (!props.show) {
@@ -23,15 +20,15 @@ const ContactModal = (props) => {
   }
 
   return (
-    <div className="modal-del">
-      <div className="modal-del-content">
+    <div className="contact-modal">
+      <div className="contact-modal-content">
         <button className="closeButton" onClick={props.onCloseHandler}></button>
-        <div className="modal-del-header">
-          <h4 className="modal-del__title">
+        <div className="contact-modal-header">
+          <h4 className="contact-modal__title">
             Licence Plate <span className="emphasis">{props.carPlate}</span>
           </h4>
           {contactPerson ? (
-            <div className="modal-del__content">
+            <div className="contact-modal__content">
               <p>
                 <strong>Contact Person:</strong> {contactPerson.firstName}{" "}
                 {contactPerson.lastName}
@@ -47,7 +44,7 @@ const ContactModal = (props) => {
               </p>
             </div>
           ) : (
-            <p className="modal-del__content">Fetching Data...</p>
+            <p className="contact-modal__content">Fetching Data...</p>
           )}
         </div>
       </div>

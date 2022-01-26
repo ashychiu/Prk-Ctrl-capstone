@@ -6,7 +6,7 @@ import "./DashBoard.scss";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import MyBookings from "../MyBookings/MyBookings";
-import BookingForm from "../../components/BookingForm/BookingForm";
+import BookingForm from "../BookingForm/BookingForm";
 import Navbar from "../../components/NavBar/NavBar";
 import LogoutButton from "../../components/LogoutButton/LogoutButton";
 import Profile from "../Profile/Profile";

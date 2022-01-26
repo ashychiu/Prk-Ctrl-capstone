@@ -1,11 +1,10 @@
 @use "../../styles/partials/mixins" as *;
-@use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 
 .all-users {
   margin: 1rem;
   @include tablet {
-    margin-left: 350px;
+    margin-left: 21.875rem;
   }
   &__subheader {
     @include subheader;

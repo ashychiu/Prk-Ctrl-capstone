@@ -8,7 +8,7 @@
   justify-content: start;
   align-items: center;
   &__logo {
-    width: 200px;
+    width: 12.5rem;
     margin-top: 2rem;
     margin-left: -2rem;
   }
@@ -31,7 +31,7 @@
   left: -100%;
   transition: 850ms;
   @include tablet {
-    width: 300px;
+    width: 18.75rem;
     left: 0;
   }
 }
@@ -47,7 +47,7 @@
   align-items: center;
   padding: 0.5rem 0 0.5rem 1rem;
   list-style: none;
-  height: 60px;
+  height: 3.75rem;
 }
 
 .nav-text a {
