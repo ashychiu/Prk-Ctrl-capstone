@@ -121,9 +121,11 @@ userRouter.get("/profile", validateToken, (req, res) => {
 });
 
 //Update single user by id
-userRouter.put("/:id", (req, res) => {
-  const { id } = req.params;
-  const { firstName, lastName, email, unitNumber, status, phone } = req.body;
+userRouter.put("profile/:id", (req, res) => {
+  // const { id } = req.params;
+
+  const { id, firstName, lastName, email, unitNumber, status, phone } =
+    req.body;
   const foundUser = userList.find((user) => user.id === id);
 
   if (!foundUser) {
@@ -135,7 +137,7 @@ userRouter.put("/:id", (req, res) => {
   }
 
   const updatedUser = {
-    id: foundUser.id,
+    id,
     firstName,
     lastName,
     unitNumber,

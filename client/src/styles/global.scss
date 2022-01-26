@@ -142,6 +142,15 @@ input[type="radio"] {
   font-size: 1rem;
 }
 
+.secondary-btn {
+  color: $primary-light;
+  background-color: $primary-dark;
+  &:hover {
+    background-color: $primary-cta;
+    color: $secondary-dark;
+    cursor: pointer;
+  }
+}
 .closeButton {
   z-index: 100;
   position: absolute;
@@ -191,10 +200,20 @@ input[type="radio"] {
   background-size: cover;
 }
 
-.loadmore-btn {
-  cursor: pointer;
-}
-
 .hidden {
   visibility: hidden;
+}
+
+textarea {
+  height: 8rem;
+  &::placeholder {
+    font-family: "Inter", Helvetica, sans-serif;
+  }
+}
+
+section h1 {
+  @include page-header;
+  @include tablet {
+    @include tablet-page-header;
+  }
 }

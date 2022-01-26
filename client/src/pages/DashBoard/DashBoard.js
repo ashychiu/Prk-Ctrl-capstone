@@ -9,10 +9,13 @@ import MyBookings from "../MyBookings/MyBookings";
 import BookingForm from "../../components/BookingForm/BookingForm";
 import Navbar from "../../components/NavBar/NavBar";
 import LogoutButton from "../../components/LogoutButton/LogoutButton";
+import Profile from "../Profile/Profile";
+import Support from "../Support/Support";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const DashBoard = (props) => {
+  const [userList, setUserList] = useState("");
   const [userId, setUserId] = useState("");
   const [user, setUser] = useState("");
   const [unitNumber, setUnitNumber] = useState("");
@@ -25,7 +28,7 @@ const DashBoard = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log(response.data);
+        console.log("dashboard axios: ", response.data);
         setUser(response.data.firstName);
         setUnitNumber(response.data.unitNumber);
         setUserId(response.data.id);
@@ -33,16 +36,19 @@ const DashBoard = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const fetchAllUsers = () => {
+    axios
+      .get(`${API_URL}/users`)
+      .then((response) => {
+        setUserList(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     fetchProfile();
-    return () => {
-      setUser([]); //unmount
-      setUnitNumber([]); //unmount
-      setUserId([]); //unmount
-    };
+    fetchAllUsers();
   }, []);
-
-  console.log("dashboard ", props);
 
   const history = useHistory();
   const logout = () => {
@@ -54,7 +60,7 @@ const DashBoard = (props) => {
     <div className="dashboard">
       <Router>
         <Navbar />
-        <h1 className="dashboard__greeting">Welcome! {user}</h1>
+        <h1 className="dashboard__greeting">Hello! {user}</h1>
         <Switch>
           <Route
             path="/booking"
@@ -74,8 +80,21 @@ const DashBoard = (props) => {
               />
             )}
           />
-          {/* // <Route path="/mybookings" component={MyBookings} /> */}
-          {/* /* <Route path="/profile" component={AllBookings} /> */}
+
+          <Route
+            path="/profile"
+            exact
+            render={(routerProps) => (
+              <Profile {...routerProps} userList={userList} userId={userId} />
+            )}
+          />
+          <Route
+            path="/support"
+            exact
+            render={(routerProps) => (
+              <Support {...routerProps} userList={userList} userId={userId} />
+            )}
+          />
           <Route
             path="/logout"
             exact
@@ -83,10 +102,8 @@ const DashBoard = (props) => {
               <LogoutButton {...routerProps} logout={true} />
             )}
           />
-          /* <Route path="/logout" component={LogoutButton} />
         </Switch>
       </Router>
-      {/* <Footer /> */}
     </div>
   );
 };

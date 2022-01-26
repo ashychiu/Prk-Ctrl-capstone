@@ -4,7 +4,6 @@ import complete from "../../assets/icons/complete.png";
 import "./VisitorModal.scss";
 
 const VisitorModal = (props) => {
-  console.log(props);
   if (!props.show) {
     return null;
   }

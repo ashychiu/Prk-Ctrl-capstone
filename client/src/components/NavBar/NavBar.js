@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { NavBarData } from "./NavBarData";
 import "./NavBar.scss";
 import { IconContext } from "react-icons";
-import LogoutButton from "../LogoutButton/LogoutButton";
 import logo from "../../assets/logo/logo-horizontal-left.svg";
 
 function Navbar() {
@@ -29,12 +27,8 @@ function Navbar() {
             onClick={window.innerWidth < 767 ? { showSidebar } : null}
           >
             <li className="navbar-toggle">
-              <Link to="#" className="menu-bars">
-                <img
-                  src={logo}
-                  // onClick={showSidebar}
-                  className="navbar__logo"
-                />
+              <Link to="/dashboard" className="menu-bars">
+                <img src={logo} className="navbar__logo" />
               </Link>
             </li>
             {NavBarData.map((item, index) => {
@@ -47,7 +41,6 @@ function Navbar() {
                 </li>
               );
             })}
-            <LogoutButton />
           </ul>
         </nav>
       </IconContext.Provider>

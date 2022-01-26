@@ -2,6 +2,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .whoishere {
+  margin: 1rem;
   @include tablet {
     margin-left: 350px;
   }

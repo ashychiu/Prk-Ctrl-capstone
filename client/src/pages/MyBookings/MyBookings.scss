@@ -2,8 +2,15 @@
 @use "../../styles/partials/mixins" as *;
 
 .mybookings {
+  margin: 3rem 1rem;
   @include tablet {
     margin-left: 350px;
+  }
+  &__title {
+    @include page-header;
+    @include tablet {
+      @include tablet-page-header;
+    }
   }
   &__subheader {
     @include subheader;
@@ -35,6 +42,23 @@
       &:hover {
         background-color: $primary-light;
       }
+    }
+  }
+  &__container {
+    @include desktop {
+      flex-basis: 20%;
+    }
+  }
+  &__actions {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+      padding: 0.5rem 0;
+    }
+    @include desktop {
+      flex-basis: 10%;
     }
   }
 }

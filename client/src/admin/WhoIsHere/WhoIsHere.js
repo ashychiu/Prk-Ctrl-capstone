@@ -39,11 +39,7 @@ const WhoIsHere = () => {
   useEffect(() => {
     fetchCurrVisitors();
     fetchUserList();
-    // return () => {
-    //   setWhoIsHere([]); //unmount
-    //   setUserList([]); //unmount
-    // };
-  }, [whoIsHere]);
+  }, [JSON.stringify(whoIsHere)]);
 
   const handleClick = () => {
     setShowBookings((prevShowBookings) => prevShowBookings + 10);
@@ -76,54 +72,60 @@ const WhoIsHere = () => {
     setShowModal(false);
   };
 
+  const sortedList = whoIsHere.sort(
+    (a, b) => Date.parse(a.checkin) - Date.parse(b.checkin)
+  );
+
   return (
     <section className="whoishere">
       <h1>Who is here</h1>
-      <div className={whoIsHere.length > 0 ? "hide" : "show"}>
+      <div className={sortedList.length > 0 ? "hide" : "show"}>
         No one is here
       </div>
-      {whoIsHere.slice(0, showBookings).map((booking, i) => {
+      {sortedList.slice(0, showBookings).map((booking, i) => {
         return (
-          <div key={whoIsHere[i].id} className="whoishere__information">
+          <div key={sortedList[i].id} className="whoishere__information">
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">Licence Plate</h4>
-              <p>{whoIsHere[i].carPlate}</p>
+              <p>{sortedList[i].carPlate}</p>
             </div>
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">Visit Date</h4>
-              <p>{whoIsHere[i].requestDate}</p>
+              <p>{sortedList[i].requestDate}</p>
             </div>
 
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">Accessibility</h4>
-              <p>{whoIsHere[i].accessibility}</p>
+              <p>{sortedList[i].accessibility}</p>
             </div>
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">Checkin Time</h4>
               <p>
-                <Moment parse="YYYY-MM-DD HH:mm">{whoIsHere[i].checkin}</Moment>
+                <Moment parse="YYYY-MM-DD HH:mm">
+                  {sortedList[i].checkin}
+                </Moment>
               </p>
             </div>
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">For How Long?</h4>
               <p>
                 <Moment fromNow ago>
-                  {whoIsHere[i].checkin}
+                  {sortedList[i].checkin}
                 </Moment>
               </p>
             </div>
             <div className="whoishere__actions">
               <button
                 className="checkoutButton"
-                name={whoIsHere[i].carPlate}
-                id={whoIsHere[i].id}
+                name={sortedList[i].carPlate}
+                id={sortedList[i].id}
                 onClick={onCheckoutHandler}
               ></button>
 
               <button
                 className="contactButton"
-                name={whoIsHere[i].carPlate}
-                id={whoIsHere[i].userID}
+                name={sortedList[i].carPlate}
+                id={sortedList[i].userID}
                 onClick={onContactHandler}
               ></button>
             </div>
@@ -132,7 +134,7 @@ const WhoIsHere = () => {
       })}
       <button
         onClick={handleClick}
-        className={whoIsHere.length > showBookings ? "show" : "hide"}
+        className={sortedList.length > showBookings ? "show" : "hide"}
       >
         Load More
       </button>

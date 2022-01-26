@@ -3,6 +3,7 @@
 @use "../../styles/partials/variables" as *;
 
 .all-users {
+  margin: 1rem;
   @include tablet {
     margin-left: 350px;
   }
@@ -41,7 +42,7 @@
       padding: 0 3.5rem;
       position: relative;
       &:hover {
-        background-color: rgb(36, 36, 52, 0.1);
+        background-color: lightgray;
       }
     }
   }
@@ -66,4 +67,8 @@
 
 .all-users p {
   @include body-copy;
+}
+
+div .desktop {
+  border-top: none;
 }

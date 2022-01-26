@@ -7,7 +7,6 @@ export const logout = () => {
 
 export const isLogin = () => {
   if (localStorage.getItem("token")) {
-    console.log(TOKEN_KEY);
     return true;
   }
 
