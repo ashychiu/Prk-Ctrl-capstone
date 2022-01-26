@@ -1,8 +1,5 @@
-import { React, useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./AllUsers.scss";
-
-const API_URL = process.env.REACT_APP_API_URL;
 
 const AllUsers = (props) => {
   const [showUsers, setShowUsers] = useState(10);

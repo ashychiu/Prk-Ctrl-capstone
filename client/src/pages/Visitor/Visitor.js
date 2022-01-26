@@ -3,7 +3,6 @@ import axios from "axios";
 import "./Visitor.scss";
 import checkinImage from "../../assets/images/homepage-hero-crop.png";
 import checkoutImage from "../../assets/images/homepage-hero-checkout.png";
-import Footer from "../../components/Footer/Footer";
 import VisitorModal from "../../components/VisitorModal/VisitorModal";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -29,11 +28,6 @@ function Visitor() {
     if (!token && licence) {
       setCarPlate(localStorage.getItem("licence"));
       setGreeting("Welcome Back!");
-    }
-
-    if (!token && !licence) {
-      setCarPlate(localStorage.getItem("licence"));
-      setGreeting("Welcome! Check-in here.");
     }
   }, []);
 
@@ -85,36 +79,33 @@ function Visitor() {
   };
 
   return (
-    <>
-      <section className="visitor">
-        <div className="visitor__container">
-          <img
-            className="visitor__hero-image"
-            src={checkedIn ? checkoutImage : checkinImage}
-            alt="Prk Ctrl QR Code"
-          />
+    <main className="visitor">
+      <div className="visitor__container">
+        <h1 className="homepage__heading">Visitor</h1>
+        <img
+          className="visitor__hero-image"
+          src={checkedIn ? checkoutImage : checkinImage}
+          alt="Prk Ctrl QR Code"
+        />
+        <div className={checkedIn ? "hide" : "show"}>
+          <h2 className="visitor__greeting">{greeting}</h2>
 
-          <div className={checkedIn ? "hide" : "show"}>
-            <h2>{greeting}</h2>
-
-            <form onSubmit={checkin} className="visitor__form">
-              <input
-                type="text"
-                name="carPlate"
-                placeholder="Licence Plate"
-                defaultValue={carPlate}
-                className="visitor__input"
-                onClick={() => setError("")}
-              />
-              <div className={error ? "show errorMessage" : "hide"}>
-                {error}
-              </div>
-              <button className="btn primary-btn login-btn" type="submit">
-                Check In
-              </button>
-            </form>
-          </div>
+          <form onSubmit={checkin} className="visitor__form">
+            <input
+              type="text"
+              name="carPlate"
+              placeholder="Licence Plate"
+              defaultValue={carPlate}
+              className="visitor__input"
+              onClick={() => setError("")}
+            />
+            <div className={error ? "show errorMessage" : "hide"}>{error}</div>
+            <button className="btn primary-btn login-btn" type="submit">
+              Check In
+            </button>
+          </form>
         </div>
+
         <div className={checkedIn ? "show" : "hide"}>
           <h2>{greeting}</h2>
           <form onSubmit={checkout} className="visitor__form">
@@ -132,13 +123,13 @@ function Visitor() {
             </button>
           </form>
         </div>
-        <VisitorModal
-          show={showModal}
-          checkedIn={checkedIn}
-          onCloseHandler={onCloseHandler}
-        />
-      </section>
-    </>
+      </div>
+      <VisitorModal
+        show={showModal}
+        checkedIn={checkedIn}
+        onCloseHandler={onCloseHandler}
+      />
+    </main>
   );
 }
 

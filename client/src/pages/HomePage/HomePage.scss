@@ -53,19 +53,6 @@
       width: 90%;
     }
   }
-
-  &__admin-button {
-    align-self: flex-end;
-    width: 25%;
-    padding-top: 2px;
-    font-size: 0.7em;
-    background-color: $secondary-light;
-    color: $primary-light;
-    &:hover {
-      background-color: black;
-      color: $primary-cta;
-    }
-  }
 }
 
 @keyframes slide-up {

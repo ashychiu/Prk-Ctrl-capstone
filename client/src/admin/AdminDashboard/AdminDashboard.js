@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../AdminDashboard/AdminDashboard.scss";
 import AdminNavbar from "../AdminNavBar/AdminNavBar";
 import WhoIsHere from "../WhoIsHere/WhoIsHere";

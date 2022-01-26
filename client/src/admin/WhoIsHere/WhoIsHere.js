@@ -134,7 +134,13 @@ const WhoIsHere = () => {
       })}
       <button
         onClick={handleClick}
-        className={sortedList.length > showBookings ? "show" : "hide"}
+        className={
+          sortedList.length > showBookings
+            ? "show btn primary-btn"
+            : "hide" || sortedList.length === showBookings
+            ? "hide"
+            : null
+        }
       >
         Load More
       </button>

@@ -13,6 +13,7 @@
     margin-bottom: 0;
   }
   &__logo {
+    width: auto;
     @include tablet {
       width: 100%;
     }
@@ -21,6 +22,7 @@
     @include flex-all-center;
   }
   &__form {
+    @include flex-all-center;
     width: 100%;
     margin-top: 2.25rem;
   }
@@ -31,15 +33,16 @@
     background-color: $primary-light;
     height: 2.375rem;
     border-radius: 5px;
-    margin: 0.3125rem 0;
+    margin: -0.2rem 0;
     @include tablet {
-      width: 50%;
+      width: 40%;
       align-self: center;
     }
   }
 }
 
 .admin-btn {
+  width: 100%;
   @include tablet {
     width: 40%;
   }

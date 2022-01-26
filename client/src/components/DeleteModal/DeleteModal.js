@@ -1,3 +1,4 @@
+import React from "react";
 import "./DeleteModal.scss";
 
 const deleteModal = (props) => {

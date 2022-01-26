@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { AdminNavBarData } from "./AdminNavBarData";
 import "./AdminNavBar.scss";
@@ -26,7 +25,7 @@ function AdminNavbar() {
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
               <Link to="/dashboard" className="menu-bars">
-                <img src={logo} className="navbar__logo" />
+                <img src={logo} className="navbar__logo" alt="logo" />
               </Link>
             </li>
             {AdminNavBarData.map((item, index) => {

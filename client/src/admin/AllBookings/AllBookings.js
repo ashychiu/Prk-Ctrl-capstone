@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Moment from "react-moment";
 import "./AllBookings.scss";
@@ -7,8 +7,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const AllBookings = () => {
   const [bookingList, setBookingList] = useState([]);
-  const [error, setError] = useState("");
-  const [status, setStatus] = useState(false);
   const [showBookings, setShowBookings] = useState(10);
 
   const fetchAllBookings = () => {
