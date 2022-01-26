@@ -68,33 +68,32 @@ bookingRouter.post("/add", (req, res) => {
     return res
       .status(400)
       .send("Please provide a valid North American license plate");
+  } else {
+    const newBooking = {
+      id: uuid(),
+      userID: foundUser.id,
+      requestDate,
+      carPlate,
+      unitNumber,
+      accessibility,
+      remarks,
+      submitDate: new Date(),
+      checkin: "",
+      checkout: "",
+    };
+
+    bookingList.push(newBooking);
+    writeFile(bookingList);
+    res.status(201).json(newBooking);
+    //Send welcome email after successful registration
+    sendConfirmMail(newBooking);
   }
-
-  const newBooking = {
-    id: uuid(),
-    userID: foundUser.id,
-    requestDate,
-    carPlate,
-    unitNumber,
-    accessibility,
-    remarks,
-    sumbitDate: new Date(),
-    checkin: "",
-    checkout: "",
-  };
-
-  bookingList.push(newBooking);
-  writeFile(bookingList);
-  //Send welcome email after successful registration
-
-  return sendConfirmMail(newBooking);
-  res.status(201).json(newBooking);
 });
 
 //Update single Booking by id
 bookingRouter.put("/:id", (req, res) => {
   const { id } = req.params;
-  const { requestDate, sumbitDate, userID, carPlate, remarks } = req.body;
+  const { requestDate, userID, carPlate, remarks } = req.body;
   const foundBooking = bookingList.find((booking) => booking.id === id);
 
   if (!foundBooking) {
@@ -110,7 +109,7 @@ bookingRouter.put("/:id", (req, res) => {
     carPlate,
     requestDate,
     userID,
-    sumbitDate: new Date(),
+    submitDate: new Date(),
     remarks,
   };
 
@@ -136,7 +135,7 @@ bookingRouter.patch("/checkin", (req, res) => {
 
   const foundBooking = bookingList.find(
     (booking) =>
-      Date.now() - new Date(booking.requestDate).getTime() <= 86400000 &&
+      // Date.now() - Date.parse(booking.requestDate) <= 86400000 &&
       booking.carPlate === carPlate
   );
   if (!foundBooking) {

@@ -16,7 +16,7 @@ const ContactModal = (props) => {
     // return () => {
     //   setContactPerson([]); //unmount
     // };
-  }, [userID]);
+  }, [JSON.stringify(userID)]);
 
   if (!props.show) {
     return null;

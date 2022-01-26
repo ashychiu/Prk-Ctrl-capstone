@@ -24,7 +24,7 @@ export const AdminNavBarData = [
   },
   {
     title: "Support",
-    path: "/",
+    path: "/admin/support",
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
   },

@@ -2,8 +2,8 @@
 @use "../../styles/partials/mixins" as *;
 
 .booking {
+  margin: 3rem 1rem;
   @include tablet {
-    margin-top: auto;
     margin-left: 350px;
   }
   &__heading {

@@ -39,7 +39,6 @@ function Visitor() {
 
   const checkin = (e) => {
     e.preventDefault();
-    console.log(e.target.carPlate.value);
     axios
       .patch(`${API_URL}/bookings/checkin`, {
         carPlate: e.target.carPlate.value,
@@ -139,7 +138,6 @@ function Visitor() {
           onCloseHandler={onCloseHandler}
         />
       </section>
-      <Footer />
     </>
   );
 }

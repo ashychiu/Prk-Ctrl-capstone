@@ -35,12 +35,11 @@ const AllUsers = () => {
   };
 
   const sortedList = userList.sort((a, b) => a.unitNumber - b.unitNumber);
-  // console.log(sortedList);
 
   return (
     <section className="all-users">
       <h1>All Users</h1>
-      <div className="all-users__information">
+      <div className="all-users__information desktop">
         <div className="all-users__container">
           <h4 className="all-users__heading">Full Name</h4>
         </div>
@@ -103,7 +102,16 @@ const AllUsers = () => {
           </div>
         );
       })}
-      <button onClick={handleClick} className="btn loadmore-btn">
+      <button
+        onClick={handleClick}
+        className={
+          sortedList.length > showUsers
+            ? "show btn primary-btn"
+            : "hide" || sortedList.length === showUsers
+            ? "hide"
+            : null
+        }
+      >
         Load More
       </button>
     </section>

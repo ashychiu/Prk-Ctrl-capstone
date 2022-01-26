@@ -2,7 +2,7 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 
-.modal {
+.success-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -19,6 +19,7 @@
     height: 100vh;
     width: 100%;
     @include tablet {
+      @include flex-all-center;
       height: 80vh;
       width: auto;
       width: 50%;
@@ -30,11 +31,11 @@
     padding: 2rem 0 2rem 3rem;
     @include tablet {
       // display: none;
-      width: 50%;
+      width: 40%;
     }
   }
   &__title {
-    padding: 2rem;
+    padding: 0;
   }
   &__content {
     padding: 0 1rem;

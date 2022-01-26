@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
-// import { FaQuestionCircle } from "react-icons/fa";
 import "react-datepicker/dist/react-datepicker.css";
 import "./BookingForm.scss";
 import question from "../../assets/icons/question.png";
@@ -11,13 +10,12 @@ import BookingSuccessModal from "../BookingSuccessModal/BookingSuccessModal";
 const API_URL = process.env.REACT_APP_API_URL;
 
 function BookingForm(props) {
-  console.log(props);
   const [requestDate, setRequestDate] = useState(new Date());
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  //   const [status, setStatus] = useState(false);
   const history = useHistory();
+
   const addBooking = (e) => {
     e.preventDefault();
     const requestDate = e.target.requestDate.value;
@@ -41,8 +39,6 @@ function BookingForm(props) {
 
         .then((response) => {
           setShowModal(true);
-          e.target.reset();
-          history.push("/dashboard/mybookings");
         })
         .catch((err) => {
           if (err.response) {
@@ -50,6 +46,7 @@ function BookingForm(props) {
             setError(errMessage);
           }
         });
+      e.target.reset();
     }
   };
 

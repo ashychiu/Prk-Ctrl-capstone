@@ -18,7 +18,6 @@ oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 const accessToken = oAuth2Client.getAccessToken();
 
 const sendWelcomeMail = (newUser) => {
-  console.log("email.js:", newUser);
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -42,7 +41,7 @@ const sendWelcomeMail = (newUser) => {
     <a href="http://prkctrl.com" target="_blank"><span>Login to create your first booking</span></a>
     >`,
   };
-  console.log(mailOptions);
+
   transporter.sendMail(mailOptions, function (err, data) {
     if (err) {
       console.log("Error " + err);
@@ -53,7 +52,6 @@ const sendWelcomeMail = (newUser) => {
 };
 
 const sendConfirmMail = (newBooking) => {
-  console.log(newBooking);
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

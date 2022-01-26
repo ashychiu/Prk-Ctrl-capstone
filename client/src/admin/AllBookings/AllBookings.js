@@ -1,9 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-// import { MdDeleteForever, MdModeEdit } from "react-icons/md";
-import { MdDeleteForever } from "react-icons/md";
-import { FaUserEdit } from "react-icons/fa";
 import "./AllBookings.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -12,7 +8,7 @@ const AllBookings = () => {
   const [bookingList, setBookingList] = useState([]);
   const [error, setError] = useState("");
   const [status, setStatus] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [showBookings, setShowBookings] = useState(10);
 
   const fetchAllBookings = () => {
@@ -25,24 +21,30 @@ const AllBookings = () => {
   };
   useEffect(() => {
     fetchAllBookings();
-  }, [bookingList]);
+  }, [JSON.stringify(bookingList)]);
 
   const handleClick = () => {
     setShowBookings((prevShowBookings) => prevShowBookings + 10);
   };
 
-  const onTrashHandler = (e) => {
-    setShowModal(true);
-    console.log(showModal);
+  const onDeleteHandler = (e) => {
+    const bookingId = e.target.id;
+    axios
+      .delete(`${API_URL}/bookings/${bookingId}`)
+      .then((response) => {
+        fetchAllBookings();
+      })
+      .catch((err) => console.log("error!", err));
   };
 
-  const sortedList = bookingList.sort((a, b) => b.submitDate - a.submitDate);
-  console.log(sortedList);
+  const sortedList = bookingList.sort(
+    (a, b) => Date.parse(b.submitDate) - Date.parse(a.submitDate)
+  );
 
   return (
     <section className="all-bookings">
-      <h1>All Bookings</h1>
-      <div className="all-bookings__information">
+      <h1 className="all-bookings__title">All Bookings</h1>
+      <div className="all-bookings__information desktop">
         <div className="all-bookings__container">
           <h4 className="all-bookings__heading">Submit Date</h4>
         </div>
@@ -73,7 +75,7 @@ const AllBookings = () => {
           <div key={sortedList[i].id} className="all-bookings__information">
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Submit Date</h4>
-              <p>{sortedList[i].submitDate}</p>
+              <p>{sortedList[i].submitDate.substr(0, 10)}</p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Licence Plate</h4>
@@ -89,15 +91,15 @@ const AllBookings = () => {
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Remarks</h4>
-              <p>{sortedList[i].remarks ? sortedList[i].remarks : "N/A"}</p>
+              <p>{sortedList[i].remarks ? sortedList[i].remarks : "-"}</p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Checkin Time</h4>
-              <p>{sortedList[i].checkin ? sortedList[i].remarks : "N/A"}</p>
+              <p>{sortedList[i].checkin ? sortedList[i].checkin : "-"}</p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Checkout Time</h4>
-              <p>{sortedList[i].checkout ? sortedList[i].remarks : "N/A"}</p>
+              <p>{sortedList[i].checkout ? sortedList[i].checkout : "-"}</p>
             </div>
             <div className="all-bookings__actions">
               <button
@@ -111,13 +113,22 @@ const AllBookings = () => {
                 className="deleteButton"
                 name={sortedList[i].carPlate}
                 id={sortedList[i].id}
-                // onClick={onCrossHandler}
+                onClick={onDeleteHandler}
               ></button>
             </div>
           </div>
         );
       })}
-      <button onClick={handleClick} className="btn loadmore-btn">
+      <button
+        onClick={handleClick}
+        className={
+          sortedList.length > showBookings
+            ? "show btn primary-btn"
+            : "hide" || sortedList.length === showBookings
+            ? "hide"
+            : null
+        }
+      >
         Load More
       </button>
     </section>

@@ -1,0 +1,22 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.support {
+  margin: 3rem 1rem;
+  @include desktop {
+    margin-left: 350px;
+  }
+  &__title {
+    font-size: 2rem;
+  }
+  &__content {
+    @include tablet;
+    width: 80%;
+    @include desktop {
+      width: 60%;
+    }
+  }
+  &__terms {
+    font-size: 0.8em;
+  }
+}

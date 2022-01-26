@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { AdminNavBarData } from "./AdminNavBarData";
 import "./AdminNavBar.scss";
 import { IconContext } from "react-icons";
-import LogoutButton from "../../components/LogoutButton/LogoutButton";
 import logo from "../../assets/logo/logo-horizontal-left.svg";
 
 function AdminNavbar() {
@@ -26,12 +25,8 @@ function AdminNavbar() {
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
-              <Link to="#" className="menu-bars">
-                <img
-                  src={logo}
-                  onClick={showSidebar}
-                  className="navbar__logo"
-                />
+              <Link to="/dashboard" className="menu-bars">
+                <img src={logo} className="navbar__logo" />
               </Link>
             </li>
             {AdminNavBarData.map((item, index) => {
@@ -44,7 +39,6 @@ function AdminNavbar() {
                 </li>
               );
             })}
-            <LogoutButton />
           </ul>
         </nav>
       </IconContext.Provider>

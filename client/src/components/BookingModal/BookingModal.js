@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
-import closeButton from "../../assets/icons/closeButton.svg";
 import "./BookingModal.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const BookingModal = (props) => {
-  console.log("booking modal props", props);
   const [error, setError] = useState("");
   const [requestDate, setRequestDate] = useState(new Date());
   const history = useHistory();
@@ -50,7 +48,41 @@ const BookingModal = (props) => {
         });
     }
     e.target.reset();
-    // history.push("/dashboard/mybookings");
+  };
+
+  const updateBooking = (e) => {
+    e.preventDefault();
+    const requestDate = e.target.requestDate.value;
+    const carPlate = e.target.carPlate.value;
+    const unitNumber = e.target.unitNumber.value;
+    const accessibility = e.target.accessibility.value;
+    const remarks = e.target.remarks.value;
+    if (!requestDate || !carPlate || !unitNumber)
+      setError("Please fill out all required fields");
+    else if (carPlate.length < 2 || carPlate.length > 8) {
+      setError("Please provide a valid North American licence plate");
+    } else {
+      axios
+        .put(`${API_URL}/bookings/${props.bookingId}`, {
+          requestDate,
+          carPlate,
+          unitNumber,
+          accessibility,
+          remarks,
+        })
+
+        .then((response) => {
+          props.onCloseHandler();
+          props.fetchMyBookings();
+        })
+        .catch((err) => {
+          if (err.response) {
+            const errMessage = err.response.data;
+            setError(errMessage);
+          }
+        });
+    }
+    e.target.reset();
   };
 
   return (
@@ -61,10 +93,13 @@ const BookingModal = (props) => {
         <div className="booking-modal-header">
           <h4 className="booking-modal__title">
             {" "}
-            {props.requestDate ? "Update" : "Rebook"}
+            {props.bookingId ? "Update" : "Rebook"}
           </h4>
           <div className="booking-modal__content">
-            <form onSubmit={addBooking} className="booking-modal__form">
+            <form
+              onSubmit={props.bookingId ? updateBooking : addBooking}
+              className="booking-modal__form"
+            >
               <label htmlFor="requestDate">
                 Date of Visit{" "}
                 <span className="tips">(Max one month in advance)</span>
@@ -73,11 +108,7 @@ const BookingModal = (props) => {
         maxDate=  one month from now (in milliseconds) */}
               <DatePicker
                 name="requestDate"
-                selected={
-                  props.requestDate
-                    ? Date.parse(props.requestDate)
-                    : requestDate
-                }
+                selected={requestDate}
                 minDate={new Date()}
                 maxDate={Date.now() + 2629800000}
                 dateFormat="yyyy-MM-dd"
