@@ -1,8 +1,8 @@
 @use "../../styles/partials/mixins" as *;
-@use "../../styles/partials/typography" as *;
+
 @use "../../styles/partials/variables" as *;
 
-.modal-del {
+.contact-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -29,9 +29,8 @@
     @include tablet {
       height: 50vh;
       width: auto;
-      width: 672px;
+      width: 42rem;
       position: relative;
-      // padding-bottom: 2rem;
     }
   }
   &__close {
@@ -41,10 +40,9 @@
   }
 
   &__title {
-    // @include mbHeader-font;
-    margin-top: 60px;
-    margin-left: 16px;
-    font-size: 28px;
+    margin-top: 3.75rem;
+    margin-left: 1rem;
+    font-size: 1.75rem;
     @include tablet {
       position: relative;
       bottom: 3.5rem;
@@ -55,14 +53,14 @@
   }
 
   &__content {
-    margin-left: 16px;
-    font-size: 15px;
+    margin-left: 1rem;
+    font-size: 1rem;
     margin-top: 1rem;
 
     @include tablet {
       margin-top: 0px;
       width: 75%;
-      margin-left: 64px;
+      margin-left: 4rem;
       position: relative;
       bottom: 1.5rem;
     }
@@ -70,7 +68,7 @@
 
   &-footer {
     position: absolute;
-    bottom: 24px;
+    bottom: 1.5rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -81,39 +79,13 @@
       top: 0.5rem;
       left: 29rem;
     }
-    &__delete {
-      // @include mbCopy-font;
-      color: $secondary-light;
-      background: #c94515;
-      border-radius: 20px;
-      width: 163px;
-      height: 36px;
-      border: none;
-      margin-right: 1rem;
-      margin-left: 0.5rem;
-
-      &:hover {
-        background: $secondary-dark;
-      }
-    }
-
-    &__cancel {
-      // @include mbCopy-font;
-      color: $secondary-dark;
-      border: 1px solid $primary-dark;
-      border-radius: 20px;
-      width: 163px;
-      height: 36px;
-      margin-left: 1rem;
-      margin-right: 0.5rem;
-      &:hover {
-        border: 1px solid $primary-dark;
-        color: $primary-dark;
-      }
-    }
   }
 }
 
 .emphasis {
   color: $primary-cta;
+}
+
+.contact-modal p {
+  font-size: 1.125rem;
 }

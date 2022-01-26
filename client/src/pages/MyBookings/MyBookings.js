@@ -3,7 +3,7 @@ import axios from "axios";
 import BookingModal from "../../components/BookingModal/BookingModal";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./MyBookings.scss";
-import moment from "moment";
+import Moment from "react-moment";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -20,7 +20,7 @@ const MyBookings = (props) => {
 
   useEffect(() => {
     fetchMyBookings();
-  }, [myBookings]);
+  }, [JSON.stringify(myBookings)]);
 
   const fetchMyBookings = () => {
     const userId = props.userId;
@@ -66,9 +66,9 @@ const MyBookings = (props) => {
     axios
       .delete(`${API_URL}/bookings/${bookingId}`)
       .then((response) => {
-        setShowDeleteModal(false);
-        fetchMyBookings();
         console.log("Booking deleted");
+        fetchMyBookings();
+        setShowDeleteModal(false);
       })
       .catch((err) => console.log("error!", err));
   };
@@ -100,11 +100,27 @@ const MyBookings = (props) => {
             </div>
             <div className="mybookings__container">
               <h4 className="mybookings__subheader">Checkin Time</h4>
-              <p>{sortedList[i].checkin ? sortedList[i].checkin : "-"}</p>
+              <p>
+                {sortedList[i].checkin ? (
+                  <Moment parse="YYYY-MM-DD HH:mm">
+                    {sortedList[i].checkin}
+                  </Moment>
+                ) : (
+                  "-"
+                )}
+              </p>
             </div>
             <div className="mybookings__container">
               <h4 className="mybookings__subheader">Checkout Time</h4>
-              <p>{sortedList[i].checkout ? sortedList[i].checkout : "-"}</p>
+              <p>
+                {sortedList[i].checkout ? (
+                  <Moment parse="YYYY-MM-DD HH:mm">
+                    {sortedList[i].checkout}
+                  </Moment>
+                ) : (
+                  "-"
+                )}
+              </p>
             </div>
             <div className="mybookings__actions">
               <button

@@ -1,41 +1,22 @@
 import { React, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { MdDeleteForever } from "react-icons/md";
-import { FaUserEdit } from "react-icons/fa";
 import "./AllUsers.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const AllUsers = () => {
-  const [userList, setUserList] = useState([]);
-  const [error, setError] = useState("");
-  const [status, setStatus] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+const AllUsers = (props) => {
   const [showUsers, setShowUsers] = useState(10);
 
-  const fetchAllUsers = () => {
-    axios
-      .get(`${API_URL}/users`)
-      .then((response) => {
-        setUserList(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-  useEffect(() => {
-    fetchAllUsers();
-  }, [userList]);
+  if (!props.userList) {
+    return <p>Loading...</p>;
+  }
 
   const handleClick = () => {
     setShowUsers((prevShowUsers) => prevShowUsers + 10);
   };
 
-  const onTrashHandler = (e) => {
-    setShowModal(true);
-  };
-
-  const sortedList = userList.sort((a, b) => a.unitNumber - b.unitNumber);
-
+  const sortedList = props.userList.sort((a, b) => a.unitNumber - b.unitNumber);
+  console.log("sorted list: ");
   return (
     <section className="all-users">
       <h1>All Users</h1>
@@ -90,13 +71,11 @@ const AllUsers = () => {
                 name={sortedList[i].carPlate}
                 id={sortedList[i].id}
                 value={sortedList[i].requestDate}
-                // onClick={onEditHandler}
               ></button>
               <button
                 className="deleteButton"
                 name={sortedList[i].carPlate}
                 id={sortedList[i].id}
-                // onClick={onCrossHandler}
               ></button>
             </div>
           </div>

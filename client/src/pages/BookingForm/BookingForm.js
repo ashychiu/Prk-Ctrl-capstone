@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./BookingForm.scss";
 import question from "../../assets/icons/question.png";
-import BookingSuccessModal from "../BookingSuccessModal/BookingSuccessModal";
+import BookingSuccessModal from "../../components/BookingSuccessModal/BookingSuccessModal";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -57,7 +57,7 @@ function BookingForm(props) {
 
   return (
     <section className="booking">
-      <h1 className="booking__heading">Create New Booking</h1>
+      <h1 className="booking__heading">New Booking</h1>
       <form onSubmit={addBooking} className="booking-form">
         <label htmlFor="requestDate">
           Date of Visit <span className="tips">(Max one month in advance)</span>

@@ -78,7 +78,7 @@ const WhoIsHere = () => {
 
   return (
     <section className="whoishere">
-      <h1>Who is here</h1>
+      <h1>Who Is Here</h1>
       <div className={sortedList.length > 0 ? "hide" : "show"}>
         No one is here
       </div>
@@ -87,20 +87,20 @@ const WhoIsHere = () => {
           <div key={sortedList[i].id} className="whoishere__information">
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">Licence Plate</h4>
-              <p>{sortedList[i].carPlate}</p>
+              <p className="whoishere__text">{sortedList[i].carPlate}</p>
             </div>
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">Visit Date</h4>
-              <p>{sortedList[i].requestDate}</p>
+              <p className="whoishere__text">{sortedList[i].requestDate}</p>
             </div>
 
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">Accessibility</h4>
-              <p>{sortedList[i].accessibility}</p>
+              <p className="whoishere__text">{sortedList[i].accessibility}</p>
             </div>
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">Checkin Time</h4>
-              <p>
+              <p className="whoishere__text">
                 <Moment parse="YYYY-MM-DD HH:mm">
                   {sortedList[i].checkin}
                 </Moment>
@@ -108,7 +108,7 @@ const WhoIsHere = () => {
             </div>
             <div className="whoishere__container">
               <h4 className="whoishere__subheader">For How Long?</h4>
-              <p>
+              <p className="whoishere__text">
                 <Moment fromNow ago>
                   {sortedList[i].checkin}
                 </Moment>

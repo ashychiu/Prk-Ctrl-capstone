@@ -83,10 +83,10 @@ bookingRouter.post("/add", (req, res) => {
     };
 
     bookingList.push(newBooking);
+    //Send welcome email after successful registration
+    sendConfirmMail(newBooking, foundUser);
     writeFile(bookingList);
     res.status(201).json(newBooking);
-    //Send welcome email after successful registration
-    sendConfirmMail(newBooking);
   }
 });
 

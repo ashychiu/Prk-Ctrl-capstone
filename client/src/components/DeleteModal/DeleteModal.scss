@@ -1,8 +1,7 @@
 @use "../../styles/partials/mixins" as *;
-@use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
 
-.modal-del {
+.delete-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -22,45 +21,43 @@
   }
 
   &-content {
-    color: $secondary-dark;
-    background-color: $primary-light;
+    color: $primary-light;
+    background-color: $primary-dark;
     height: 100%;
     width: 100%;
     @include tablet {
-      height: 262px;
+      height: 16.375rem;
       width: auto;
-      width: 672px;
+      width: 42rem;
       position: relative;
     }
   }
   &__close {
     position: absolute;
-    right: 21px;
-    top: 21px;
+    right: 1.3125rem;
+    top: 1.3125rem;
   }
 
   &__title {
-    // @include mbHeader-font;
-    margin-top: 60px;
-    margin-left: 16px;
-    font-size: 28px;
+    @include page-header;
+    margin: 3.75rem 0 0 1rem;
     @include tablet {
       position: relative;
       bottom: 3.5rem;
-      margin-top: 40px;
-      margin-left: 64px;
+      margin-top: 2.5rem;
+      margin-left: 4rem;
     }
   }
 
   &__content {
-    margin-left: 16px;
-    font-size: 15px;
+    margin-left: 1rem;
+    font-size: 1rem;
     margin-top: 1rem;
 
     @include tablet {
       margin-top: 0px;
       width: 75%;
-      margin-left: 64px;
+      margin-left: 4rem;
       position: relative;
       bottom: 1.5rem;
     }
@@ -68,7 +65,7 @@
 
   &-footer {
     position: absolute;
-    bottom: 24px;
+    bottom: 1.5rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -80,33 +77,43 @@
       left: 29rem;
     }
     &__delete {
-      // @include mbCopy-font;
+      @include body-copy;
       color: $secondary-light;
-      background: #c94515;
+      background: $error;
       border-radius: 20px;
-      width: 163px;
-      height: 36px;
+      width: 12.5rem;
+      height: 2.25rem;
       border: none;
+      padding: 0 1rem;
       margin-right: 1rem;
       margin-left: 0.5rem;
-
+      @include tablet {
+        font-size: 1rem;
+      }
       &:hover {
-        background: $secondary-dark;
+        color: $secondary-dark;
+        background: $primary-cta;
+        cursor: pointer;
       }
     }
 
     &__cancel {
-      // @include mbCopy-font;
+      @include body-copy;
       color: $secondary-dark;
       border: 1px solid $primary-dark;
       border-radius: 20px;
-      width: 163px;
-      height: 36px;
+      width: 12.5rem;
+      height: 2.25rem;
+      padding: 0 1rem;
       margin-left: 1rem;
       margin-right: 0.5rem;
+      @include tablet {
+        font-size: 1rem;
+      }
       &:hover {
-        border: 1px solid $primary-dark;
         color: $primary-dark;
+        background-color: $secondary-light;
+        cursor: pointer;
       }
     }
   }

@@ -19,7 +19,7 @@ export const NavBarData = [
     cName: "nav-text",
   },
   {
-    title: "Profile",
+    title: "My Profile",
     path: "/profile",
     icon: <CgProfile />,
     cName: "nav-text",
