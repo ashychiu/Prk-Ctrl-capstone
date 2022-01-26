@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./AdminLogin.scss";
 import logo from "../../assets/logo/white-logo-transparent.svg";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function Login() {
+function AdminLogin() {
   const [error, setError] = useState("");
 
   const history = useHistory();
@@ -59,4 +59,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default AdminLogin;

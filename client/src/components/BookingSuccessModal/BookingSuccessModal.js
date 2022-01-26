@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import complete from "../../assets/icons/complete.png";
 
 import "./BookingSuccessModal.scss";
@@ -24,14 +24,6 @@ const BookingSuccessModal = (props) => {
           </li>
           <li>Maximum parking stay: 24 hours. </li>
         </ul>
-        {/* </div> */}
-        {/* <div className={props.checkedIn ? "hide" : "success-modal__content show"}>
-          <img src={complete} alt="proceed success" className="success-modal__image" />
-          <h2 className="success-modal__title">You've checked out.</h2>
-          <p className="success-modal__text">
-            Please remember to wait for the gate to close. Have a nice day!
-          </p>
-        </div> */}
       </div>
     </div>
   );

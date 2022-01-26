@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./BookingForm.scss";
-import question from "../../assets/icons/question.png";
 import BookingSuccessModal from "../../components/BookingSuccessModal/BookingSuccessModal";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -13,8 +11,6 @@ function BookingForm(props) {
   const [requestDate, setRequestDate] = useState(new Date());
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
-
-  const history = useHistory();
 
   const addBooking = (e) => {
     e.preventDefault();
@@ -129,12 +125,8 @@ function BookingForm(props) {
           Submit
         </button>
       </form>
-      {error != "" ? <div>{error}</div> : ""}
-      <BookingSuccessModal
-        show={showModal}
-        // checkedIn={checkedIn}
-        onCloseHandler={onCloseHandler}
-      />
+      <div className={error ? "show errorMessage" : "hide"}>{error}</div>
+      <BookingSuccessModal show={showModal} onCloseHandler={onCloseHandler} />
     </section>
   );
 }

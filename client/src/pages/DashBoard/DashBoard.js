@@ -1,9 +1,6 @@
 import { React, useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "./DashBoard.scss";
-import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import MyBookings from "../MyBookings/MyBookings";
 import BookingForm from "../BookingForm/BookingForm";
@@ -49,12 +46,6 @@ const DashBoard = (props) => {
     fetchProfile();
     fetchAllUsers();
   }, []);
-
-  const history = useHistory();
-  const logout = () => {
-    localStorage.clear();
-    history.push("/");
-  };
 
   return (
     <div className="dashboard">

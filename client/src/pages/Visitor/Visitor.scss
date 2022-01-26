@@ -3,16 +3,30 @@
 
 .visitor {
   @include flex-all-center;
-  height: 100vh;
   width: 100%;
-
+  height: 100vh;
   color: $primary-light;
   background-color: $primary-dark;
-
-  &__hero-image {
-    width: 80%;
+  @include tablet {
+    @include flex-row;
+  }
+  &__heading {
+    display: none;
     @include tablet {
-      width: 50%;
+      display: block;
+      color: $primary-light;
+      @include tablet-page-header;
+      margin-top: 3rem;
+    }
+  }
+  &__hero-image {
+    width: 100%;
+    @include tablet {
+      width: 80%;
+      // height: 50vh;
+    }
+    @include desktop {
+      width: 90%;
     }
   }
   &__container {
@@ -25,15 +39,28 @@
       width: 50%;
     }
   }
+  &__greeting {
+    margin-left: 1rem;
+  }
+  &__form {
+    margin: 1rem;
+  }
   &__input {
+    width: 100%;
     background-color: $primary-light;
     &::placeholder {
       color: $primary-dark;
+    }
+    @include tablet {
+      // width: 55%;
     }
   }
 }
 
 .checkin-btn {
-  width: 50%;
+  width: 100%;
   margin-bottom: 3rem;
+  @include tablet {
+    width: 55%;
+  }
 }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "./BookingModal.scss";
@@ -9,7 +8,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 const BookingModal = (props) => {
   const [error, setError] = useState("");
   const [requestDate, setRequestDate] = useState(new Date());
-  const history = useHistory();
 
   if (!props.show) {
     return null;
