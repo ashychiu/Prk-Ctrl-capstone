@@ -93,8 +93,16 @@ bookingRouter.post("/add", (req, res) => {
 //Update single Booking by id
 bookingRouter.put("/:id", (req, res) => {
   let bookingList = readFile();
-  const { id } = req.params;
-  const { requestDate, userID, carPlate, remarks } = req.body;
+  // const { id } = req.params;
+  const {
+    id,
+    requestDate,
+    userID,
+    carPlate,
+    remarks,
+    unitNumber,
+    accessibility,
+  } = req.body;
   const foundBooking = bookingList.find((booking) => booking.id === id);
 
   if (!foundBooking) {
@@ -107,11 +115,15 @@ bookingRouter.put("/:id", (req, res) => {
 
   const updatedBooking = {
     id: foundBooking.id,
-    carPlate,
+    userID: foundBooking.userID,
     requestDate,
-    userID,
-    submitDate: new Date(),
+    carPlate,
+    unitNumber,
+    accessibility,
     remarks,
+    submitDate: new Date(),
+    checkin: "",
+    checkout: "",
   };
 
   bookingList = bookingList.map((Booking) => {
@@ -136,7 +148,7 @@ bookingRouter.patch("/checkin", (req, res) => {
   }
   const foundBooking = bookingList.find(
     (booking) =>
-      // Date.now() - Date.parse(booking.requestDate) <= 86400000 &&
+      Date.now() - Date.parse(booking.requestDate) <= 86400000 &&
       booking.carPlate === carPlate
   );
   if (!foundBooking) {

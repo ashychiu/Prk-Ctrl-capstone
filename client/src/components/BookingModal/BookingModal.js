@@ -62,6 +62,7 @@ const BookingModal = (props) => {
     } else {
       axios
         .put(`${API_URL}/bookings/${props.bookingId}`, {
+          id: props.bookingId,
           requestDate,
           carPlate,
           unitNumber,
