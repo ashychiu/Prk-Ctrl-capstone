@@ -39,7 +39,7 @@ const WhoIsHere = () => {
   useEffect(() => {
     fetchCurrVisitors();
     fetchUserList();
-  }, [JSON.stringify(whoIsHere)]);
+  }, []);
 
   const handleClick = () => {
     setShowBookings((prevShowBookings) => prevShowBookings + 10);

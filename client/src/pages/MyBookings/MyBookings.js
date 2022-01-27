@@ -126,7 +126,7 @@ const MyBookings = (props) => {
             <div className="mybookings__actions">
               <button
                 className={
-                  Date.parse(sortedList[i].requestDate) <= Date.now()
+                  Date.parse(sortedList[i].requestDate) <= Date.now() - 86400000
                     ? "repeatButton"
                     : "hide"
                 }
@@ -137,7 +137,7 @@ const MyBookings = (props) => {
               {/* Edit function not available for past bookings */}
               <button
                 className={
-                  Date.parse(sortedList[i].requestDate) >= Date.now()
+                  Date.parse(sortedList[i].requestDate) >= Date.now() - 86400000
                     ? "editButton"
                     : "hide"
                 }
