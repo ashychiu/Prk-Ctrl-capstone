@@ -57,6 +57,7 @@ bookingRouter.get("/:id", (req, res) => {
 
 //Add new booking
 bookingRouter.post("/add", (req, res) => {
+  const bookingList = readFile();
   const { requestDate, unitNumber, carPlate, accessibility, remarks } =
     req.body;
   const foundUser = getUser(unitNumber);
@@ -91,7 +92,7 @@ bookingRouter.post("/add", (req, res) => {
 
 //Update single Booking by id
 bookingRouter.put("/:id", (req, res) => {
-  const bookingList = readFile();
+  let bookingList = readFile();
   const { id } = req.params;
   const { requestDate, userID, carPlate, remarks } = req.body;
   const foundBooking = bookingList.find((booking) => booking.id === id);
@@ -128,11 +129,11 @@ bookingRouter.put("/:id", (req, res) => {
 
 //Checkin a vehicle by patching single Booking by id
 bookingRouter.patch("/checkin", (req, res) => {
+  let bookingList = readFile();
   const { carPlate } = req.body;
   if (!carPlate) {
     return res.status(400).send("Please provide a valid license plate");
   }
-  let bookingList = readFile();
   const foundBooking = bookingList.find(
     (booking) =>
       // Date.now() - Date.parse(booking.requestDate) <= 86400000 &&
@@ -155,7 +156,7 @@ bookingRouter.patch("/checkin", (req, res) => {
     if (Booking.id === foundBooking.id) {
       return updatedBooking;
     } else {
-      return foundBooking;
+      return Booking;
     }
   });
 
@@ -166,7 +167,7 @@ bookingRouter.patch("/checkin", (req, res) => {
 //Checkout a vehicle by patching single Booking by id
 bookingRouter.patch("/checkout", (req, res) => {
   const { id, carPlate } = req.body;
-  const bookingList = readFile();
+  let bookingList = readFile();
   const foundBooking = bookingList.find((booking) => id === booking.id);
 
   if (!carPlate) {

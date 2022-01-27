@@ -21,6 +21,11 @@ app.use("/users", userRouter);
 app.use("/bookings", bookingRouter);
 app.use("/admin", adminRouter);
 
+//deployment
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"));
+}
+
 //server port
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
