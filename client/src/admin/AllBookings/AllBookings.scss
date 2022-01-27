@@ -1,0 +1,76 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.all-bookings {
+  margin: 1rem;
+  @include tablet {
+    margin-left: 21.875rem;
+  }
+  &__title {
+    margin-top: 2rem;
+  }
+  &__subheader {
+    @include subheader;
+    @include desktop {
+      display: none;
+    }
+  }
+  &__heading {
+    display: none;
+    @include desktop {
+      display: block;
+      @include subheader;
+    }
+  }
+  &__information {
+    background-color: $primary-light;
+    padding: 1rem 0;
+    border-top: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2.5rem;
+      position: relative;
+    }
+
+    @include desktop {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 3.5rem 0 2rem;
+      position: relative;
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+  }
+  &__container {
+    @include desktop {
+      flex-basis: 20%;
+    }
+  }
+  &__actions {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+      padding: 0.5rem 0;
+    }
+    @include desktop {
+      flex-basis: 10%;
+    }
+  }
+}
+
+.all-bookings p {
+  @include body-copy;
+}
+
+div .desktop {
+  border-top: none;
+}

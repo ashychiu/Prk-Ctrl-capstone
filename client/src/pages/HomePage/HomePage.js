@@ -1,47 +1,32 @@
-import React, { useState } from "react";
-import logo from "../../assets/logo/white-logo-transparent.svg";
+import React from "react";
+import MediaQuery from "react-responsive";
+import logo from "../../assets/logo/logo-horizontal-center.png";
 import "./HomePage.scss";
-import Login from "../Login/Login";
-import SignUp from "../SignUp/SignUp";
+import Login from "../../components/Login/Login";
+import MobileLogin from "../../components/MobileLogin/MobileLogin";
+import homepageHero from "../../assets/images/homepage-hero-crop.png";
 
 const HomePage = () => {
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
   return (
-    <section className="homepage">
-      <img className="homepage__logo" src={logo} alt="Prk Ctrl logo" />
+    <main className="homepage">
       <div className="homepage__container">
-        <div
-          onClick={() => {
-            setShowLogin(true);
-            setShowSignup(false);
-          }}
-          className="homepage__button"
-          id="submitButton"
-        >
-          Login
-        </div>
-        <div
-          onClick={() => {
-            setShowLogin(false);
-            setShowSignup(true);
-          }}
-          className="homepage__button"
-          id="submitButton"
-        >
-          Register
-        </div>
+        <h1 className="homepage__heading">Welcome!</h1>
+        <img className="homepage__logo" src={logo} alt="Prk Ctrl Logo" />
+        <img
+          className="homepage__image"
+          src={homepageHero}
+          alt="Prk Ctrl hero"
+        />
       </div>
-      <div className={showSignup ? "show" : "hide"}>
-        Sigup form
-        <SignUp />
+      <div className="homepage__login">
+        <MediaQuery minWidth={768}>
+          <Login />
+        </MediaQuery>
+        <MediaQuery maxWidth={767}>
+          <MobileLogin />
+        </MediaQuery>
       </div>
-
-      <div className={showLogin ? "show" : "hide"}>
-        Login form
-        <Login />
-      </div>
-    </section>
+    </main>
   );
 };
 

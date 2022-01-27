@@ -1,0 +1,8 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+footer {
+  font-size: 0.8em;
+  color: $primary-light;
+  background-color: $primary-dark;
+}

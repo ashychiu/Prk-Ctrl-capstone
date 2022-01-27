@@ -1,0 +1,158 @@
+@use "../../styles/partials/mixins" as *;
+
+@use "../../styles/partials/variables" as *;
+
+.signup-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include flex-all-center;
+  z-index: 1;
+
+  &-header {
+    padding: 2rem 1rem;
+    @include tablet {
+      position: relative;
+      top: 2.5rem;
+    }
+  }
+
+  &-content {
+    color: $secondary-light;
+    background-color: $primary-dark;
+    height: 100vh;
+    width: 100%;
+    @include tablet {
+      overflow-y: auto;
+      height: 80vh;
+      width: auto;
+      width: 50%;
+      position: relative;
+    }
+  }
+
+  &__form {
+    width: 100%;
+    @include flex-col;
+    @include tablet {
+      @include flex-row;
+      flex-wrap: wrap;
+    }
+  }
+  &__close {
+    display: none;
+    @include tablet {
+      display: block;
+      position: absolute;
+      right: 21px;
+      top: 21px;
+      width: 1.5rem;
+      @include desktop {
+        width: 2rem;
+      }
+    }
+  }
+
+  &__title {
+    margin-top: 0;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    @include tablet {
+      position: relative;
+      bottom: 3.5rem;
+      margin-top: 2rem;
+      margin-left: 10%;
+    }
+    @include desktop {
+      margin-top: 3rem;
+    }
+  }
+
+  &__content {
+    padding: 0 1rem;
+
+    @include tablet {
+      @include flex-all-center;
+      margin-top: -2rem;
+      width: 75%;
+      margin-left: 10%;
+      position: relative;
+      bottom: 2rem;
+    }
+  }
+  &__terms {
+    font-size: 0.9em;
+    &-link {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.flex-2-col {
+  @include flex-col;
+  width: 100%;
+  @include tablet {
+    gap: 1rem;
+  }
+  @include desktop {
+    flex-direction: row;
+  }
+}
+
+.form-field {
+  width: 100%;
+  margin: 0.3125rem 0;
+
+  &__label {
+    @include tablet-body-copy;
+    display: block;
+  }
+
+  &__input {
+    width: 100%;
+
+    &:focus {
+      border-color: $primary-cta;
+      outline: none;
+    }
+  }
+}
+
+input[type="radio"] {
+  margin-top: -1px;
+  margin-left: 15px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.signup-btn {
+  width: 100%;
+  @include tablet {
+    width: 40%;
+    margin-left: auto;
+  }
+}
+
+.recaptcha {
+  margin-top: 0.5rem;
+  @include tablet {
+    flex-wrap: wrap;
+  }
+  @include desktop {
+    flex-wrap: nowrap;
+  }
+}
+
+.form-status {
+  @include flex-row;
+  @include tablet {
+    @include flex-col;
+  }
+}
+.form-status-button {
+  @include flex-row;
+}

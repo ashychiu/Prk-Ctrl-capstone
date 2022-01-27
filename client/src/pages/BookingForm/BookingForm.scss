@@ -1,0 +1,32 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.booking {
+  margin: 3rem 1rem;
+  @include tablet {
+    margin-left: 350px;
+  }
+  &__heading {
+    @include tablet {
+      margin-bottom: 2rem;
+    }
+  }
+  &-form {
+    @include flex-col;
+    &__accessibility {
+      @include flex-row;
+    }
+  }
+}
+
+.tips {
+  font-size: 0.8em;
+}
+
+.radio-btn {
+  font-size: 0.9em;
+}
+
+.booking-btn {
+  width: 40%;
+}

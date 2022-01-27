@@ -1,0 +1,49 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.admin-login {
+  height: 100vh;
+  width: 100%;
+  padding: 1rem;
+  @include flex-all-center;
+  background-color: $primary-dark;
+  &__heading {
+    @include page-header;
+    color: $primary-light;
+    margin-bottom: 0;
+  }
+  &__logo {
+    width: auto;
+    @include tablet {
+      width: 100%;
+    }
+  }
+  &__card {
+    @include flex-all-center;
+  }
+  &__form {
+    @include flex-all-center;
+    width: 100%;
+    margin-top: 2.25rem;
+  }
+  &__input {
+    width: 100%;
+    font-size: 1rem;
+    border: 0px;
+    background-color: $primary-light;
+    height: 2.375rem;
+    border-radius: 5px;
+    margin: -0.2rem 0;
+    @include tablet {
+      width: 40%;
+      align-self: center;
+    }
+  }
+}
+
+.admin-btn {
+  width: 100%;
+  @include tablet {
+    width: 40%;
+  }
+}

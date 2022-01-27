@@ -1,36 +1,37 @@
-import React, { Component, useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import axios from "axios";
+import React, { Component } from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./styles/global.scss";
 import DashBoard from "./pages/DashBoard/DashBoard";
-import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import HomePage from "./pages/HomePage/HomePage";
-import AdminLogin from "./admin/Login/Login";
-
-import PrivateRoute from "./utils/private";
-
-const API_URL = process.env.REACT_APP_API_URL;
+import AdminLogin from "./admin/AdminLogin/AdminLogin";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Footer from "./components/Footer/Footer";
+import AdminDashboard from "./admin/AdminDashboard/AdminDashboard";
+import Visitor from "./pages/Visitor/Visitor";
 
 function App() {
-  const [userList, setUserList] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(`${API_URL}/users`);
-      setUserList(data);
-    })();
-  }, []);
-
   return (
     <BrowserRouter>
-      {/* <h1>Prk Ctrl</h1> */}
       <Switch>
+        <Redirect path="/home" to="/" component={HomePage} />
         <Route path="/" exact component={HomePage} />
-        <PrivateRoute exact path="/dashboard" component={DashBoard} />
-        <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />;
+        <Route path="/visitor" component={Visitor} />
+        <PrivateRoute
+          path="/admin/dashboard"
+          exact
+          component={AdminDashboard}
+        />
+        <Redirect path="/admin/bookings" to="/admin/dashboard" />
+        <Redirect path="/admin/users" to="/admin/dashboard" />
+        <Redirect path="/admin/whoishere" to="/admin/dashboard" />
         <Route path="/admin" component={AdminLogin} />;
+        <Redirect path="/booking" to="/dashboard" />
+        <Redirect path="/mybookings" to="/dashboard" />
+        <Redirect path="/profile" to="/dashboard" />
+        <Redirect path="/support" to="/dashboard" />
+        <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
     </BrowserRouter>
   );

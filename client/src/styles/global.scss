@@ -9,15 +9,25 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100vh;
+}
+#root {
+  // background-color: $primary-dark;
+  @include flex-col;
+}
 body {
-  background-color: $primary-dark;
+  width: 100%;
+  background: url("../assets/logo/logo-overlay.svg") no-repeat;
+  background-position: right bottom;
   margin: 0;
   padding: 0;
   font-family: "Inter", Helvetica, sans-serif;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 2.4375rem;
-  color: $primary-light;
+  // color: $primary-light;
 }
 
 .wrapper {
@@ -25,6 +35,7 @@ body {
 }
 
 .show {
+  width: 100%;
   display: block;
 }
 .hide {
@@ -32,29 +43,14 @@ body {
 }
 //Buttons
 .btn {
-  height: 2.25rem; //36px
+  height: 2.25rem;
   padding: 0 1rem;
   border-radius: 30px;
   @include tablet {
-    height: 2.375rem; //38px
-    // width: auto;
+    height: 2.375rem;
   }
 }
-.btn-primary {
-  // @include mb-label;
-  text-align: center;
-  font-size: 2rem;
-  color: $primary-dark;
-  background-color: $primary-cta;
-  border: none;
-  &:hover {
-    color: $primary-dark;
-    background-color: $secondary-light;
-  }
-  @include tablet {
-    @include tb-label;
-  }
-}
+
 .btn-secondary {
   // @include mb-label;
   background-color: $primary-light;
@@ -65,33 +61,159 @@ body {
     border-color: $primary-cta;
     color: $primary-light;
   }
+}
+
+footer {
+  margin-top: auto;
+}
+
+.main-container {
+  width: 100%;
+  @include flex-row;
+}
+
+.content-container {
+  flex: 2;
+}
+
+.errorMessage {
+  margin-top: 0.3125rem;
+  font-size: 0.875rem;
+
   @include tablet {
-    @include tb-label;
+    font-size: 1rem;
+    @include tablet-subheader;
   }
 }
 
-#submitButton {
-  background-color: $primary-cta;
-  width: 100%;
-  height: 3rem;
-  border: none;
+.light-theme {
+  color: $primary-cta;
+}
+.dark-theme {
   color: $primary-dark;
-  margin-top: 1rem;
-  border-radius: 25px;
-  padding: 2px 16px;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 500;
+}
+textarea,
+input {
+  resize: none;
+  font-size: 0.9em;
+  border: 0px;
+  background-color: $primary-light;
+  height: 2.25rem;
+  border-radius: 5px;
+  padding: 0 0.75rem;
+  margin: 0.2rem 0;
   @include tablet {
-    width: 33%;
-    margin: 0.625rem 0 0.625rem 1.5rem;
+    width: 40%;
+    font-size: 1rem;
+    border: 0px;
+    background-color: $primary-light;
+    height: 2.375rem; //38px
+    border-radius: 5px;
+    padding: 0 1rem; //16px
+    margin: 0.2rem 0;
   }
-  @include desktop {
-    // width: 13%;
-  }
-  //hover effect on button
+}
+input[type="radio"] {
+  margin-top: -1px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.icon {
+  color: $primary-cta;
+}
+
+.primary-btn {
+  color: $primary-dark;
+  background-color: $primary-cta;
   &:hover {
-    background-color: $secondary-light;
+    background-color: $secondary-cta;
+    color: $secondary-dark;
     cursor: pointer;
+  }
+}
+
+.btn {
+  width: 100%;
+  height: 2.375rem;
+  border: 0;
+  margin-top: 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.secondary-btn {
+  color: $primary-light;
+  background-color: $primary-dark;
+  &:hover {
+    background-color: $primary-cta;
+    color: $secondary-dark;
+    cursor: pointer;
+  }
+}
+.closeButton {
+  z-index: 100;
+  position: absolute;
+  right: 21px;
+  top: 21px;
+  color: $primary-dark;
+  background: url("../assets/icons/close.png") no-repeat;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  border: none;
+}
+
+.repeatButton {
+  margin: 0.3125rem;
+  color: $primary-dark;
+  background: url("../assets/icons/repeat.png") no-repeat;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  border: none;
+}
+
+.deleteButton {
+  @extend .repeatButton;
+  background: url("../assets/icons/delete.png") no-repeat;
+  background-size: cover;
+}
+
+.editButton {
+  @extend .repeatButton;
+  background: url("../assets/icons/edit.png") no-repeat;
+  background-size: cover;
+}
+
+.checkoutButton {
+  @extend .repeatButton;
+  background: url("../assets/icons/checkout.png") no-repeat;
+  background-size: cover;
+}
+
+.contactButton {
+  @extend .repeatButton;
+  background: url("../assets/icons/phonebook.png") no-repeat;
+  background-size: cover;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+textarea {
+  height: 8rem;
+  &::placeholder {
+    font-family: "Inter", Helvetica, sans-serif;
+  }
+}
+
+section h1 {
+  @include page-header;
+  @include tablet {
+    @include tablet-page-header;
   }
 }

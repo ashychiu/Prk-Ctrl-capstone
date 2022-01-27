@@ -1,0 +1,49 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.login {
+  margin-top: 6rem;
+  margin-bottom: 5rem;
+  &__container {
+    @include flex-all-center;
+  }
+  &__card {
+    width: 80%;
+    margin-top: 2rem;
+    @include flex-all-center;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  &__form-container {
+    @include tablet {
+      padding: 1rem 2rem 5rem 2rem;
+    }
+    padding: 2rem 5rem 7rem 5rem;
+    @include flex-col;
+  }
+  &__logo {
+    width: 80%;
+    margin-top: 2rem;
+  }
+  &__input {
+    width: 100%;
+    font-size: 16px;
+    border: 0px;
+    color: $primary-light;
+    background-color: $primary-dark;
+    height: 2.375rem; //38px
+    border-radius: 5px;
+    margin: 0.2rem 0;
+    &::placeholder {
+      color: $primary-light;
+    }
+  }
+  &__signup {
+    font-size: 0.9em;
+    align-self: flex-end;
+    &-link {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

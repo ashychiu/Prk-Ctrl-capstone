@@ -3,12 +3,65 @@
 
 .homepage {
   width: 100%;
-  @include flex-column-center;
+  height: 100vh;
+  @include flex-col;
   background-color: $primary-dark;
+  @include tablet {
+    @include flex-row;
+  }
+  &__heading {
+    display: none;
+    @include tablet {
+      display: block;
+      color: $primary-light;
+      @include tablet-page-header;
+      margin-top: 5rem;
+    }
+  }
+  &__logo {
+    width: 90%;
+    margin-top: 2rem;
+    margin-left: 0.125rem;
+    @include tablet {
+      display: none;
+    }
+  }
   &__container {
+    @include flex-all-center;
     @include tablet {
       width: 100%;
       @include flex-row-center;
     }
+    @include desktop {
+      width: 50%;
+    }
+  }
+  &__login {
+    @extend .homepage__container;
+    background-color: $primary-dark;
+    @include tablet {
+      background-color: $primary-light;
+    }
+  }
+  &__image {
+    width: 100%;
+    @include tablet {
+      width: 100%;
+      animation: slide-up 8s ease 3s 3 normal forwards;
+    }
+    @include desktop {
+      width: 90%;
+    }
+  }
+}
+
+@keyframes slide-up {
+  from {
+    margin-top: 100%;
+    height: 300%;
+  }
+  to {
+    margin-top: 10%;
+    height: 100%;
   }
 }

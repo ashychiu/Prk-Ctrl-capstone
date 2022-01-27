@@ -1,0 +1,120 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.delete-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  &-header {
+    @include tablet {
+      position: relative;
+      top: 3rem;
+    }
+  }
+
+  &-content {
+    color: $primary-light;
+    background-color: $primary-dark;
+    height: 100%;
+    width: 100%;
+    @include tablet {
+      height: 16.375rem;
+      width: auto;
+      width: 42rem;
+      position: relative;
+    }
+  }
+  &__close {
+    position: absolute;
+    right: 1.3125rem;
+    top: 1.3125rem;
+  }
+
+  &__title {
+    @include page-header;
+    margin: 3.75rem 0 0 1rem;
+    @include tablet {
+      position: relative;
+      bottom: 3.5rem;
+      margin-top: 2.5rem;
+      margin-left: 4rem;
+    }
+  }
+
+  &__content {
+    margin-left: 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+
+    @include tablet {
+      margin-top: 0px;
+      width: 75%;
+      margin-left: 4rem;
+      position: relative;
+      bottom: 1.5rem;
+    }
+  }
+
+  &-footer {
+    position: absolute;
+    bottom: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include tablet {
+      position: relative;
+      width: 25%;
+      justify-content: flex-end;
+      top: 0.5rem;
+      left: 29rem;
+    }
+    &__delete {
+      @include body-copy;
+      color: $secondary-light;
+      background: $error;
+      border-radius: 20px;
+      width: 12.5rem;
+      height: 2.25rem;
+      border: none;
+      padding: 0 1rem;
+      margin-right: 1rem;
+      margin-left: 0.5rem;
+      @include tablet {
+        font-size: 1rem;
+      }
+      &:hover {
+        color: $secondary-dark;
+        background: $primary-cta;
+        cursor: pointer;
+      }
+    }
+
+    &__cancel {
+      @include body-copy;
+      color: $secondary-dark;
+      border: 1px solid $primary-dark;
+      border-radius: 20px;
+      width: 12.5rem;
+      height: 2.25rem;
+      padding: 0 1rem;
+      margin-left: 1rem;
+      margin-right: 0.5rem;
+      @include tablet {
+        font-size: 1rem;
+      }
+      &:hover {
+        color: $primary-dark;
+        background-color: $secondary-light;
+        cursor: pointer;
+      }
+    }
+  }
+}

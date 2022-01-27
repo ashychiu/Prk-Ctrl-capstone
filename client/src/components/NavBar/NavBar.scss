@@ -1,0 +1,87 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.navbar {
+  background-color: $primary-dark;
+  height: 5rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  &__logo {
+    width: 12.5rem;
+    margin-top: 2rem;
+    margin-left: -2rem;
+  }
+}
+
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.nav-menu {
+  background-color: $primary-dark;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+  @include tablet {
+    width: 18.75rem;
+    left: 0;
+  }
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0.5rem 0 0.5rem 1rem;
+  list-style: none;
+  height: 3.75rem;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: $primary-light;
+  font-size: 1.125rem;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 5px;
+}
+
+.nav-text a:hover {
+  color: $secondary-cta;
+  background-color: $secondary-dark;
+}
+
+.nav-menu-items {
+  width: 100%;
+}
+
+.navbar-toggle {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  background-color: $primary-dark;
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+li span {
+  margin-left: 1rem;
+}

@@ -1,0 +1,64 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.mybookings {
+  margin: 3rem 1rem;
+  @include tablet {
+    margin-left: 350px;
+  }
+  &__title {
+    @include page-header;
+    @include tablet {
+      @include tablet-page-header;
+    }
+  }
+  &__subheader {
+    @include subheader;
+    @include tablet {
+      @include tablet-subheader;
+    }
+  }
+  &__information {
+    background-color: $primary-light;
+    padding: 1rem 0;
+    border-top: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      position: relative;
+    }
+
+    @include desktop {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3.5rem;
+      position: relative;
+      &:hover {
+        background-color: $primary-light;
+      }
+    }
+  }
+  &__container {
+    @include desktop {
+      flex-basis: 20%;
+    }
+  }
+  &__actions {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+      padding: 0.5rem 0;
+    }
+    @include desktop {
+      flex-basis: 10%;
+    }
+  }
+}

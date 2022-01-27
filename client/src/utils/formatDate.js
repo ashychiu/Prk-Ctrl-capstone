@@ -1,10 +1,24 @@
-function formatDate(timestamp) {
+export function formatDate(timestamp) {
   let date = new Date(timestamp);
   let dd = String(date.getDate()).padStart(2, "0");
   let mm = String(date.getMonth() + 1).padStart(2, "0");
   let yyyy = date.getFullYear();
-  let formattedDate = mm + "/" + dd + "/" + yyyy;
+  let formattedDate = yyyy + "-" + mm + "-" + dd;
   return formattedDate;
 }
 
-export default formatDate;
+function sortTimeStamp(responseData) {
+  responseData.sort(function (x, y) {
+    return y.timestamp - x.timestamp;
+  });
+}
+
+export function sortUnitNumber(data) {
+  data.sort(function (x, y) {
+    return x.unitNumber - y.unitNumber;
+  });
+}
+
+export function isFuture(requestDate) {
+  if (Date.parse(requestDate) >= Date.now()) return true;
+}

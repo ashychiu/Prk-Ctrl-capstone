@@ -1,0 +1,17 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.logout {
+  width: 100%;
+  background-color: $primary-dark;
+}
+
+.logout-btn {
+  height: 2.375rem;
+  border: 0;
+  margin-top: 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: $primary-cta;
+  background-color: $primary-dark;
+}

@@ -1,0 +1,56 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.visitor {
+  @include flex-all-center;
+  width: 100%;
+  height: 100vh;
+  color: $primary-light;
+  background-color: $primary-dark;
+  @include tablet {
+    @include flex-row;
+  }
+  &__heading {
+    display: none;
+    @include tablet {
+      display: block;
+      color: $primary-light;
+      @include tablet-page-header;
+      margin-top: 3rem;
+    }
+  }
+  &__hero-image {
+    width: 100%;
+    @include tablet {
+      width: 80%;
+    }
+    @include desktop {
+      width: 90%;
+    }
+  }
+  &__container {
+    @include flex-all-center;
+    @include tablet {
+      width: 100%;
+      @include flex-row-center;
+    }
+    @include desktop {
+      width: 50%;
+    }
+  }
+  &__form {
+    margin: 1rem;
+  }
+  &__input {
+    width: 100%;
+    background-color: $primary-light;
+    &::placeholder {
+      color: $primary-dark;
+    }
+  }
+}
+
+.checkin-btn {
+  width: 100%;
+  margin-bottom: 3rem;
+}

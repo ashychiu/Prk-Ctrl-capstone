@@ -1,0 +1,28 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.dashboard {
+  &__greeting {
+    color: $primary-light;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding-right: 2rem;
+  }
+}
+
+// $sidebar-bg-color: $primary-dark;
+// $sidebar-color: $primary-light;
+// $sidebar-width: 200px;
+// $sidebar-collapsed-width: 80px;
+// $highlight-color: $secondary-cta;
+// $submenu-bg-color: $primary-dark;
+// $submenu-bg-color-collapsed: $primary-cta;
+// $icon-bg-color: $primary-dark;
+// $icon-size: 35px;
+// $breakpoint-xs: 320px;
+// $breakpoint-sm: 480px;
+// $breakpoint-md: 768px;
+// $breakpoint-lg: 992px;
+// $breakpoint-xl: 1280px;
+// // @import "~react-pro-sidebar/dist/scss/styles.scss";

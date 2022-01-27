@@ -3,10 +3,8 @@ const userRouter = express.Router();
 const { v4: uuid } = require("uuid");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
-const cookieParser = require("cookie-parser");
 const { createTokens, validateToken } = require("../JWT");
-
-userRouter.use(cookieParser());
+const { sendWelcomeMail } = require("../email");
 
 const readFile = () => {
   const userData = fs.readFileSync("./data/users.json");
@@ -17,15 +15,17 @@ const writeFile = (userData) => {
   fs.writeFileSync("./data/users.json", JSON.stringify(userData, null, 2));
 };
 
-let userList = readFile();
+const userList = readFile();
 
 // get all users
 userRouter.get("/", (req, res) => {
+  const userList = readFile();
   return res.status(200).json(userList);
 });
 
 // get single user by id
 const getUser = (id) => {
+  const userList = readFile();
   const foundUser = userList.find((user) => {
     return id === user.id;
   });
@@ -44,6 +44,7 @@ userRouter.get("/profile/:id", (req, res) => {
 
 //Sign up new user
 userRouter.post("/signup", (req, res) => {
+  const userList = readFile();
   const { firstName, lastName, email, unitNumber, status, phone, password } =
     req.body;
   const duplicateEmail = userList.find((user) => user.email === email);
@@ -52,38 +53,55 @@ userRouter.post("/signup", (req, res) => {
       .status(400)
       .send("Email is already registered, please login instead.");
   }
+  const duplicateUnit = userList.find(
+    (user) => user.unitNumber.toString() === unitNumber
+  );
+  if (duplicateUnit) {
+    return res
+      .status(400)
+      .send(
+        "Each unit can only have one account, please contact Building Manager if you're a new resident."
+      );
+  }
 
   if (!email || !firstName || !lastName || !unitNumber || !password) {
-    return res.status(400).send("Starred fields are required");
+    return res.status(400).send("Please fill out all the required fields.");
   }
   if (phone.length < 10) {
     return res
       .status(400)
-      .send("Please input a valid North American phone number");
+      .send("Please provide a valid North American phone number");
   }
   if (!email.includes("@") || !email.includes(".")) {
-    return res.status(400).send("Please input a valid email");
+    return res.status(400).send("Please provide a valid email");
+  } else {
+    bcrypt.hash(password, 10).then((hash) => {
+      const newUser = {
+        id: uuid(),
+        firstName,
+        lastName,
+        unitNumber,
+        phone,
+        email,
+        status,
+        password: hash,
+      };
+      userList.push(newUser);
+      sendWelcomeMail(newUser);
+      //Send welcome email after successful registration
+      writeFile(userList);
+      res.status(201).json(userList);
+    });
   }
-  bcrypt.hash(password, 10).then((hash) => {
-    const newUser = {
-      id: uuid(),
-      firstName,
-      lastName,
-      unitNumber,
-      phone,
-      email,
-      status,
-      password: hash,
-    };
-    userList.push(newUser);
-    writeFile(userList);
-    return res.status(201).json(userList);
-  });
 });
 
 //User login
 userRouter.post("/login", async (req, res) => {
+  const userList = readFile();
   const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).send("Both email & password are required!");
+  }
   const foundUser = await userList.find((user) => user.email === email);
   if (!foundUser) {
     return res.status(404).send("User does not exist, please sign up first.");
@@ -91,27 +109,24 @@ userRouter.post("/login", async (req, res) => {
   const passwordOnFile = foundUser.password;
   bcrypt.compare(password, passwordOnFile).then((match) => {
     if (!match) {
-      res.status(400).send("Incorrect password!");
+      res.status(401).send("Incorrect password!");
     } else {
       const accessToken = createTokens(foundUser); //Call the function created on JWT.js
-      res.cookie("accessToken", accessToken, {
-        maxAge: 2629800000, //one month in milliseconds
-        httpOnly: true, //only accessible by http
-      });
-      res.status(200).json(foundUser);
+      res.status(200).json({ accessToken });
     }
   });
 });
 
 //Get user profile
 userRouter.get("/profile", validateToken, (req, res) => {
-  res.json("profile");
+  res.json(req.decoded);
 });
 
 //Update single user by id
-userRouter.put("/:id", (req, res) => {
-  const { id } = req.params;
-  const { firstName, lastName, email, unitNumber, status, phone } = req.body;
+userRouter.put("profile/:id", (req, res) => {
+  const userList = readFile();
+  const { id, firstName, lastName, email, unitNumber, status, phone } =
+    req.body;
   const foundUser = userList.find((user) => user.id === id);
 
   if (!foundUser) {
@@ -123,7 +138,7 @@ userRouter.put("/:id", (req, res) => {
   }
 
   const updatedUser = {
-    id: foundUser.id,
+    id,
     firstName,
     lastName,
     unitNumber,
@@ -147,7 +162,8 @@ userRouter.put("/:id", (req, res) => {
 
 //Delete single user by id
 userRouter.delete("/:userId", (req, res) => {
-  let { id } = req.params;
+  const userList = readFile();
+  let { id } = req.body;
   const userFound = getUser(id);
 
   if (!userFound) {
