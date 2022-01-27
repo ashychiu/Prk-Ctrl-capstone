@@ -23,6 +23,7 @@ const MyBookings = (props) => {
   }, [JSON.stringify(myBookings)]);
 
   const fetchMyBookings = () => {
+    console.log("fetching my bookings");
     const userId = props.userId;
     axios
       .get(`${API_URL}/bookings`)
