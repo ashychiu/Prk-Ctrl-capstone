@@ -23,7 +23,6 @@
     width: 100%;
     @include tablet {
       width: 80%;
-      // height: 50vh;
     }
     @include desktop {
       width: 90%;
@@ -39,9 +38,6 @@
       width: 50%;
     }
   }
-  &__greeting {
-    margin-left: 1rem;
-  }
   &__form {
     margin: 1rem;
   }
@@ -51,16 +47,10 @@
     &::placeholder {
       color: $primary-dark;
     }
-    @include tablet {
-      // width: 55%;
-    }
   }
 }
 
 .checkin-btn {
   width: 100%;
   margin-bottom: 3rem;
-  @include tablet {
-    width: 55%;
-  }
 }

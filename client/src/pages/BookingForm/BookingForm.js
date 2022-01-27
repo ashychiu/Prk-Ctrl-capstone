@@ -48,7 +48,6 @@ function BookingForm(props) {
 
   const onCloseHandler = () => {
     setShowModal(false);
-    // window.location.reload();
   };
 
   return (

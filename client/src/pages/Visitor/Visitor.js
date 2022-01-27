@@ -81,13 +81,12 @@ function Visitor() {
   return (
     <main className="visitor">
       <div className="visitor__container">
-        <h1 className="homepage__heading">Visitor</h1>
         <img
           className="visitor__hero-image"
           src={checkedIn ? checkoutImage : checkinImage}
           alt="Prk Ctrl QR Code"
         />
-        <div className={checkedIn ? "hide" : "show"}>
+        <div className={checkedIn ? "hide" : "show visitor__container"}>
           <h2 className="visitor__greeting">{greeting}</h2>
 
           <form onSubmit={checkin} className="visitor__form">
@@ -106,8 +105,8 @@ function Visitor() {
           </form>
         </div>
 
-        <div className={checkedIn ? "show" : "hide"}>
-          <h2>{greeting}</h2>
+        <div className={checkedIn ? "show visitor__container" : "hide"}>
+          <h2 className="visitor__greeting">{greeting}</h2>
           <form onSubmit={checkout} className="visitor__form">
             <input
               type="text"

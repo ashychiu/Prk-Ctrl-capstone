@@ -16,16 +16,13 @@ const writeFile = (bookingData) => {
   );
 };
 
-let bookingList = readFile();
-
 const readUserFile = () => {
   const userData = fs.readFileSync("./data/users.json");
   return JSON.parse(userData);
 };
 
-let userList = readUserFile();
-
 const getUser = (unitNumber) => {
+  const userList = readUserFile();
   const foundUser = userList.find((user) => {
     return unitNumber === user.unitNumber.toString();
   });
@@ -35,11 +32,13 @@ const getUser = (unitNumber) => {
 
 // get all bookings
 bookingRouter.get("/", (req, res) => {
+  const bookingList = readFile();
   return res.status(200).json(bookingList);
 });
 
 // Find single booking by id
 const getBooking = (id) => {
+  const bookingList = readFile();
   const foundBooking = bookingList.find((booking) => {
     return id === booking.id;
   });
@@ -92,6 +91,7 @@ bookingRouter.post("/add", (req, res) => {
 
 //Update single Booking by id
 bookingRouter.put("/:id", (req, res) => {
+  const bookingList = readFile();
   const { id } = req.params;
   const { requestDate, userID, carPlate, remarks } = req.body;
   const foundBooking = bookingList.find((booking) => booking.id === id);
@@ -132,7 +132,7 @@ bookingRouter.patch("/checkin", (req, res) => {
   if (!carPlate) {
     return res.status(400).send("Please provide a valid license plate");
   }
-
+  let bookingList = readFile();
   const foundBooking = bookingList.find(
     (booking) =>
       // Date.now() - Date.parse(booking.requestDate) <= 86400000 &&
@@ -155,7 +155,7 @@ bookingRouter.patch("/checkin", (req, res) => {
     if (Booking.id === foundBooking.id) {
       return updatedBooking;
     } else {
-      return Booking;
+      return foundBooking;
     }
   });
 
@@ -166,6 +166,7 @@ bookingRouter.patch("/checkin", (req, res) => {
 //Checkout a vehicle by patching single Booking by id
 bookingRouter.patch("/checkout", (req, res) => {
   const { id, carPlate } = req.body;
+  const bookingList = readFile();
   const foundBooking = bookingList.find((booking) => id === booking.id);
 
   if (!carPlate) {
@@ -206,6 +207,7 @@ bookingRouter.delete("/:id", (req, res) => {
     return res.status(404).send("Booking not found!");
   }
 
+  const bookingList = readFile();
   updatedList = bookingList.filter((booking) => booking.id !== foundBooking.id);
   writeFile(updatedList);
   return res.status(200).send("Booking deleted successfully");

@@ -19,11 +19,13 @@ const userList = readFile();
 
 // get all users
 userRouter.get("/", (req, res) => {
+  const userList = readFile();
   return res.status(200).json(userList);
 });
 
 // get single user by id
 const getUser = (id) => {
+  const userList = readFile();
   const foundUser = userList.find((user) => {
     return id === user.id;
   });
@@ -42,6 +44,7 @@ userRouter.get("/profile/:id", (req, res) => {
 
 //Sign up new user
 userRouter.post("/signup", (req, res) => {
+  const userList = readFile();
   const { firstName, lastName, email, unitNumber, status, phone, password } =
     req.body;
   const duplicateEmail = userList.find((user) => user.email === email);
@@ -84,9 +87,9 @@ userRouter.post("/signup", (req, res) => {
         password: hash,
       };
       userList.push(newUser);
-      writeFile(userList);
       sendWelcomeMail(newUser);
       //Send welcome email after successful registration
+      writeFile(userList);
       res.status(201).json(userList);
     });
   }
@@ -94,6 +97,7 @@ userRouter.post("/signup", (req, res) => {
 
 //User login
 userRouter.post("/login", async (req, res) => {
+  const userList = readFile();
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).send("Both email & password are required!");
@@ -120,8 +124,7 @@ userRouter.get("/profile", validateToken, (req, res) => {
 
 //Update single user by id
 userRouter.put("profile/:id", (req, res) => {
-  // const { id } = req.params;
-
+  const userList = readFile();
   const { id, firstName, lastName, email, unitNumber, status, phone } =
     req.body;
   const foundUser = userList.find((user) => user.id === id);
@@ -159,7 +162,8 @@ userRouter.put("profile/:id", (req, res) => {
 
 //Delete single user by id
 userRouter.delete("/:userId", (req, res) => {
-  let { id } = req.params;
+  const userList = readFile();
+  let { id } = req.body;
   const userFound = getUser(id);
 
   if (!userFound) {

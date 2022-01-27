@@ -16,9 +16,6 @@ const adminRouter = require("./routes/admin");
 
 app.use(express.json());
 
-//for serving static files
-// app.use(express.static("public"));
-
 //express router
 app.use("/users", userRouter);
 app.use("/bookings", bookingRouter);
