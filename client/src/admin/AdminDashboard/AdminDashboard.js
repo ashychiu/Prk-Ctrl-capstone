@@ -41,21 +41,13 @@ const AdminDashboard = () => {
       <Switch>
         <Route path="/admin/whoishere" exact component={WhoIsHere} />
         <Route path="/admin/bookings" component={AllBookings} />
-        <Route
-          path="/admin/users"
-          exact
-          render={(routerProps) => (
-            <AllUsers {...routerProps} userList={userList} />
-          )}
-        />
+        <Route path="/admin/users">
+          <AllUsers userList={userList} />
+        </Route>
         <Route path="/admin/support" component={AdminSupport} />
-        <Route
-          path="/logout"
-          exact
-          render={(routerProps) => (
-            <LogoutButton {...routerProps} logout={true} />
-          )}
-        />
+        <Route path="/logout">
+          <LogoutButton logout={true} />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

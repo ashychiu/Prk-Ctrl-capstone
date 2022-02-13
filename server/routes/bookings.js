@@ -148,7 +148,7 @@ bookingRouter.patch("/checkin", (req, res) => {
   }
   const foundBooking = bookingList.find(
     (booking) =>
-      Date.now() - Date.parse(booking.requestDate) <= 86400000 &&
+      // Date.now() - Date.parse(booking.requestDate) <= 86400000 &&
       booking.carPlate === carPlate
   );
   if (!foundBooking) {

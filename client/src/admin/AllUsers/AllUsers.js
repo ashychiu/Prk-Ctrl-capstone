@@ -1,22 +1,110 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AllUsers.scss";
 
 const AllUsers = (props) => {
   const [showUsers, setShowUsers] = useState(10);
+  const [query, setQuery] = useState("");
+  const [filteredList, setFilteredList] = useState([]);
+  const [sortType, setSortType] = useState("unitNumber");
+  const [sortedList, setSortedList] = useState([]);
 
-  if (!props.userList) {
-    return <p>Loading...</p>;
-  }
+  let { userList } = props;
 
   const handleClick = () => {
     setShowUsers((prevShowUsers) => prevShowUsers + 10);
   };
 
-  const sortedList = props.userList.sort((a, b) => a.unitNumber - b.unitNumber);
-  console.log("sorted list: ");
+  useEffect(() => {
+    const filterUserList = (query) => {
+      const searchTerm = query.toLowerCase();
+      const filtered = [...userList].filter((user) => {
+        if (!query) {
+          return null;
+        } else if (
+          user.firstName.toLowerCase().includes(searchTerm) ||
+          user.lastName.toLowerCase().includes(searchTerm) ||
+          user.email.toLowerCase().includes(searchTerm) ||
+          user.unitNumber.toString().includes(searchTerm) ||
+          user.phone.toString().includes(searchTerm)
+        ) {
+          return user;
+        }
+      });
+      setFilteredList(filtered);
+    };
+    filterUserList(query);
+  }, [query]);
+
+  useEffect(() => {
+    const sortUserList = (sortType) => {
+      if (sortType === "firstname") {
+        const sorted = [...userList].sort((a, b) =>
+          a.firstName.localeCompare(b.firstName)
+        );
+        setSortedList(sorted);
+      }
+      if (sortType === "unitnumber") {
+        const sorted = [...userList].sort((a, b) =>
+          a.unitNumber.localeCompare(b.unitNumber)
+        );
+        setSortedList(sorted);
+      }
+      if (sortType === "email") {
+        const sorted = [...userList].sort((a, b) =>
+          a.email.localeCompare(b.email)
+        );
+        setSortedList(sorted);
+      }
+    };
+    sortUserList(sortType);
+  }, [sortType]);
+
+  // if (sortedList) userList = sortedList;
+  // useEffect(() => {
+  //   const sortUserList = (sortType) => {
+  //     if (sortType === "firstname") {
+  //       userList.sort((a, b) => a.firstName.localeCompare(b.lastName));
+  //     } else if (sortType === "email") {
+  //       userList.sort((a, b) => a.email.localeCompare(b.email));
+  //     } else {
+  //       userList.sort((a, b) => a.unitNumber.localeCompare(b.unitNumber));
+  //     }
+  //     setSortedList(userList);
+  //     console.log(sortedList);
+  //   };
+  //   sortUserList(sortType);
+  // }, [sortType]);
+
+  if (!props.userList) {
+    return <p>Loading...</p>;
+  }
+
+  const listToRender = query ? filteredList : userList || sortedList;
   return (
     <section className="all-users">
       <h1>All Users</h1>
+      <div>
+        <input
+          className="input"
+          placeholder="Search"
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        <h4>Sort by</h4>
+        <select
+          onChange={(e) => setSortType(e.target.value)}
+          className="select"
+        >
+          <option value="unitnumber" defaultValue="selected">
+            Unit Number
+          </option>
+          <option value="firstname">First Name</option>
+          <option value="email">Email</option>
+        </select>
+      </div>
       <div className="all-users__information desktop">
         <div className="all-users__container">
           <h4 className="all-users__heading">Full Name</h4>
@@ -37,42 +125,42 @@ const AllUsers = (props) => {
           <h4 className="all-users__heading hidden">Action Function</h4>
         </div>
       </div>
-      {sortedList.slice(0, showUsers).map((user, i) => {
+      {listToRender.slice(0, showUsers).map((user, i) => {
         return (
-          <div key={sortedList[i].id} className="all-users__information">
+          <div key={listToRender[i].id} className="all-users__information">
             <div className="all-users__container">
               <h4 className="all-users__subheader">Full Name</h4>
               <p>
-                {sortedList[i].firstName} {sortedList[i].lastName}
+                {listToRender[i].firstName} {listToRender[i].lastName}
               </p>
             </div>
             <div className="all-users__container">
               <h4 className="all-users__subheader">Unit Number</h4>
-              <p>{sortedList[i].unitNumber}</p>
+              <p>{listToRender[i].unitNumber}</p>
             </div>
             <div className="all-users__container">
               <h4 className="all-users__subheader">Contact Number</h4>
-              <p>{sortedList[i].phone}</p>
+              <p>{listToRender[i].phone}</p>
             </div>
             <div className="all-users__container">
               <h4 className="all-users__subheader">Email</h4>
-              <p>{sortedList[i].email}</p>
+              <p>{listToRender[i].email}</p>
             </div>
             <div className="all-users__container">
               <h4 className="all-users__subheader">Status</h4>
-              <p>{sortedList[i].status}</p>
+              <p>{listToRender[i].status}</p>
             </div>
             <div className="all-users__actions">
               <button
                 className="editButton"
-                name={sortedList[i].carPlate}
-                id={sortedList[i].id}
-                value={sortedList[i].requestDate}
+                name={listToRender[i].carPlate}
+                id={listToRender[i].id}
+                value={listToRender[i].requestDate}
               ></button>
               <button
                 className="deleteButton"
-                name={sortedList[i].carPlate}
-                id={sortedList[i].id}
+                name={listToRender[i].carPlate}
+                id={listToRender[i].id}
               ></button>
             </div>
           </div>
@@ -81,9 +169,9 @@ const AllUsers = (props) => {
       <button
         onClick={handleClick}
         className={
-          sortedList.length > showUsers
+          listToRender.length > showUsers
             ? "show btn primary-btn"
-            : "hide" || sortedList.length === showUsers
+            : "hide" || listToRender.length === showUsers
             ? "hide"
             : null
         }

@@ -8,6 +8,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 const AllBookings = () => {
   const [bookingList, setBookingList] = useState([]);
   const [showBookings, setShowBookings] = useState(10);
+  const [query, setQuery] = useState("");
+  const [filteredList, setFilteredList] = useState([]);
 
   const fetchAllBookings = () => {
     axios
@@ -36,13 +38,48 @@ const AllBookings = () => {
       .catch((err) => console.log("error!", err));
   };
 
+  useEffect(() => {
+    const filterBookingList = (query) => {
+      const searchTerm = query.toLowerCase();
+      const filtered = [...bookingList].filter((booking) => {
+        if (!query) {
+          return null;
+        } else if (
+          // console.log(bookingList[1])
+          booking.carPlate.toLowerCase().includes(searchTerm) ||
+          booking.unitNumber == searchTerm
+          // user.lastName.toLowerCase().includes(searchTerm) ||
+          // user.email.toLowerCase().includes(searchTerm) ||
+          // booking.unitNumber.toString().includes(searchTerm)
+          // user.phone.toString().includes(searchTerm)
+        ) {
+          return booking;
+        }
+      });
+      setFilteredList(filtered);
+      console.log(filtered);
+    };
+    filterBookingList(query);
+  }, [query]);
+
   const sortedList = bookingList.sort(
     (a, b) => Date.parse(b.submitDate) - Date.parse(a.submitDate)
   );
+  const listToRender = query ? filteredList : bookingList || sortedList;
 
   return (
     <section className="all-bookings">
       <h1 className="all-bookings__title">All Bookings</h1>
+      <div>
+        Search
+        <input
+          className="input"
+          placeholder="License Plate / Unit Number"
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
+        />
+      </div>
       <div className="all-bookings__information desktop">
         <div className="all-bookings__container">
           <h4 className="all-bookings__heading">Submit Date</h4>
@@ -69,35 +106,35 @@ const AllBookings = () => {
           <h4 className="all-bookings__heading hidden">Action Function</h4>
         </div>
       </div>
-      {sortedList.slice(0, showBookings).map((user, i) => {
+      {listToRender.slice(0, showBookings).map((user, i) => {
         return (
-          <div key={sortedList[i].id} className="all-bookings__information">
+          <div key={listToRender[i].id} className="all-bookings__information">
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Submit Date</h4>
-              <p>{sortedList[i].submitDate.substr(0, 10)}</p>
+              <p>{listToRender[i].submitDate.substr(0, 10)}</p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Licence Plate</h4>
-              <p>{sortedList[i].carPlate}</p>
+              <p>{listToRender[i].carPlate}</p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Visit Date</h4>
-              <p>{sortedList[i].requestDate}</p>
+              <p>{listToRender[i].requestDate}</p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Unit Number</h4>
-              <p>{sortedList[i].unitNumber}</p>
+              <p>{listToRender[i].unitNumber}</p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Remarks</h4>
-              <p>{sortedList[i].remarks ? sortedList[i].remarks : "-"}</p>
+              <p>{listToRender[i].remarks ? listToRender[i].remarks : "-"}</p>
             </div>
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Checkin Time</h4>
               <p>
-                {sortedList[i].checkin ? (
+                {listToRender[i].checkin ? (
                   <Moment parse="YYYY-MM-DD HH:mm">
-                    {sortedList[i].checkin}
+                    {listToRender[i].checkin}
                   </Moment>
                 ) : (
                   "-"
@@ -107,9 +144,9 @@ const AllBookings = () => {
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Checkout Time</h4>
               <p>
-                {sortedList[i].checkout ? (
+                {listToRender[i].checkout ? (
                   <Moment parse="YYYY-MM-DD HH:mm">
-                    {sortedList[i].checkout}
+                    {listToRender[i].checkout}
                   </Moment>
                 ) : (
                   "-"
@@ -119,15 +156,15 @@ const AllBookings = () => {
             <div className="all-bookings__actions">
               <button
                 className="editButton"
-                name={sortedList[i].carPlate}
-                id={sortedList[i].id}
-                value={sortedList[i].requestDate}
+                name={listToRender[i].carPlate}
+                id={listToRender[i].id}
+                value={listToRender[i].requestDate}
                 // onClick={onEditHandler}
               ></button>
               <button
                 className="deleteButton"
-                name={sortedList[i].carPlate}
-                id={sortedList[i].id}
+                name={listToRender[i].carPlate}
+                id={listToRender[i].id}
                 onClick={onDeleteHandler}
               ></button>
             </div>
@@ -137,9 +174,9 @@ const AllBookings = () => {
       <button
         onClick={handleClick}
         className={
-          sortedList.length > showBookings
+          listToRender.length > showBookings
             ? "show btn primary-btn"
-            : "hide" || sortedList.length === showBookings
+            : "hide" || listToRender.length === showBookings
             ? "hide"
             : null
         }
