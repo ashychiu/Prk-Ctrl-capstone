@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
 import "./Support.scss";
-
-const API_URL = process.env.REACT_APP_API_URL;
 
 const Support = (props) => {
   //This is a dummy page, no submit functionality

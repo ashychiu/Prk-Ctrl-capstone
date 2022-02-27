@@ -11,7 +11,7 @@ const ContactModal = (props) => {
   };
   useEffect(() => {
     fetchUser();
-  }, [JSON.stringify(userID)]);
+  }, [userID]);
 
   if (!props.show) {
     return null;

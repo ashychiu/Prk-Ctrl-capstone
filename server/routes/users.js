@@ -4,7 +4,7 @@ const { v4: uuid } = require("uuid");
 const fs = require("fs");
 const bcrypt = require("bcrypt");
 const { createTokens, validateToken } = require("../JWT");
-const { sendWelcomeMail } = require("../email");
+// const { sendWelcomeMail } = require("../email");
 
 const readFile = () => {
   const userData = fs.readFileSync("./data/users.json");
@@ -87,7 +87,7 @@ userRouter.post("/signup", (req, res) => {
         password: hash,
       };
       userList.push(newUser);
-      sendWelcomeMail(newUser);
+      // sendWelcomeMail(newUser);
       //Send welcome email after successful registration
       writeFile(userList);
       res.status(201).json(userList);

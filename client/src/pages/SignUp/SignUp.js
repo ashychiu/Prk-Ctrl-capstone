@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
-import closeButton from "../../assets/icons/closeButton.svg";
 import "./SignUp.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -10,7 +8,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 const SignUp = () => {
   const [error, setError] = useState("");
   const [recaptcha, setRecaptcha] = useState(false);
-  const history = useHistory();
 
   function onRecaptchaChange(value) {
     setRecaptcha(true);

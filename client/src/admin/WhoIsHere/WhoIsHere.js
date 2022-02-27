@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 import Moment from "react-moment";
-import "moment-timezone";
 import ContactModal from "../../components/ContactModal/ContactModal";
 import "./WhoIsHere.scss";
 
