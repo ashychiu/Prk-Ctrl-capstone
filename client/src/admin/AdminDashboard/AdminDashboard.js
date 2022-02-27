@@ -13,7 +13,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 const AdminDashboard = () => {
   const [user, setUser] = useState("");
-  const [userList, setUserList] = useState("");
+  const [userList, setUserList] = useState([]);
+  const [bookingList, setBookingList] = useState([]);
   const token = localStorage.getItem("token");
   useEffect(() => {
     axios
@@ -32,6 +33,12 @@ const AdminDashboard = () => {
         setUserList(response.data);
       })
       .catch((err) => console.log(err));
+    axios
+      .get(`${API_URL}/bookings`)
+      .then((response) => {
+        setBookingList(response.data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -40,7 +47,9 @@ const AdminDashboard = () => {
       <h2 className="dashboard__greeting">Hello! Admin</h2>
       <Switch>
         <Route path="/admin/whoishere" exact component={WhoIsHere} />
-        <Route path="/admin/bookings" component={AllBookings} />
+        <Route path="/admin/bookings">
+          <AllBookings bookingList={bookingList} />
+        </Route>
         <Route path="/admin/users">
           <AllUsers userList={userList} />
         </Route>

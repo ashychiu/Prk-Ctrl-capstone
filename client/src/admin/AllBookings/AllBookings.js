@@ -5,8 +5,8 @@ import "./AllBookings.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const AllBookings = () => {
-  const [bookingList, setBookingList] = useState([]);
+const AllBookings = (props) => {
+  const [bookingList, setBookingList] = useState(props.bookingList);
   const [showBookings, setShowBookings] = useState(10);
   const [query, setQuery] = useState("");
   const [filteredList, setFilteredList] = useState([]);
@@ -21,6 +21,7 @@ const AllBookings = () => {
       })
       .catch((err) => console.log(err));
   };
+
   useEffect(() => {
     fetchAllBookings();
   }, []);
@@ -65,7 +66,8 @@ const AllBookings = () => {
           (a, b) => Date.parse(b.requestDate) - Date.parse(a.requestDate)
         );
         setSortedList(sorted);
-      } else {
+      }
+      if (sortType === "submitDate") {
         const sorted = [...bookingList].sort(
           (a, b) => Date.parse(b.submitDate) - Date.parse(a.submitDate)
         );
