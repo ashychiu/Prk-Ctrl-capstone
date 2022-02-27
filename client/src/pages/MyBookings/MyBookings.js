@@ -4,11 +4,13 @@ import BookingModal from "../../components/BookingModal/BookingModal";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./MyBookings.scss";
 import Moment from "react-moment";
+import BookingSuccessModal from "../../components/BookingSuccessModal/BookingSuccessModal";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const MyBookings = (props) => {
   const [myBookings, setMyBookings] = useState([]);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showRebookModal, setShowRebookModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -169,6 +171,15 @@ const MyBookings = (props) => {
         Load More
       </button>
 
+      <BookingSuccessModal
+        show={showSuccessModal}
+        onCloseHandler={onCloseHandler}
+        // bookingId={bookingId}
+        // carPlate={carPlate}
+        // unitNumber={unitNumber}
+        // requestDate={requestDate}
+        // fetchMyBookings={fetchMyBookings}
+      />
       <BookingModal
         show={showRebookModal || showEditModal}
         onCloseHandler={onCloseHandler}
