@@ -2,7 +2,7 @@ const express = require("express");
 const bookingRouter = express.Router();
 const { v4: uuid } = require("uuid");
 const fs = require("fs");
-const { sendConfirmMail } = require("../email");
+// const { sendConfirmMail } = require("../email");
 
 const readFile = () => {
   const bookingData = fs.readFileSync("./data/bookings.json");
@@ -84,7 +84,7 @@ bookingRouter.post("/add", (req, res) => {
 
     bookingList.push(newBooking);
     //Send welcome email after successful registration
-    sendConfirmMail(newBooking, foundUser);
+    // sendConfirmMail(newBooking, foundUser);
     writeFile(bookingList);
     res.status(201).json(newBooking);
   }

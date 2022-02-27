@@ -37,15 +37,15 @@ const AllUsers = (props) => {
 
   useEffect(() => {
     const sortUserList = (sortType) => {
-      if (sortType === "firstname") {
+      if (sortType === "lastName") {
         const sorted = [...userList].sort((a, b) =>
-          a.firstName.localeCompare(b.firstName)
+          a.lastName.localeCompare(b.lastName)
         );
         setSortedList(sorted);
       }
-      if (sortType === "unitnumber") {
-        const sorted = [...userList].sort((a, b) =>
-          a.unitNumber.localeCompare(b.unitNumber)
+      if (sortType === "unitNumber") {
+        const sorted = [...userList].sort(
+          (a, b) => a.unitNumber - b.unitNumber
         );
         setSortedList(sorted);
       }
@@ -55,55 +55,63 @@ const AllUsers = (props) => {
         );
         setSortedList(sorted);
       }
+      if (sortType === "firstName") {
+        const sorted = [...userList].sort((a, b) =>
+          a.firstName.localeCompare(b.firstName)
+        );
+        setSortedList(sorted);
+      }
     };
     sortUserList(sortType);
   }, [sortType]);
 
-  // if (sortedList) userList = sortedList;
   // useEffect(() => {
-  //   const sortUserList = (sortType) => {
-  //     if (sortType === "firstname") {
-  //       userList.sort((a, b) => a.firstName.localeCompare(b.lastName));
-  //     } else if (sortType === "email") {
-  //       userList.sort((a, b) => a.email.localeCompare(b.email));
-  //     } else {
-  //       userList.sort((a, b) => a.unitNumber.localeCompare(b.unitNumber));
-  //     }
-  //     setSortedList(userList);
-  //     console.log(sortedList);
-  //   };
   //   sortUserList(sortType);
   // }, [sortType]);
+
+  // const sortUserList = (sortType) => {
+  //   if (sortType === "unitNumber") {
+  //     userList.sort((a, b) => a.unitNumber - b.unitNumber);
+
+  //     // } else if (sortType === "email") {
+  //     //   userList.sort((a, b) => a.email.localeCompare(b.email));
+  //   } else {
+  //     userList.sort((a, b) => a.lastName.localeCompare(b.lastName));
+  //   }
+  //   setSortedList(userList);
+  // };
 
   if (!props.userList) {
     return <p>Loading...</p>;
   }
 
-  const listToRender = query ? filteredList : userList || sortedList;
+  const listToRender = query ? filteredList : sortedList;
+  // const listToRender = sortedList;
   return (
     <section className="all-users">
       <h1>All Users</h1>
-      <div>
-        <input
-          className="input"
-          placeholder="Search"
-          onChange={(e) => {
-            setQuery(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <h4>Sort by</h4>
-        <select
-          onChange={(e) => setSortType(e.target.value)}
-          className="select"
-        >
-          <option value="unitnumber" defaultValue="selected">
-            Unit Number
-          </option>
-          <option value="firstname">First Name</option>
-          <option value="email">Email</option>
-        </select>
+      <div className="all-users__sorting">
+        <div>
+          <h4>Search</h4>
+          <input
+            placeholder="Search"
+            onChange={(e) => {
+              setQuery(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <h4>Sort by</h4>
+          <select onChange={(e) => setSortType(e.target.value)}>
+            <option value="none" selected="selected" disabled hidden>
+              Sort by
+            </option>
+            <option value="unitNumber">Unit Number</option>
+            <option value="firstName">First Name</option>
+            <option value="lastName">Last Name</option>
+            <option value="email">Email</option>
+          </select>
+        </div>
       </div>
       <div className="all-users__information desktop">
         <div className="all-users__container">

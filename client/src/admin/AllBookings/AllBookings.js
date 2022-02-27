@@ -10,6 +10,8 @@ const AllBookings = () => {
   const [showBookings, setShowBookings] = useState(10);
   const [query, setQuery] = useState("");
   const [filteredList, setFilteredList] = useState([]);
+  const [sortType, setSortType] = useState("submitDate");
+  const [sortedList, setSortedList] = useState([]);
 
   const fetchAllBookings = () => {
     axios
@@ -45,40 +47,64 @@ const AllBookings = () => {
         if (!query) {
           return null;
         } else if (
-          // console.log(bookingList[1])
           booking.carPlate.toLowerCase().includes(searchTerm) ||
           booking.unitNumber == searchTerm
-          // user.lastName.toLowerCase().includes(searchTerm) ||
-          // user.email.toLowerCase().includes(searchTerm) ||
-          // booking.unitNumber.toString().includes(searchTerm)
-          // user.phone.toString().includes(searchTerm)
         ) {
           return booking;
         }
       });
       setFilteredList(filtered);
-      console.log(filtered);
     };
     filterBookingList(query);
   }, [query]);
 
-  const sortedList = bookingList.sort(
-    (a, b) => Date.parse(b.submitDate) - Date.parse(a.submitDate)
-  );
-  const listToRender = query ? filteredList : bookingList || sortedList;
+  useEffect(() => {
+    const sortBookingList = (sortType) => {
+      if (sortType === "visitDate") {
+        const sorted = [...bookingList].sort(
+          (a, b) => Date.parse(b.requestDate) - Date.parse(a.requestDate)
+        );
+        setSortedList(sorted);
+      } else {
+        const sorted = [...bookingList].sort(
+          (a, b) => Date.parse(b.submitDate) - Date.parse(a.submitDate)
+        );
+        setSortedList(sorted);
+      }
+    };
+    sortBookingList(sortType);
+  }, [sortType]);
+
+  // const sortedList = bookingList.sort(
+  //   (a, b) => Date.parse(b.submitDate) - Date.parse(a.submitDate)
+  // );
+
+  const listToRender = query ? filteredList : sortedList;
 
   return (
     <section className="all-bookings">
       <h1 className="all-bookings__title">All Bookings</h1>
-      <div>
-        Search
-        <input
-          className="input"
-          placeholder="License Plate / Unit Number"
-          onChange={(e) => {
-            setQuery(e.target.value);
-          }}
-        />
+      <div className="all-bookings__searchbar">
+        <div>
+          <h4>Search</h4>
+          <input
+            className="input"
+            placeholder="License Plate / Unit Number"
+            onChange={(e) => {
+              setQuery(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <h4>Sort by</h4>
+          <select onChange={(e) => setSortType(e.target.value)}>
+            <option value="none" selected="selected" disabled hidden>
+              Sort by
+            </option>
+            <option value="submitDate">Submit Date</option>
+            <option value="visitDate">Visit Date</option>
+          </select>
+        </div>
       </div>
       <div className="all-bookings__information desktop">
         <div className="all-bookings__container">
