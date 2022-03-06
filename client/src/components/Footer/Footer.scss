@@ -2,6 +2,7 @@
 @use "../../styles/partials/mixins" as *;
 
 footer {
+  text-align: right;
   font-size: 0.8em;
   color: $primary-light;
   background-color: $primary-dark;
