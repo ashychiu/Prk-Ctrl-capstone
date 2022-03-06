@@ -33,15 +33,15 @@ Admin:
 <img width="1424" alt="admin-whoishere" src="https://user-images.githubusercontent.com/32230130/156914594-2ef8104e-3563-4fc5-9168-6da0bd108bc6.png">
 <img width="1424" alt="admin-showcontact" src="https://user-images.githubusercontent.com/32230130/156914623-9b95545e-38bb-4342-af72-9a1e254393eb.png">
 
-**Mobile**
-Resident:
-<img width="500" alt="user-dashboard" src="https://user-images.githubusercontent.com/32230130/156914632-2d102edd-7b3c-40f0-bc0d-a8eb86aa8e99.png">
+**Mobile**  
+Resident:  
+<img width="500" alt="user-dashboard" src="https://user-images.githubusercontent.com/32230130/156914632-2d102edd-7b3c-40f0-bc0d-a8eb86aa8e99.png">   
 <img width="500" alt="user-mybooking" src="https://user-images.githubusercontent.com/32230130/156914635-751bebe1-9b1f-4275-9de2-cdcccaa67933.png">
-Admin:
-<img width="485" alt="admin-dashboard" src="https://user-images.githubusercontent.com/32230130/156914639-914d08cf-0ead-4caf-9612-a25dd1e04441.png">
+Admin:  
+<img width="485" alt="admin-dashboard" src="https://user-images.githubusercontent.com/32230130/156914639-914d08cf-0ead-4caf-9612-a25dd1e04441.png">  
 <img width="483" alt="admin-whoishere" src="https://user-images.githubusercontent.com/32230130/156914643-9d5592f0-c89a-4d67-94a5-2270d0e4f69f.png">
-Visitor:
-<img width="500" alt="visitor-checkin" src="https://user-images.githubusercontent.com/32230130/156914647-412e7327-a712-4c5f-8bdf-1e10eac5b612.png">
+Visitor:  
+<img width="500" alt="visitor-checkin" src="https://user-images.githubusercontent.com/32230130/156914647-412e7327-a712-4c5f-8bdf-1e10eac5b612.png">  
 <img width="500" alt="visitor-checkin-successful" src="https://user-images.githubusercontent.com/32230130/156914651-c3b06c9e-e121-445c-b40f-f8f54cee63ef.png">
 
 
