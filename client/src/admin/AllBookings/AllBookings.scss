@@ -23,6 +23,7 @@
     }
   }
   &__searchbar {
+    margin-bottom: 1rem;
     @include desktop {
       display: flex;
       flex-direction: row;
@@ -34,7 +35,7 @@
   }
   &__information {
     background-color: $primary-light;
-    padding: 1rem 0;
+    padding: 1rem;
     border-top: 1px solid lightgrey;
     display: flex;
     flex-direction: row;
@@ -69,7 +70,8 @@
   &__actions {
     padding: 0.5rem 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    flex-basis: 50%;
 
     @include tablet {
       padding: 0.5rem 0;
@@ -85,7 +87,13 @@
 }
 
 div .desktop {
-  border-top: none;
+  // display: none;
+  margin: 0;
+  padding: 0;
+  @include desktop {
+    // display: block;
+    border-top: none;
+  }
 }
 
 div.all-bookings__searchbar select,
@@ -106,8 +114,8 @@ div.all-bookings__searchbar input {
 }
 
 div.all-bookings__searchbar h4 {
-  margin-block-start: 1em;
-  margin-block-end: 1em;
+  margin-block-start: 0.5em;
+  margin-block-end: em;
   @include desktop {
     display: none;
   }

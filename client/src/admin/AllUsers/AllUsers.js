@@ -86,7 +86,7 @@ const AllUsers = (props) => {
   }
 
   const listToRender = query ? filteredList : sortedList;
-  // const listToRender = sortedList;
+
   return (
     <section className="all-users">
       <h1>All Users</h1>
@@ -113,7 +113,7 @@ const AllUsers = (props) => {
           </select>
         </div>
       </div>
-      <div className="all-users__information desktop">
+      <div className="all-users__information desktop-bar">
         <div className="all-users__container">
           <h4 className="all-users__heading">Full Name</h4>
         </div>

@@ -14,7 +14,7 @@ const WhoIsHere = () => {
   const [userList, setUserList] = useState([]);
   const [showBookings, setShowBookings] = useState(5);
 
-  //Get vistors who have checked in but not yet checked out
+  //Fetch vistors who have checked in but not yet checked out
   const fetchCurrVisitors = () => {
     axios
       .get(`${API_URL}/bookings`)
@@ -97,7 +97,7 @@ const WhoIsHere = () => {
               <h4 className="whoishere__subheader">Accessibility</h4>
               <p className="whoishere__text">{sortedList[i].accessibility}</p>
             </div>
-            <div className="whoishere__container">
+            <div className="whoishere__checkin">
               <h4 className="whoishere__subheader">Checkin Time</h4>
               <p className="whoishere__text">
                 <Moment parse="YYYY-MM-DD HH:mm">
