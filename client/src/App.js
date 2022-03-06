@@ -33,6 +33,7 @@ function App() {
         <Redirect path="/support" to="/dashboard" />
         <PrivateRoute path="/dashboard" exact component={DashBoard} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

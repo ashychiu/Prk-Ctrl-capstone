@@ -31,7 +31,7 @@
   }
   &__information {
     background-color: $primary-light;
-    padding: 1rem 0;
+    padding: 1rem;
     border-top: 1px solid lightgrey;
     display: flex;
     flex-direction: row;
@@ -81,7 +81,7 @@
   @include body-copy;
 }
 
-div .desktop {
+div .desktop-bar {
   border-top: none;
 }
 

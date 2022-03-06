@@ -20,10 +20,11 @@
   }
   &__information {
     background-color: $primary-light;
-    padding: 1rem 0;
+    padding: 1rem;
     border-top: 1px solid lightgrey;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 
     @include tablet {
       flex-direction: row;
@@ -39,15 +40,21 @@
       align-items: center;
       padding: 1.5rem 3.5rem;
       position: relative;
+      flex-wrap: nowrap;
       &:hover {
         background-color: $primary-light;
       }
     }
   }
   &__container {
+    flex-basis: 50%;
     @include desktop {
       flex-basis: 20%;
     }
+  }
+  &__subheader {
+    margin-block-start: 0.8em;
+    margin-block-end: 0.8em;
   }
   &__actions {
     padding: 0.5rem 1rem;
@@ -61,4 +68,16 @@
       flex-basis: 10%;
     }
   }
+}
+
+div.mybookings__container p {
+  font-size: 0.85em;
+  @include tablet {
+    font-size: 0.9em;
+  }
+}
+
+.desktop-bar {
+  border-top: none;
+  padding-left: 1rem;
 }

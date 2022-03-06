@@ -22,7 +22,7 @@ const MyBookings = (props) => {
 
   useEffect(() => {
     fetchMyBookings();
-  }, [JSON.stringify(myBookings)]);
+  }, []);
 
   const fetchMyBookings = () => {
     console.log("fetching my bookings");

@@ -108,7 +108,7 @@ const AllBookings = (props) => {
           </select>
         </div>
       </div>
-      <div className="all-bookings__information desktop">
+      <div className="all-bookings__information desktop-bar">
         <div className="all-bookings__container">
           <h4 className="all-bookings__heading">Submit Date</h4>
         </div>
@@ -121,14 +121,15 @@ const AllBookings = (props) => {
         <div className="all-bookings__container">
           <h4 className="all-bookings__heading">Unit Number</h4>
         </div>
-        <div className="all-bookings__container">
-          <h4 className="all-bookings__heading">Remarks</h4>
-        </div>
+
         <div className="all-bookings__container">
           <h4 className="all-bookings__heading">Checkin</h4>
         </div>
         <div className="all-bookings__container">
           <h4 className="all-bookings__heading">Checkout</h4>
+        </div>
+        <div className="all-bookings__container">
+          <h4 className="all-bookings__heading">Remarks</h4>
         </div>
         <div className="all-bookings__actions">
           <h4 className="all-bookings__heading hidden">Action Function</h4>
@@ -153,10 +154,7 @@ const AllBookings = (props) => {
               <h4 className="all-bookings__subheader">Unit Number</h4>
               <p>{listToRender[i].unitNumber}</p>
             </div>
-            <div className="all-bookings__container">
-              <h4 className="all-bookings__subheader">Remarks</h4>
-              <p>{listToRender[i].remarks ? listToRender[i].remarks : "-"}</p>
-            </div>
+
             <div className="all-bookings__container">
               <h4 className="all-bookings__subheader">Checkin Time</h4>
               <p>
@@ -180,6 +178,10 @@ const AllBookings = (props) => {
                   "-"
                 )}
               </p>
+            </div>
+            <div className="all-bookings__container">
+              <h4 className="all-bookings__subheader">Remarks</h4>
+              <p>{listToRender[i].remarks ? listToRender[i].remarks : "-"}</p>
             </div>
             <div className="all-bookings__actions">
               <button
