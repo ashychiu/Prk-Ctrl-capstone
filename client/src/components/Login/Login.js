@@ -7,11 +7,12 @@ import SignupModal from "../SignupModal/SignupModal";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const Login = () => {
+const Login = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
 
+  const { username, password } = props;
   const onCloseHandler = () => {
     setShowModal(false);
   };
@@ -51,6 +52,7 @@ const Login = () => {
                 type="text"
                 name="email"
                 placeholder="email address"
+                value={username ? username : ""}
                 className="login__input"
                 onChange={() => setError("")}
               />
@@ -58,6 +60,7 @@ const Login = () => {
                 type="password"
                 name="password"
                 placeholder="password"
+                value={password ? password : ""}
                 className="login__input"
                 onChange={() => setError("")}
               />

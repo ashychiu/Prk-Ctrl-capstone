@@ -1,0 +1,91 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.home-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  &-header {
+    @include tablet {
+      position: relative;
+      top: 3rem;
+    }
+  }
+
+  &-content {
+    color: $secondary-light;
+    background-color: $primary-dark;
+    height: 100%;
+    width: 100%;
+    @include tablet {
+      height: 50vh;
+      width: auto;
+      width: 42rem;
+      position: relative;
+    }
+  }
+  &__close {
+    position: absolute;
+    right: 21px;
+    top: 21px;
+  }
+
+  &__title {
+    margin-top: 3.75rem;
+    margin-left: 1rem;
+    font-size: 1.75rem;
+    @include tablet {
+      position: relative;
+      bottom: 2.5rem;
+      margin-top: 2rem;
+      margin-left: 4rem;
+      margin-bottom: 0;
+    }
+  }
+
+  &__content {
+    margin-left: 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+
+    @include tablet {
+      margin-top: 0px;
+      width: 75%;
+      margin-left: 4rem;
+      position: relative;
+      bottom: 2rem;
+    }
+  }
+}
+
+.home-modal__content span,
+p {
+  font-size: 1.125rem;
+  line-height: 0.5;
+  font-weight: 400;
+}
+.home-modal__content span {
+  font-size: 0.8rem;
+}
+.home-modal__content strong,
+a {
+  text-decoration: none;
+  color: $primary-cta;
+  line-height: 1.5;
+}
+
+.icon {
+  position: relative;
+  left: 1rem;
+  bottom: -1.2rem;
+  font-size: 1.2em;
+  cursor: pointer;
+}
