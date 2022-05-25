@@ -15,10 +15,6 @@ const HomePage = () => {
 
   const history = useHistory();
 
-  const handleAdmin = () => {
-    window.open(`/admin`, "_blank");
-  };
-
   const onCloseHandler = () => {
     setShowModal(false);
   };
@@ -54,7 +50,6 @@ const HomePage = () => {
         show={showModal}
         onCloseHandler={onCloseHandler}
         handleLogin={handleLogin}
-        handleAdmin={handleAdmin}
       />
     </main>
   );

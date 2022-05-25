@@ -15,6 +15,10 @@ function Visitor() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    document.title = "PRK CTRL - Visitor Parking Made Easy";
+  }, []);
+
+  useEffect(() => {
     const token = localStorage.getItem("checkin-token");
     const licence = localStorage.getItem("licence");
 
@@ -128,7 +132,6 @@ function Visitor() {
         checkedIn={checkedIn}
         onCloseHandler={onCloseHandler}
       />
-      <Footer />
     </main>
   );
 }

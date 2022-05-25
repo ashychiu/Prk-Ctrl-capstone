@@ -12,6 +12,9 @@ const MobileLogin = (props) => {
   const history = useHistory();
 
   const { username, password } = props;
+  useEffect(() => {
+    document.title = "PRK CTRL - Visitor Parking Made Easy";
+  }, []);
 
   const onCloseHandler = () => {
     setShowModal(false);

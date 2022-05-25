@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./AdminLogin.scss";
@@ -6,9 +6,12 @@ import logo from "../../assets/logo/white-logo-transparent.svg";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function AdminLogin() {
+const AdminLogin = () => {
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    document.title = "PRK CTRL - Visitor Parking Made Easy";
+  }, []);
   const history = useHistory();
   const login = (e) => {
     e.preventDefault();
@@ -57,6 +60,6 @@ function AdminLogin() {
       </form>
     </section>
   );
-}
+};
 
 export default AdminLogin;
