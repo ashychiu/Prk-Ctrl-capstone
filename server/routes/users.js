@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const { createTokens, validateToken } = require("../JWT");
 // const { sendWelcomeMail } = require("../email");
 
+
 const readFile = () => {
   const userData = fs.readFileSync("./data/users.json");
   return JSON.parse(userData);
