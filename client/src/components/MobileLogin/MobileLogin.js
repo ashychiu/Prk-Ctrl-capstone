@@ -6,10 +6,12 @@ import "./MobileLogin.scss";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function MobileLogin() {
+const MobileLogin = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const history = useHistory();
+
+  const { username, password } = props;
 
   const onCloseHandler = () => {
     setShowModal(false);
@@ -45,12 +47,14 @@ function MobileLogin() {
             name="email"
             placeholder="email"
             className="mobile-login__input"
+            value={username ? username : ""}
             onChange={() => setError("")}
           />
           <input
             type="password"
             name="password"
             placeholder="password"
+            value={password ? password : ""}
             className="mobile-login__input"
             onChange={() => setError("")}
           />
@@ -72,6 +76,6 @@ function MobileLogin() {
       <SignupModal show={showModal} onCloseHandler={onCloseHandler} />
     </section>
   );
-}
+};
 
 export default MobileLogin;

@@ -4,7 +4,7 @@ import "./Visitor.scss";
 import checkinImage from "../../assets/images/homepage-hero-crop.png";
 import checkoutImage from "../../assets/images/homepage-hero-checkout.png";
 import VisitorModal from "../../components/VisitorModal/VisitorModal";
-
+import Footer from "../../components/Footer/Footer";
 const API_URL = process.env.REACT_APP_API_URL;
 
 function Visitor() {
@@ -128,6 +128,7 @@ function Visitor() {
         checkedIn={checkedIn}
         onCloseHandler={onCloseHandler}
       />
+      <Footer />
     </main>
   );
 }

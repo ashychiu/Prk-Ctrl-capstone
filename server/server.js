@@ -20,6 +20,7 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/bookings", bookingRouter);
 app.use("/admin", adminRouter);
+app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 
 //deployment
 if (process.env.NODE_ENV === "production") {
@@ -30,3 +31,5 @@ if (process.env.NODE_ENV === "production") {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+module.exports = app;
